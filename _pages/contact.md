@@ -5,9 +5,10 @@ permalink: /contact/
 ---
 
 <br>
-<br>
 
 I'm always glad to help or hear from you!
+
+<br>
 
 E-Mail: [peter@goldsborough.me](mailto:peter@goldsborough.me)
 

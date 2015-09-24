@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-I’m Peter, ~~16~~ ~~17~~ 18 years old, from a smaller town in Austria, called Villach -- now living in Munich, Germany. I'm fascinated by computer science, especially software engineering, machine learning, digital signal processing, embedded systems and electronics. 
+I’m Peter, ~16~ <s>17<s> 18 years old, from a smaller town in Austria, called Villach -- now living in Munich, Germany. I'm fascinated by computer science, especially software engineering, machine learning, digital signal processing, embedded systems and electronics. 
 
 
 I’ve been programming for quite a while now and every line of code I know how to write I learned myself, through books, through tutorials, through writing  code. I'm most proficient in C++ and Python, although I also enjoy working with Arduino and AVR C for my electronics and embedded projects; HTML, SASS / CSS, SQL, JS, Flask and Heroku for web development; LaTeX for papers or documentation; Qt and PyQt for pretty GUIs or any other language or technology that my current project might require. I love the command line and Unix wizardry. I love combining software with hardware and experimenting with electronics and μControllers. I love tinkering, inventing, exploring, solving problems, learning continuously, working relentlessly and dreaming big.
