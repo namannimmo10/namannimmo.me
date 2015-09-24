@@ -8,8 +8,6 @@ permalink: /contact/
 
 I'm always glad to help or hear from you!
 
-<br>
-
 E-Mail: [peter@goldsborough.me](mailto:peter@goldsborough.me)
 
 LinkedIn: [http://at.linkedin.com/in/petergoldsborough/](http://at.linkedin.com/in/petergoldsborough/)
