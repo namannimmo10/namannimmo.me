@@ -51,3 +51,6 @@ permalink:    pretty
 paginate:     4
 sass:
   compressed: true
+
+# Additional settings
+include: ['_pages']
