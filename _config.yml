@@ -7,7 +7,7 @@ url:         "goldsborough.me"
 date_format: "%b %-d, %Y"
 
 # Google services
-google_analytics:
+google_analytics: UA-68059753-1
 google_verification:
 
 # Optional features
