@@ -14,9 +14,10 @@ google_verification:
 animated:             true
 show_related_posts:   true
 show_post_footers:    true
-show_rss: 			  true
+show_rss:             true
 show_social_icons:    true
 ajaxify_contact_form: false
+enable_mathjax:       true
 
 # Disqus post comments
 # (leave blank to disable Disqus)
