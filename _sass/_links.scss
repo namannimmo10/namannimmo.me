@@ -1,11 +1,12 @@
 a {
-  color: $link-color;
+	opacity: 0.92;
+	border-bottom: 1px solid $black;
 }
 
 a:hover,
 a:focus,
 a:active {
-  border: 0;
-  color: $link-hover-color;
-  text-decoration: none;
+	opacity: 1;
+	border-bottom: 1px solid $red;
+	text-decoration: none;
 }

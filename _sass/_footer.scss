@@ -21,9 +21,20 @@
 footer {
   background-color: $footer-bg-color;
   border-top: $footer-border-top;
-  color: $footer-color;
   font-size: $footer-font-size;
   font-weight: $footer-font-weight;
   padding: $footer-padding;
   text-align: center;
+}
+
+footer div {
+  display: inline;
+}
+
+.footer-left {
+  float: left;
+}
+
+.footer-right {
+  float: right;
 }
