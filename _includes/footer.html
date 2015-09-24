@@ -2,6 +2,9 @@
 	<div class="footer-left">
 		Peter Goldsborough
 	</div>
+	{% if site.show_social_icons %}
+        {% include social_links.html %}
+      {% endif %}
 	<div class="footer-right">
 		Based on <a href="https://github.com/johnotander/pixyll">pixyll</a> by <a href="http://johnotander.com">John Otander</a>.
 	</div>

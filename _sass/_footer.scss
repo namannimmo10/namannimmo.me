@@ -19,7 +19,7 @@
 }
 
 footer {
-  background-color: $footer-bg-color;
+  background-color: $footer-background;
   border-top: $footer-border-top;
   font-size: $footer-font-size;
   font-weight: $footer-font-weight;
@@ -28,13 +28,15 @@ footer {
 }
 
 footer div {
-  display: inline;
+  display: inline-block;
 }
 
 .footer-left {
+  padding: $space-2;
   float: left;
 }
 
 .footer-right {
+  padding: $space-2;
   float: right;
 }
