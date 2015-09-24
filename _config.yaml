@@ -3,7 +3,7 @@ title:       Peter Goldsborough
 email:       peter@goldsborough.me
 author:      Peter Goldsborough
 baseurl:     ""
-url:         "http://goldsborough.github.io"
+url:         "http://goldsborough.me"
 date_format: "%b %-d, %Y"
 
 # Google services
@@ -14,6 +14,7 @@ google_verification:
 animated:             true
 show_related_posts:   true
 show_post_footers:    true
+show_rss: 			  true
 show_social_icons:    true
 ajaxify_contact_form: false
 

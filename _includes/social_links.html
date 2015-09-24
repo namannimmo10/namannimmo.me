@@ -26,11 +26,13 @@
 		{% if site.medium_id %}
 			<a class="fa fa-medium" href="https://medium.com/{{ site.medium_id }}"></a>
 		{% endif %}
-		<a class="fa fa-rss" href="{{ "/feed.xml" | prepend: site.baseurl }}"></a>
 		{% if site.bitcoin_url %}
 			<a class="fa fa-bitcoin" href="{{ site.bitcoin_url }}"></a>
 		{% endif %}
 		{% if site.paypal_url %}
 			<a class="fa fa-paypal" href="{{ site.paypal_url }}"></a>
+		{% endif %}
+		{% if site.show_rss %}
+			<a class="fa fa-rss" href="{{ "/feed.xml" | prepend: site.baseurl }}"></a>
 		{% endif %}
 </div>
