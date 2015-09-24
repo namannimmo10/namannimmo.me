@@ -1,10 +1,9 @@
 # Site settings
-title:       Pixyll
-email:       your_email@example.com
-author:      John Otander
-description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
+title:       Peter Goldsborough
+email:       peter@goldsborough.me
+author:      Peter Goldsborough
 baseurl:     ""
-url:         "http://pixyll.com"
+url:         "goldsborough.me"
 date_format: "%b %-d, %Y"
 
 # Google services
@@ -20,34 +19,29 @@ ajaxify_contact_form: false
 
 # Disqus post comments
 # (leave blank to disable Disqus)
-disqus_shortname:
+disqus_shortname: petergoldsborough
 
 # Social icons
-github_username:
-bitbucket_username:
-stackoverflow_id:
-twitter_username:
-google_plus_id:
-linkedin_username:
-angellist_username:
-medium_id:
+github_username: goldsborough
+stackoverflow_id: 1810440
+twitter_username: pegoldsborough
+linkedin_username: petergoldsborough
 bitcoin_url:
-paypal_url:
-flattr_button:
+paypal_url: 
 
 # Post sharing icons
-show_sharing_icons: false
-share_text: 'Share this post!'
+show_sharing_icons: true
+share_text: 'Spread the love!'
 # Change to 'true' to enable individual icons
-share_facebook: false
-share_twitter: false
-share_googleplus: false
-share_linkedin: false
+share_facebook: true
+share_twitter: true
+share_googleplus: true
+share_linkedin: true
 share_digg: false
-share_tumblr: false
-share_reddit: false
+share_tumblr: true
+share_reddit: true
 share_stumbleupon: false
-share_hackernews: false
+share_hackernews: true
 
 # Build settings
 markdown:     kramdown
