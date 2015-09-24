@@ -4,9 +4,7 @@ title: Contact
 permalink: /contact/
 ---
 
-<br>
-
-I'm always glad to help or hear from you!
+### I'm always glad to help or hear from you!
 
 E-Mail: [peter@goldsborough.me](mailto:peter@goldsborough.me)
 
