@@ -62,64 +62,12 @@
 }
 
 @media screen and (min-width: $viewport-small) {
-  html {
-    font-size: 16px;
-  }
-
-  h1,
-  .h1 {
-    font-size: $h1;
-  }
-
-  .site-header {
-    text-align: left;
-  }
-
-  .site-nav {
-    margin-top: 0;
-  }
-
-  .site-header a {
-    font-size: 1.35rem;
-  }
-
-  .site-header .site-title {
-    font-size: $h2;
-    float: left;
-  }
-
-  .site-header .site-nav {
-    float: right;
-    margin-top: .25rem;
-  }
-
-  blockquote {
-    margin-left: $space-3;
-    padding: $space-3;
-  }
-
-  .social-icons-left {
-    text-align: left;
-  }
-
-  .social-icons-right {
-    text-align: right;
-  }
-
-  footer div {
-    display: block;
-  }
-
   .footer-left {
-    padding: 0;
     padding-bottom: $space-1;
-    float: none;
   }
 
   .footer-right {
-    padding: 0;
     padding-top: .8rem;
-    float: none;
   }
 
 }
