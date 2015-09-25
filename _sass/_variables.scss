@@ -94,19 +94,19 @@ $form-field-padding-x: .5rem;
 $pre-border-radius: 0;
 $pre-background-color: #fafafa;
 $hljs-comment: $mid-gray;
-$hljs-keyword: $dark-blue;
+$hljs-keyword: #dc38ab; // pink
 $hljs-name: $dark-gray;
-$hljs-number: $dark-green;
-$hljs-string: $red;
+$hljs-number: #f10002; // red
+$hljs-string: #4bd74c; // green
 $hljs-title: $red;
 $hljs-type: $dark-blue;
 $hljs-tag: $dark-blue;
-$hljs-attribute: $dark-green;
+$hljs-attribute: #10a2e6; // blue
 $hljs-regexp: $dark-green;
 $hljs-symbol: $purple;
 $hljs-built-in: $dark-blue;
 $hljs-preprocessor: $mid-gray;
-$hljs-deletion: $light-pink;
+$hljs-deletion: $dark-blue;
 $hljs-addition: $light-green;
 $hljs-change: $dark-blue;
 $hljs-chunk: $light-gray;

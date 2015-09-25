@@ -71,25 +71,12 @@
   color: $hljs-type;
 }
 
-.highlight .o {
-  color: $hljs-tag;
-  font-weight: normal;
-}
-
 .highlight .nb {
   color: $hljs-attribute;
 }
 
 .highlight .sr {
   color: $hljs-regexp;
-}
-
-.highlight .ss {
-  color: $hljs-symbol;
-}
-
-.hljs-built_in {
-  color: $hljs-built-in;
 }
 
 .hljs-preprocessor,
@@ -100,18 +87,6 @@
 .hljs-cdata {
   color: $hljs-preprocessor;
   font-weight: bold;
-}
-
-.hljs-deletion {
-  background: $hljs-deletion;
-}
-
-.hljs-addition {
-  background: $hljs-addition;
-}
-
-.diff .hljs-change {
-  background: $hljs-change;
 }
 
 .hljs-chunk {
