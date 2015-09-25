@@ -32,15 +32,16 @@ bitcoin_url:
 paypal_url: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SGAMY6ME8YMSC"
 
 # Post sharing icons
+share_text:
 show_sharing_icons: true
-share_text: 'Spread the love!'
-share_facebook: true
-share_twitter: true
-share_googleplus: true
-share_linkedin: true
-share_tumblr: true
-share_reddit: true
-share_hackernews: true
+share_facebook: 	true
+share_twitter: 		true
+share_googleplus: 	true
+share_linkedin: 	true
+share_tumblr: 		true
+share_reddit: 		true
+share_stumbleupon:	true
+share_hackernews: 	true
 
 # Build settings
 markdown:     redcarpet
