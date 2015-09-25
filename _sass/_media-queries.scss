@@ -1,4 +1,17 @@
 @media screen and (min-width: $viewport-extra-small) {
+  .site-header {
+    padding-top: $space-3;
+    padding-bottom: 0;
+  }
+
+  .site-header a {
+   font-size: $h2; 
+  }
+
+  .site-nav a {
+   font-size: $h3; 
+  }
+
   footer div {
     display: block;
   }
@@ -11,7 +24,7 @@
 
   .footer-right {
     padding: 0;
-    padding-top: .8rem;
+    padding-top: $space-2;
     float: none;
   }
 
@@ -61,7 +74,7 @@
   .social-icons-right {
     text-align: right;
   }
-  
+
   .footer-left {
     padding-bottom: $space-1;
   }
