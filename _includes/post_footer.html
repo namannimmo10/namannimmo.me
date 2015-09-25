@@ -78,7 +78,7 @@
 			var links = containers[c].getElementsByTagName("li")
 			for (var i = 0; i < links.length; ++i)
 			{	
-				var variant = " share-links-" + variants[i % 2]
+				var variant = " share-links-" + variants[(c + i) % 2]
 				links[i].getElementsByTagName("a")[0].className += variant
 			}
 		}
