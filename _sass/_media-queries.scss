@@ -42,11 +42,39 @@
   .social-icons-right {
     text-align: right;
   }
+
+  footer div {
+    display: block;
+  }
+
+  .footer-left {
+    float: none;
+  }
+
+  .footer-right {
+    padding: 0;
+    padding-top: $space-2;
+    float: none;
+  }
 }
 
 @media screen and (min-width: $viewport-medium) {
   html {
     font-size: 18px;
+  }
+
+  footer div {
+    display: block;
+  }
+
+  .footer-left {
+    float: none;
+  }
+
+  .footer-right {
+    padding: 0;
+    padding-top: $space-2;
+    float: none;
   }
 }
 
