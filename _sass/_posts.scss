@@ -19,18 +19,42 @@
   font-weight: 600;
 }
 
-.post-footer {
-  text-align: center;
-}
-
 .post-content {
   text-align: justify;
 }
 
-.post-footer .avatar {
+.post-footer {
+  text-align: center;
+}
+
+.post-footer-left {
+  float: left;
+  display: inline-block;
+}
+
+.post-footer-center {
+  display: inline-block;
+}
+
+.post-footer-center a {
+  border-bottom: 2px solid transparent;
+}
+
+.post-footer-center a:hover,
+.post-footer-center a:active,
+.post-footer-center a:focus {
+  border-bottom: 2px solid $red;
+}
+
+.post-footer-center .avatar {
   margin: 2rem 0;
   width: 100px;
   border-radius: 50%;
+}
+
+.post-footer-right {
+  float: right;
+  display: inline-block;
 }
 
 .meta,
