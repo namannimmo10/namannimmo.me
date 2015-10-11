@@ -376,7 +376,7 @@ Note: Binary numbers are generally structured such that each bit signifies $0 \t
 
 Solution: Start with a "significance" of $0.5$ and see if we can subtract that significance from the floating-point value. If so, we add a 1 to our representation and subtract the significance from the value. If not, we add a 0 to the representation. Before each next iteration, we divide the significance by 2 to get $0.5, 0.25, 0.125, ...$
 
-```C+++
+```C++
 void print_binary_double(double value)
 {
 	static const std::size_t limit = 32;
