@@ -60,10 +60,16 @@
 .meta,
 .post-meta {
   width: auto;
+  font-size: $h4;
   font-weight: 300;
   margin: 0;
   padding: .25em 0;
   color: #7a7a7a;
+}
+
+.post-meta-small {
+  @extend .post-meta;
+  font-size: .8rem;
 }
 
 .related-post-title {

@@ -18,7 +18,7 @@ Feel free to send me a message by any means, you can find my contact info next t
 
 <div id="about-image-2">
 	<img src="/images/mac.jpeg" alt="Me again."/>
-	<p>
+	<p class="caption">
 		A wild Peter (<em>petrus programmerus</em>) in his natural environment, hacking.
 	</p>
 </div>
