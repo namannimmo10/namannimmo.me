@@ -71,6 +71,8 @@ To add two binary values in your head, you can either first convert them to deci
     * $0 + 1$ give $1$
     * $1 + 1$ give $0$ with a carry of $1$ (add that at the next digit)
 
+<br>
+
 ```
  1101
      +
@@ -102,6 +104,8 @@ Multiplication is a bit more complicated, but basically involves shifting bits a
 1. $1101\_2 \cdot 1010\_2 = 13\_{10} \cdot 10\_{10} = 130$
 
 2. For multiplication you have to work on a bit-by-bit basis and "multiply" each bit `A` in the one value by each bit `B` in the other value by shifting `B` over by the position of `B`. You then have to add the result of each shift operation. For example, with `x = 4 = 0b0100` and `y = 2 = 0b0010`, to do $x \cdot y$, you have to shift `x` over by the position of every bit in `y`. For `x`, here, there is only the $2^{nd}$ bit (`0`-indexed) and for `y` only the $1^{st}$. For the result, you would now have to shift `x` to the left by the index of the bit in `y`, i.e. by one position. The result is then `0b1000 = 8`. If there were more bits in `x`, you would repeat this for all other bits and add the results of each shift for the final result.
+
+<br>
 
 ```
     1101
