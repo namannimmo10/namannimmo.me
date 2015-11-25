@@ -176,7 +176,7 @@ For example, when working with microcontrollers, I always have a macro like this
 
 #### Clearing Bits
 
-To clear a bit, we use the AND (`&`) and NOT (`~`) operations. To clear/unset the $n^{th}$ bit of a value, the basic idea is to create a bit-mask with all bits set except for that $n^{th}$ bit, and then to AND the value with this mask. All bits that were previously set will be left alone, because `1 & 1 = 1` and all bits that were unset will also remain unset, because `0 & 1 = 0`. 
+To clear a bit, we use the AND (`&`) and NOT (`~`) operations. To clear/unset the $n^{th}$ bit of a value, the basic idea is to create a bit-mask with all bits set except for that $n^{th}$ bit, and then to AND the value with this mask. All bits that were previously set will be left alone, because `1 & 1 = 1` and all bits that were unset will also remain unset, because `0 & 1 = 0`.
 
 To clear the $n^{th}$ bit of a value `x`: `x &= ~(1 << n)`.
 
@@ -203,12 +203,12 @@ Macro:
 
 #### Updating Bits
 
-Sometimes we may want to update a bit to specific value, stored in a variable. For this, we first have to clear the bit, and then OR it with the value.
+Sometimes we may want to update a bit to specific value, stored in a variable. For this, we first have to clear the bit, and then OR it with the value (true/false).
 
 To update the $n^{th}$ bit of a value `x`:
 
 1. `x &= ~(1 << n)`
-2. `x |= (1 << value)`
+2. `x |= (value << n)`
 
 #### Checking Bits
 
@@ -279,7 +279,7 @@ To get a mask for all odd bits, use `0xA`, with one `A` every four bits (2 for a
 
 ```Python
 >>> bin(0xAA)
->>> '0b10101010' 
+>>> '0b10101010'
 ```
 
 With the explanation that `0xA` in hex is `10` in decimal which is `0b1010` in binary (and the $1^{st}$ and $3^{rd}$ bits are set).
