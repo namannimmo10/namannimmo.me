@@ -36,8 +36,8 @@ of your IDE means. This post attempt to spare you from all the trouble, so that
 at the end of it you will have a working Java environment that can compile your
 code, do refactoring, on-the-fly syntax checking and more.
 
-*Note: I'm mostly focused on \*nix systems, but I hope Windows users can follow
-too.*
+*Note*: I'm mostly focused on \*nix systems, but I hope Windows users can follow
+too.
 
 ## Outline
 
@@ -185,20 +185,20 @@ in your Java code.
 ## Compiling
 
 Compilation is best achieved by using a build system such as ant, maven or
-gradle. Emacs-eclim has built-in support for ant and maven so if you are
+Gradle. Emacs-eclim has built-in support for ant and maven so if you are
 familiar with those you can use `M-x eclim-ant-run` to build your ant project,
 or `M-x eclim-maven-run` for the maven equivalent.
 
 As I personally didn't have much of a history with maven or ant I was free to
-look around, and found [gradle](http://gradle.org), which seems to be the hip
+look around, and found [Gradle](http://gradle.org), which seems to be the hip
 new kid on the block. Lots of people seem to be saying that it is quite a lot
 better than maven or ant. I like how fresh it feels and its more intuitive
 interface in the sense that it is not configured in XML, but in a
 YAML/Python/Java-like scripting language, which is quite nice. However, I
 certainly don't consider myself an expert on this. I just wanted something that
-worked and gradle worked for me.
+worked and Gradle worked for me.
 
-Before I delve into details about gradle, let me just also very shortly mention
+Before I delve into details about Gradle, let me just also very shortly mention
 that the *simplest* way to compile and/or run your Java code is simply with `M-x
 compile`, where you can then type in your standard `javac Foo.java Bar.java`
 followed by another `M-x compile` with `java Foo`. But that's not so intuitive,
@@ -206,7 +206,7 @@ is it.
 
 ### Setting up Gradle
 
-You can get gradle from [their website](http://gradle.org) or via `apt-get
+You can get Gradle from [their website](http://gradle.org) or via `apt-get
 install gradle` or `brew install gradle`. You'll then also want
 [`gradle-mode`](https://github.com/jacobono/emacs-gradle-mode) from MELPA or
 wherever. Lastly, enable it whenever it's Java-time:
@@ -229,17 +229,17 @@ applicationDefaultJvmArgs = ["-ea"]
 ~~~
 
 You'll want to read their manual of course to see the full list of features, but
-I promise you gradle is quite impressive. What we're doing up there is setting
-up the build file for Java by *applying* the `java` plugin (since gradle can be
+I promise you Gradle is quite impressive. What we're doing up there is setting
+up the build file for Java by *applying* the `java` plugin (since Gradle can be
 used for other languages too). The `application` plugin we will use to run our
 code, as opposed to just building it or creating a jar (which is probably the
-easiest thing to do with gradle). To run our code using the `application`
+easiest thing to do with Gradle). To run our code using the `application`
 plugin, we need to set a main class (we'll define a `Test.java` file
 later). Lastly I enabled assertions, just as an example.
 
 ### Using Gradle
 
-I'll briefly *describe* how to use gradle to build your code now, and then show
+I'll briefly *describe* how to use Gradle to build your code now, and then show
 you how it's done with a practical example.
 
 The most important two commands you will want to know from gradle-mode are
@@ -275,13 +275,13 @@ resources, which would, for example, be under `src/main/resources`.
 
 #### Example
 
-I'll now give an actual example of building and running with gradle. I have this
+I'll now give an actual example of building and running with Gradle. I have this
 directory structure:
 
 ~~~
 Test/
-    build.gradle
-	src/main/java/Test.java
+├─ build.gradle
+└─ src/main/java/Test.java
 ~~~
 
 The build file is exactly the one from above. Let Test.java be this jaw-dropping
@@ -427,7 +427,7 @@ it's a start.
 
 ## Epilogue
 
-So, this is it. It was a long and hard journey but at the end, we have in our
+So, this is it. It was a long and hard journey but in the end, we have in our
 hands quite a neat piece of IDE. My conclusion is the same as my introduction:
 Emacs for Java is not a smooth ride. You'll have to invest time and energy and
 some features you see in Intellij & Co. are not there yet. But what you will
