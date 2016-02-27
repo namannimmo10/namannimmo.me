@@ -1,6 +1,54 @@
-_site
-.sass-cache
-.DS_Store
 
-# Ignore the config file that's used for gh-pages.
-_config.gh-pages.yml
+# Created by https://www.gitignore.io/api/jekyll,sass,emacs
+
+### Jekyll ###
+_site/
+.sass-cache/
+.jekyll-metadata
+
+
+### Sass ###
+.sass-cache/
+*.css.map
+
+
+### Emacs ###
+# -*- mode: gitignore; -*-
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Org-mode
+.org-id-locations
+*_archive
+
+# flymake-mode
+*_flymake.*
+
+# eshell files
+/eshell/history
+/eshell/lastdir
+
+# elpa packages
+/elpa/
+
+# reftex files
+*.rel
+
+# AUCTeX auto folder
+/auto/
+
+# cask packages
+.cask/
+
+# Flycheck
+flycheck_*.el
+
+# server auth directory
+/server/
+
