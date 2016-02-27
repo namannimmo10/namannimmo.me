@@ -6,6 +6,11 @@ baseurl:     ""
 url:         "http://www.goldsborough.me"
 date_format: "%b %-d, %Y"
 
+# Jekyll settings
+gems:
+  - jekyll-paginate
+  - jekyll-gist
+
 # Google services
 google_analytics: UA-68059753-1
 google_verification:
@@ -45,8 +50,10 @@ share_hackernews: 	true
 
 # Build settings
 markdown:     kramdown
-redcarpet:
-  extensions: ['smart', 'tables', 'with_toc_data', 'strikethrough', 'rouge']
+highlighter:  rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 permalink:    pretty
 paginate:     4
 sass:

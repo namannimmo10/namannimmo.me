@@ -1,7 +1,7 @@
 ---
 layout:		post
 title:		Setting up Emacs for Java Development
-summary:	Getting ready to use Emacs as a Java IDE, including how to compile your code, get on-the-fly syntax checking and highlighting
+summary:	How to compile and run your code with on-the-fly syntax checking, refactoring, autocompletion and more.
 date:		2016-02-24 22-54-16
 categories:	emacs, java
 ---
@@ -219,7 +219,7 @@ wherever. Lastly, enable it whenever it's Java-time:
 Once installed, you will need a build-file in your root directory, that must be
 called `build.gradle`. Just a few lines like so will do:
 
-```gradle
+```
 apply plugin: 'java'
 apply plugin: 'application'
 
@@ -275,15 +275,13 @@ resources, which would, for example, be under `src/main/resources`.
 
 #### Example
 
-![Fuck it, we'll do it live!](http://www.quickmeme.com/img/9d/9daf428b4fcdc94c27fae2bd28107198595f299cdf03cff8fcd124832d57322b.jpg)
-
 I'll now give an actual example of building and running with gradle. I have this
 directory structure:
 
 ```
 Test/
-     build.gradle
-	 src/main/java/Test.java
+    build.gradle
+	src/main/java/Test.java
 ```
 
 The build file is exactly the one from above. Let Test.java be this jaw-dropping
@@ -306,13 +304,13 @@ Now when I hit `M-x gradle-build`, I get:
 Oh, sorry, that was actually a picture from lunch (I'm a bad cook). This is what
 I wanted to show you:
 
-![Building](http://goldsborough.me/images/27-02-2016/build.png)
+![Building](/images/27-02-2016/build.png)
 
 Now, for building *and* running, i.e. compiling and executing our code, we will
 use `gradle-execute`. We are then prompted about what tasks we wish to run, and
 there we write `build run`, to get those two steps:
 
-![Building and Running](http://goldsborough.me/images/27-02-2016/build-and-run.png)
+![Building and Running](/images/27-02-2016/build-and-run.png)
 
 For me, this is just perfect. To make our lives nice and sweet we'll bind
 `M-x gradle-execute build run` to a key-combination in our `.emacs` file:
@@ -333,7 +331,7 @@ Now that we know how to do the most basic thing an IDE should do, compiling and
 running our code, we can add the fancy stuff. First up, let's have
 auto-complete. How does this below look to you?
 
-![Autocompletion](http://goldsborough.me/images/27-02-2016/company.png)
+![Autocompletion](/images/27-02-2016/company.png)
 
 It's quite easy to setup. Generally in emacs there are two *main* completion
 modes: *autocomplete* and *company*. We'll be using *company*, because it is
@@ -398,12 +396,12 @@ previously executed `eclim-project-create` or `eclim-project-open`). Also, note
 that often you have to save the file first for things to show up. However, then
 you get niceties like this:
 
-![Bugs](http://goldsborough.me/images/27-02-2016/syntax-checking.png)
+![Bugs](/images/27-02-2016/syntax-checking.png)
 
 When you go over an error with your cursor, you can then use `M-x
 eclim-problems-correct` to select some possible corrections:
 
-![Solutions](http://goldsborough.me/images/27-02-2016/correcting.png)
+![Solutions](/images/27-02-2016/correcting.png)
 
 You might want to bind that to something quicker:
 

@@ -4,21 +4,47 @@ title: About
 permalink: /about/
 ---
 
-<span id="about-image-1">![me](/images/fork.jpeg)</span>
+> TL;DR: I’m Peter and I like to make things with code. Starting this August I’ll
+> be at Google in London for some time.
 
-I’m Peter, ~~16~~ ~~17~~ 18 years old, from a smaller town in Austria, called Villach -- now living in Munich, Germany. I'm fascinated by computer science, especially software engineering, machine learning, digital signal processing, embedded systems and electronics.
-
-
-I’ve been programming for quite a while now and every line of code I know how to write I learned myself, through books, through tutorials, through writing  code. I'm most proficient in C++ and Python, although I also enjoy working with Arduino and AVR C for my electronics and embedded projects; HTML, SASS / CSS, SQL, JS, Flask and Heroku for web development; LaTeX for papers or documentation; Qt and PyQt for pretty GUIs or any other language or technology that my current project might require. I love the command line and Unix wizardry. I love combining software with hardware and experimenting with electronics and μControllers. I love tinkering, inventing, exploring, solving problems, learning continuously, working relentlessly and dreaming big.
-
-Besides all of that, I just graduated from high school, where I was valedictorian and school president, and am now starting my Computer Science degree at TU Munich. I  work part-time on unsupervised energy-management systems at the Institute for Networked and Embedded Systems at the University of Klagenfurt and, lastly, I'm a really avid reader, especially of anything that's Ayn Rand and Objectivism.
-
-I have a whole list of projects that are just waiting to change the world one by one, but my biggest project right now is an open-source software synthesizer, called Anthem, which I developed as part of my finals thesis for high school, titled Developing a digital synthesizer in C++.  You can check out or even contribute to this and other projects of mine on GitHub.
-Feel free to send me a message by any means, you can find my contact info next to the ‘About’ tab. I’m also OK with sending me letter pigeons and I promise to look out for smoke signs once in a while. Be sure to add me on [LinkedIn](http://linkedin.com/in/petergoldsborough) too!
-
-<div id="about-image-2">
+<div id="about-image">
 	<img src="/images/mac.jpeg" alt="Me again."/>
-	<p class="caption">
-		A wild Peter (<em>petrus programmerus</em>) in his natural environment, hacking.
-	</p>
 </div>
+
+I’m Peter, $\sqrt{324}$ years old and I really love how computer science enables
+me to solve problems and leave an impact on the world. I’m especially fascinated
+by machine learning, data science, database engineering, low level electronics &
+hardware hacking and any kind of application development.
+
+What I call fun is coming up with an idea for a project that solves a problem
+and coding away. By preference I’ll use C++ or Python for that, although I love
+how being open minded and learning a new technology can lead to even better
+results. I’m a fanatic about code style and quality and I really enjoy great
+software engineering, from design patterns to debating about what algorithms or
+data structures to use. I think code should be more than what it does. In that
+sense code is a lot like a sandwich. It should do its job of filling you, but
+isn’t it much nicer when the sandwich is well organized and looks pretty too?
+
+I’m currently a first year CS student at Technical University of Munich. When
+I'm not working on my own projects, I work as a Research Assistant on two
+separate projects in parallel at the University of Klagenfurt and at Technical
+University of Munich. In Klagenfurt I'm part of the Institute of Networked and
+Embedded Systems where I'm building smart, unsupervised energy-monitoring
+algorithms to optimize energy-consumption. In Munich I'm with the the Chair for
+Database Systems, where I'm investigating if inter-process communication or
+shared-memory are an alternative to TCP sockets for low-latency transmission of
+database queries.
+
+Starting this August I’ll be spending eight months doing back-to-back
+software-engineering internships in London. The first three months I'll be at
+Google, working on a platform to visualize Google's ad technologies. After a
+good 48 hours vacation (i.e. the weekend) I'm then doing another 4 months at
+Bloomberg R&D, working on something with C++ (looking for a project right now).
+
+I'm more online than outside really, so you can find me in lots of places. I
+love and live open-source, so you’ll find my second home to be Github
+([github.com/goldsborough](http://github.com/goldsborough)). I used to ramble on
+another blog, [thecodeinn.blogspot.com](http://github.com/goldsborough), where
+you'll find more technology-related articles I wrote to give back to the
+community. Lastly, be sure to add me on
+[LinkedIn](http://linkedin.com/in/petergoldsborough).
