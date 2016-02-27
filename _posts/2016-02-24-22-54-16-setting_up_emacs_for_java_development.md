@@ -138,7 +138,7 @@ Once you have emacs-eclim installed (you should be able to do `M-x eclim-mode`),
 you'll want to automatically activate eclim for your Java source files with this
 snippet in your emacs config:
 
-```lisp
+```common-lisp
 (require 'eclim)
 (add-hook 'java-mode-hook 'eclim-mode)
 ```
@@ -146,7 +146,7 @@ snippet in your emacs config:
 Also, if you ever need to modify something about `eclimd`, you'll want to
 activate specific variables by requiring `eclimd`:
 
-```lisp
+```common-lisp
 (require 'eclimd)
 ```
 
@@ -211,7 +211,7 @@ install gradle` or `brew install gradle`. You'll then also want
 [`gradle-mode`](https://github.com/jacobono/emacs-gradle-mode) from MELPA or
 wherever. Lastly, enable it whenever it's Java-time:
 
-```lisp
+```common-lisp
 (require 'gradle-mode)
 (add-hook 'java-mode-hook '(lambda() (gradle-mode 1)))
 ```
@@ -219,14 +219,14 @@ wherever. Lastly, enable it whenever it's Java-time:
 Once installed, you will need a build-file in your root directory, that must be
 called `build.gradle`. Just a few lines like so will do:
 
-```
+~~~gradle
 apply plugin: 'java'
 apply plugin: 'application'
 
 mainClassName = "Test"
 
 applicationDefaultJvmArgs = ["-ea"]
-```
+~~~
 
 You'll want to read their manual of course to see the full list of features, but
 I promise you gradle is quite impressive. What we're doing up there is setting
@@ -278,24 +278,24 @@ resources, which would, for example, be under `src/main/resources`.
 I'll now give an actual example of building and running with gradle. I have this
 directory structure:
 
-```
+~~~
 Test/
     build.gradle
 	src/main/java/Test.java
-```
+~~~
 
 The build file is exactly the one from above. Let Test.java be this jaw-dropping
 code:
 
-```Java
+~~~java
 public class Test {
-	public static void main(String... args) {
-		for (int i = 0; i < 10; ++i) {
-			System.out.println(i);
-        }
-	}
+  public static void main(String... args) {
+    for (int i = 0; i < 10; ++i) {
+      System.out.println(i);
+    }
+  }
 }
-```
+~~~
 
 Now when I hit `M-x gradle-build`, I get:
 
@@ -315,13 +315,13 @@ there we write `build run`, to get those two steps:
 For me, this is just perfect. To make our lives nice and sweet we'll bind
 `M-x gradle-execute build run` to a key-combination in our `.emacs` file:
 
-```lisp
+~~~common-lisp
 (defun build-and-run ()
 	(interactive)
 	(gradle-run "build run"))
 
 (define-key gradle-mode-map (kbd "C-c C-r") 'build-and-run)
-```
+~~~
 
 (note that `gradle-run` is the internal command used by `gradle-mode`.)
 
@@ -340,24 +340,24 @@ well in my experience. It's actually quite straightforward:
 
 1. Setup company in general:
 
-  ```lisp
+  ~~~common-lisp
   (require 'company)
   (global-company-mode t)
-  ```
+  ~~~
 
 2. Setup company for eclim:
 
-  ```lisp
+  ~~~common-lisp
   (require 'company-emacs-eclim)
   (company-emacs-eclim-setup)
-  ```
+  ~~~
 
 Add those two sets of lines to your emacs config and you're good to go. You can
 configure how long company should wait before showing you completions, how it
 organizes them and every little detail of its look-and-feel through
 `M-x customize-mode RET company`. You can copy my colors and stuff from here:
 
-```lisp
+~~~common-lisp
 (custom-set-faces
  ;; ...
  '(company-preview ((t (:background "black" :foreground "red"))))
@@ -378,7 +378,7 @@ organizes them and every little detail of its look-and-feel through
  ;; ...
 )
 
-```
+~~~
 
 ## Syntax Checking
 
@@ -405,9 +405,9 @@ eclim-problems-correct` to select some possible corrections:
 
 You might want to bind that to something quicker:
 
-```lisp
+~~~common-lisp
 (define-key eclim-mode-map (kbd "C-c C-c") 'eclim-problems-correct)
-```
+~~~
 
 ## Refactoring
 

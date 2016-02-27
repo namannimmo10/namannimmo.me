@@ -50,7 +50,7 @@ share_hackernews: 	true
 
 # Build settings
 markdown:     kramdown
-highlighter:  rouge
+highlighter: rouge
 kramdown:
   input: GFM
   syntax_highlighter: rouge
