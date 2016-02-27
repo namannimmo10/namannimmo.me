@@ -8,7 +8,7 @@ permalink: /about/
 > be at Google in London for some time.
 
 <div id="about-image">
-	<img src="/images/mac.jpeg" alt="Me again."/>
+	<img src="/images/about/mac.jpeg" alt="Me again."/>
 </div>
 
 I’m Peter, $\sqrt{324}$ years old and I really love how computer science enables

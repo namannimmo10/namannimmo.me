@@ -3,7 +3,7 @@ layout:     post
 title:      Bit Manipulation
 summary:    Tips and concepts associated with bit-manipulation and a few sample problems.
 date:       2015-10-11 23-52-02
-categories: bits, c++, low-level, problems
+categories: bits c++ low-level problems
 ---
 
 Very often when working with programming languages that are just in any way higher level than assembly, such as when building web services, desktop applications, mobile apps -- you name it -- we may forget about the lower-level happenings in our systems: the bits and bytes and niddy-griddy details. Often, we actually *wish* to forget about those happenings and will abstract, encapsulate and wrap operations on those bits and bytes in classes and objects to make our lives easier. However, just as problematic it would be to have to deal with bit-manipulation to achieve even the simplest things and write even the simplest program, it is just as problematic to forget about how to flip bits, form masks and use the binary system to our advantage.

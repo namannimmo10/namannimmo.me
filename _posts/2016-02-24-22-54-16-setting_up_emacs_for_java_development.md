@@ -43,16 +43,18 @@ too.
 
 We'll be covering the following topics:
 
-1. Basic Environment: How to install and use *eclim*.
+1. [__Basic Environment__](#basic-environment): How to install and use *eclim*.
 
-2. Compiling: Using *gradle* to compile and run your code.
+2. [__Compiling__](#compiling): Using *Gradle* to compile and run your code.
 
-3. Autocomplete: Configure sweet completion features with *company*.
+3. [__Autocomplete__](#autocomplete): Configure sweet completion features with
+   *company*.
 
-4. Syntax-Checking: Knowing what you're messing up at write-time instead of
-   compile-time.
+4. [__Syntax-Checking__](#syntax-checking): Knowing what you're messing up at
+   write-time instead of compile-time.
 
-5. Refactoring: Lightweight features that make life more pleasant.
+5. [__Refactoring__](#refactoring): Lightweight features that make life more
+   pleasant.
 
 ## Basic Environment
 
