@@ -4,7 +4,7 @@ title: Contact
 permalink: /contact/
 ---
 
-#### 📧 😊
+## 📧 😊
 
 E-Mail: [peter@goldsborough.me](mailto:peter@goldsborough.me)
 
