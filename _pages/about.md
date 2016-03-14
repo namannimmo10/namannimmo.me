@@ -9,6 +9,7 @@ permalink: /about/
 
 <div id="about-image">
 	<img src="/images/about/mac.jpeg" alt="Me again."/>
+	<br>
 </div>
 
 I’m Peter, $\sqrt{324}$ years old and I really love how computer science enables
