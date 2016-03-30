@@ -1,7 +1,7 @@
 ---
 layout:		post
 title:		Internal and External Linkage in C++
-summary:	All you need to know about linkage in C++
+summary:	All you need to know about linkage in C++.
 date:		2016-03-30 19-34-25
 categories:	c c++ linker
 ---
@@ -68,7 +68,7 @@ allocate for a variable.
 The difference between the declaration and definition of a function is fairly
 obvious:
 
-```C++
+```cpp
 int f();               // declaration
 int f() { return 42; } // definition
 ```
@@ -78,7 +78,7 @@ int f() { return 42; } // definition
 For variables, it is a bit different. Declaration and definition are usually
 not explicitly separate. *Most importantly*, this:
 
-```c++
+```cpp
 int x;
 ```
 
@@ -87,7 +87,7 @@ default constructor of `int` (which does nothing). You can, however, explicitly
 separate the declaration of a variable from its definition by using the `extern`
 keyword:
 
-```c++
+```cpp
 extern int x; // declaration
 int x = 42;   // definition
 ```
@@ -96,7 +96,7 @@ However, when `extern` is prepended to the declaration and an initialization is
 provided as well, then the expression turns into a definition and the `extern`
 keyword essentially becomes useless:
 
-```c++
+```cpp
 extern int x = 5; // is the same thing as
 int x = 5;
 ```
@@ -110,7 +110,7 @@ ever have one definition for it. This is called the
 [one definition rule](https://en.wikipedia.org/wiki/One_Definition_Rule). Therefore,
 this is valid C++:
 
-```c++
+```cpp
 int f();
 int f();
 int f();
@@ -122,7 +122,7 @@ int f() { return 5; }
 
 While this isn't:
 
-```c++
+```cpp
 int f() { return 6; }
 int f() { return 9; }
 ```
@@ -141,7 +141,7 @@ Given these files:
 
 `header.hpp`:
 
-```c++
+```cpp
 #ifndef HEADER_HPP
 #define HEADER_HPP
 
@@ -158,7 +158,7 @@ int strlen(const char* string);
 
 `program.cpp`:
 
-```c++
+```cpp
 #include "header.hpp"
 
 int strlen(const char* string)
@@ -174,7 +174,7 @@ int strlen(const char* string)
 The pre-processor will produce the following translation unit, which is then fed
 to the compiler:
 
-```c++
+```cpp
 int strlen(const char* string);
 
 int strlen(const char* string)
@@ -209,7 +209,7 @@ ends up in more than one translation unit, your linker will start crying.
 In C and C++, the `extern` keyword (explicitly) declares a symbol to have
 external linkage:
 
-```c++
+```cpp
 extern int x;
 extern void f(const std::string& argument);
 ```
@@ -222,7 +222,7 @@ same as `extern int x;`, right? Not quite. `int x;` is actually the same as
 `x`. Therefore, not prepending `extern` to `int x;` in the global scope is just
 as bad as also defining a variable when declaring it as `extern`:
 
-```c++
+```cpp
 int x;          // is the same as
 extern int x(); // which will both likely cause linker errors.
 
@@ -246,7 +246,7 @@ C (evil) way of declaring such a global variable would be a macro:
 A C++ programmer, naturally despising macros, would rather use real code. So you
 could do this:
 
-```c++
+```cpp
 // global.hpp
 
 namespace Global
@@ -289,25 +289,25 @@ Here an example:
 
 `header.hpp`:
 
-```c++
+```cpp
 static int variable = 42;
 ```
 
 `file1.hpp`:
 
-```c++
+```cpp
 void function1();
 ```
 
 `file2.hpp`:
 
-```c++
+```cpp
 void function2();
 ```
 
 `file1.cpp`:
 
-```c++
+```cpp
 #include "header.hpp"
 
 void function1() { variable = 10; }
@@ -315,7 +315,7 @@ void function1() { variable = 10; }
 
 `file2.cpp`:
 
-```c++
+```cpp
 #include "header.hpp"
 
 void function2() { variable = 123; }
@@ -323,7 +323,7 @@ void function2() { variable = 123; }
 
 `main.cpp`:
 
-```c++
+```cpp
 #include "header.hpp"
 #include "file1.hpp"
 #include "file2.hpp"
@@ -365,13 +365,13 @@ I won't go into here.
 
 In any case, this:
 
-```c++
+```cpp
 namespace { int variable = 0; }
 ```
 
 does (almost) the same thing as this:
 
-```c++
+```cpp
 static int variable = 0;
 ```
 
@@ -394,6 +394,6 @@ cause a linker error due to a violation of the one-definition-rule.
 
 ## References
 
-* http://stackoverflow.com/questions/154469/unnamed-anonymous-namespaces-vs-static-functions
-* http://stackoverflow.com/questions/4726570/deprecation-of-the-static-keyword-no-more
-* http://www.geeksforgeeks.org/understanding-extern-keyword-in-c/
+* [http://stackoverflow.com/questions/154469/unnamed-anonymous-namespaces-vs-static-functions](http://stackoverflow.com/questions/154469/unnamed-anonymous-namespaces-vs-static-functions)
+* [http://stackoverflow.com/questions/4726570/deprecation-of-the-static-keyword-no-more](http://stackoverflow.com/questions/4726570/deprecation-of-the-static-keyword-no-more)
+* [http://www.geeksforgeeks.org/understanding-extern-keyword-in-c/](http://www.geeksforgeeks.org/understanding-extern-keyword-in-c/)

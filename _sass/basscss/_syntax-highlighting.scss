@@ -5,7 +5,6 @@
 .highlight .c,
 .highlight .cs,
 .highlight .cm,
-.highlight .cp,
 .highlight .c1 {
   color: $hljs-comment;
   font-style: italic;
@@ -79,6 +78,7 @@
   color: $hljs-regexp;
 }
 
+.highlight .cp,
 .hljs-preprocessor,
 .hljs-pragma,
 .hljs-pi,

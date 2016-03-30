@@ -48,6 +48,7 @@ $dark-green: #009f06 !default;
 $light-pink: #ffdddd !default;
 $light-green: #ddffdd !default;
 $dark-gray: #333 !default;
+$dark-mid-gray: #555 !default;
 $mid-gray: #777 !default;
 $light-gray: #ccc !default;
 $lighter-gray: #eee !default;
@@ -55,10 +56,6 @@ $darken-1: rgba(#000,.0625) !default;
 $darken-2: rgba(#000,.125) !default;
 $darken-3: rgba(#000,.25) !default;
 $darken-4: rgba(#000,.5) !default;
-$syntax-red: #f10002 !default;
-$syntax-green: #4bd74c !default;
-$syntax-blue: #10a2e6 !default;
-$syntax-gray: #fafafa !default;
 
 // Breakpoints
 $breakpoint-md: '(min-width: 52em)';
@@ -97,21 +94,21 @@ $form-field-padding-y: .5rem;
 $form-field-padding-x: .5rem;
 
 // Code
-$pre-border-radius: 0;
-$pre-background-color: $syntax-gray;
+$pre-border-radius: .5rem;
+$pre-background-color: #fafafa;
 $hljs-comment: $mid-gray;
 $hljs-keyword: $pink;
 $hljs-name: $dark-gray;
-$hljs-number: $syntax-red;
-$hljs-string: $syntax-green;
+$hljs-number: #f10002 !default;
+$hljs-string: #4bd74c;
 $hljs-title: $red;
 $hljs-type: $dark-blue;
 $hljs-tag: $dark-blue;
-$hljs-attribute: $syntax-blue;
+$hljs-attribute: #10a2e6;
 $hljs-regexp: $dark-green;
 $hljs-symbol: $purple;
 $hljs-built-in: $dark-blue;
-$hljs-preprocessor: $syntax-red;
+$hljs-preprocessor: $red;
 $hljs-deletion: $dark-blue;
 $hljs-addition: $light-green;
 $hljs-change: $dark-blue;
