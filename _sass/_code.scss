@@ -7,22 +7,21 @@ pre code {
 pre,
 code {
   font-family: $monospace-font-family;
+  border: 0;
 }
 
 code {
-  color: #7a7a7a;
+  color: $black;
 }
 
 pre {
-  padding: 1.125em;
+  border: 0;
   line-height: 1.11;
   overflow-x: scroll;
-  margin-bottom: 0.88em;
   background-color: $pre-background-color;
 }
 
 .highlight .p {
-  font-size: 1.125rem;
   line-height: 1;
 }
 
@@ -33,7 +32,6 @@ pre {
     word-break: inherit;
     word-wrap: inherit;
 }
-
 pre a::before {
   content: counter(line-numbering);
   counter-increment: line-numbering;
@@ -44,7 +42,6 @@ pre a::before {
   display: inline-block;
   color: $light-gray;
   margin-right: 16px;
-  font-size: 13px;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;

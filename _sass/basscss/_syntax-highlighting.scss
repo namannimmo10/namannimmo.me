@@ -5,7 +5,6 @@
 .highlight .c,
 .highlight .cs,
 .highlight .cm,
-.highlight .cp,
 .highlight .c1 {
   color: $hljs-comment;
   font-style: italic;
@@ -71,11 +70,6 @@
   color: $hljs-type;
 }
 
-.highlight .o {
-  color: $hljs-tag;
-  font-weight: normal;
-}
-
 .highlight .nb {
   color: $hljs-attribute;
 }
@@ -84,14 +78,7 @@
   color: $hljs-regexp;
 }
 
-.highlight .ss {
-  color: $hljs-symbol;
-}
-
-.hljs-built_in {
-  color: $hljs-built-in;
-}
-
+.highlight .cp,
 .hljs-preprocessor,
 .hljs-pragma,
 .hljs-pi,
@@ -100,18 +87,6 @@
 .hljs-cdata {
   color: $hljs-preprocessor;
   font-weight: bold;
-}
-
-.hljs-deletion {
-  background: $hljs-deletion;
-}
-
-.hljs-addition {
-  background: $hljs-addition;
-}
-
-.diff .hljs-change {
-  background: $hljs-change;
 }
 
 .hljs-chunk {

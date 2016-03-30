@@ -17,32 +17,66 @@
 .post-link .post-title {
   margin-top: 0;
   font-weight: 600;
-  color: #333;
+}
+
+.post-content {
+  text-align: justify;
 }
 
 .post-footer {
-  @extend .italic;
-
-  margin-top: .75rem;
   text-align: center;
 }
 
-.post-footer .avatar {
+.post-footer-left {
+  float: left;
+  display: inline-block;
+}
+
+.post-footer-center {
+  display: inline-block;
+}
+
+.post-footer-center a {
+  border-bottom: 2px solid transparent;
+}
+
+.post-footer-center a:hover,
+.post-footer-center a:active,
+.post-footer-center a:focus {
+  border-bottom: 2px solid $red;
+}
+
+.post-footer-center .avatar {
   margin: 2rem 0;
   width: 100px;
   border-radius: 50%;
 }
 
+.post-footer-right {
+  float: right;
+  display: inline-block;
+}
+
 .meta,
 .post-meta {
   width: auto;
+  font-size: $h4;
   font-weight: 300;
   margin: 0;
   padding: .25em 0;
   color: #7a7a7a;
-  font-style: italic;
+}
+
+.post-meta-small {
+  @extend .post-meta;
+  font-size: .8rem;
 }
 
 .related-post-title {
   border-bottom: thin solid #f3f3f3;
+}
+
+img {
+		display: block;
+		margin: 0 auto;
 }

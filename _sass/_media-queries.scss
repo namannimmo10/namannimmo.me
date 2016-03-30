@@ -1,6 +1,39 @@
+@media screen and (min-width: $viewport-extra-small) {
+  .site-header {
+    padding-top: $space-3;
+    padding-bottom: 0;
+    text-align: center;
+  }
+
+  .site-header a {
+   font-size: $h2;
+  }
+
+  .site-nav a {
+   font-size: $h3;
+  }
+
+  footer div {
+    display: block;
+  }
+
+  .footer-left {
+    padding: 0;
+    padding-bottom: $space-1;
+    float: none;
+  }
+
+  .footer-right {
+    padding: 0;
+    padding-top: $space-2;
+    float: none;
+  }
+
+}
+
 @media screen and (min-width: $viewport-small) {
   html {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   h1,
@@ -9,6 +42,8 @@
   }
 
   .site-header {
+    padding-top: $space-2;
+    padding-bottom: $space-3;
     text-align: left;
   }
 
@@ -17,11 +52,11 @@
   }
 
   .site-header a {
-    font-size: $h4;
+    font-size: 1.35rem;
   }
 
   .site-header .site-title {
-    font-size: $h3;
+    font-size: $h2;
     float: left;
   }
 
@@ -30,21 +65,62 @@
     margin-top: .25rem;
   }
 
-  blockquote {
-    margin-left: $space-3;
-    padding: $space-3;
+  .social-icons-left {
+    text-align: left;
   }
+
+  .social-icons-right {
+    text-align: right;
+  }
+
+  .footer-left {
+    padding-bottom: $space-1;
+  }
+
+  .footer-right {
+    padding-top: .8rem;
+  }
+
 }
 
 @media screen and (min-width: $viewport-medium) {
   html {
-    font-size: 18px;
+    font-size: 14px;
+  }
+
+  footer div {
+    display: block;
+  }
+
+  .footer-left {
+    padding-bottom: $space-1;
+    float: none;
+  }
+
+  .footer-right {
+    padding: 0;
+    padding-top: .7rem;
+    float: none;
   }
 }
 
 @media screen and (min-width: $viewport-large){
   html {
     font-size: 20px;
+  }
+
+  footer div {
+    display: inline-block;
+  }
+
+  .footer-left {
+    float: left;
+    padding: $space-2;
+  }
+
+  .footer-right {
+    float: right;
+    padding: $space-2;
   }
 }
 
