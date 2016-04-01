@@ -1,0 +1,18 @@
+.site-header a {
+  border-bottom: 0;
+}
+
+.site-header a:hover,
+.site-header a:focus,
+.site-header a:active {
+  border-bottom: 2px solid $red;
+}
+
+.site-nav {
+  margin-top: $space-2;
+  text-align: center;
+}
+
+.site-nav a + a {
+  margin-left: 1em;
+}
