@@ -12,13 +12,14 @@ the global scope? Then this post is for you.
 
 ## TL;DR
 
-A *translation unit* refers to an implementation file and all header files it
-includes. If an object or function inside such a translation unit has *internal
-linkage*, then that specific symbol is only visible to the linker within that
-translation unit. If an object or function has *external linkage*, the linker
-can also see it when processing other translation units. The `static` keyword,
-when used in the global namespace, forces a symbol to have internal linkage. The
-`extern` keyword results in a symbol having external linkage.
+A *translation unit* refers to an implementation (`.c/.cpp`) file and all header
+(`.h/.hpp`) files it includes. If an object or function inside such a
+translation unit has *internal linkage*, then that specific symbol is only
+visible to the linker within that translation unit. If an object or function has
+*external linkage*, the linker can also see it when processing other translation
+units. The `static` keyword, when used in the global namespace, forces a symbol
+to have internal linkage. The `extern` keyword results in a symbol having
+external linkage.
 
 The compiler defaults the linkage of symbols such that:
 
@@ -59,9 +60,20 @@ kind of "code entity" that a linker works with, i.e. *variables* and *functions*
 Lets quickly discuss the difference between *declaring* a symbol and *defining*
 a symbol: A *declaration* tells the compiler about the existence of a certain
 symbol and makes it possible to refer to that symbol everywhere where the
-explicit memory address of that symbol is not required. A *definition* tells the
-compiler what the body of a function contains or how much memory it must
-allocate for a variable.
+explicit memory address or required storage of that symbol is not required. A
+*definition* tells the compiler what the body of a function contains or how much
+memory it must allocate for a variable.
+
+Situations where a declaration is not sufficient to the compiler are, for
+example, when a data member of a class is of reference or value (as in, neither
+reference nor pointer) type. At the same time, it is always allowed to have
+pointers to a declared (but not defined) type, because pointers require fixed
+memory capacity (e.g. 8 bytes on 64-bit systems) and do not depend on the type
+pointed to. When you dereference that pointer, the definition does become
+necessary. Also, for function *declarations*, all parameters (no matter whether
+taken by value, reference or pointer) and the return type need only be declared
+and not defined. Definitions of parameter and return value types only become
+necessary for the function definition.
 
 #### Functions
 
@@ -83,9 +95,14 @@ int x;
 ```
 
 Does not just declare `x`, but also define it. In this case, by calling the
-default constructor of `int` (which does nothing). You can, however, explicitly
-separate the declaration of a variable from its definition by using the `extern`
-keyword:
+default constructor of `int`. (As an aside, in C++, as opposed to Java, the
+constructor of primitive types (such as `int`) does not default-initialize (in
+C++ lingo: *value initialize*) the variable to `0`. The value of `x` above will
+be whatever garbage lay at the memory address allocated for it by the
+compiler.)
+
+You can, however, explicitly separate the declaration of a variable from its
+definition by using the `extern` keyword:
 
 ```cpp
 extern int x; // declaration
@@ -100,6 +117,48 @@ keyword essentially becomes useless:
 extern int x = 5; // is the same thing as
 int x = 5;
 ```
+
+#### *Forward* Declaring
+
+In C++ there exists the concept of *forward declaring* a symbol. What we mean by
+this is that we declare the type and name of a symbol so that we can use it
+where its definition is not required. By doing so, we don't have to include the
+full definition of a symbol (usually a header file) when it is not explicitly
+necessary. This way, we reduce dependency on the file containing the
+definition. The main advantage of this is that when the file containing the
+definition changes, the file where we forward declared that symbol does not need
+to be re-compiled (and therefore, also not all further files including it).
+
+##### Example
+
+Say we have a function declaration (also called *prototype*) for `f`,
+taking an object of type `Class` by value:
+
+```C++
+// file.hpp
+
+void f(Class object);
+```
+
+Now, the naïve thing to do would be to include `Class`'s definition right
+away. But because we only declare `f` here, it is sufficient to provide the
+compiler with a declaration of `Class`. This way, the compiler can identify the
+function by its prototype, but we can remove the dependency of `file.hpp` on the
+file containing the definition of `Class`, say `class.hpp`:
+
+```C++
+// file.hpp
+
+class Class;
+
+void f(Class object);
+```
+
+Now, say, we include `file.hpp` in 100 other files. And say we change `Class`'s
+definition in `class.hpp`. If we had included `class.hpp` in `file.hpp`,
+`file.hpp` and all 100 files including it would have to be recompiled. By
+forward declaring `Class`, the only files requiring recompilation are
+`class.hpp` and `file.cpp` (assuming that's where `f` is defined).
 
 #### Usage Frequency
 
@@ -218,16 +277,115 @@ Both of these symbols have external linkage. Above it was mentioned that `const`
 global variables have *internal* linkage by default, and non-`const` global
 variables have *external* linkage by default. That means that `int x;` is the
 same as `extern int x;`, right? Not quite. `int x;` is actually the same as
-`extern int x();`, as `int x;` not only declares, but also defines
+`extern int x{};` (using C++11 uniform/brace initialization syntax to avoid the
+most vexing parse), as `int x;` not only declares, but also defines
 `x`. Therefore, not prepending `extern` to `int x;` in the global scope is just
 as bad as also defining a variable when declaring it as `extern`:
 
 ```cpp
 int x;          // is the same as
-extern int x(); // which will both likely cause linker errors.
+extern int x{}; // which will both likely cause linker errors.
 
 extern int x;   // while this only declares the integer, which is ok.
 ```
+
+#### Example Badness
+
+Let's declare a function `f` with external linkage in `file.hpp` and also define
+it in the same file:
+
+```C++
+// file.hpp
+
+#ifndef FILE_HPP
+#define FILE_HPP
+
+extern int f(int x);
+
+/* ... */
+
+int f(int) { return x + 1; }
+
+/* ... */
+
+#endif /* FILE_HPP */
+```
+
+Note that prepending `extern` here is redundant, as all functions are implicitly
+`extern`, and separating the declaration from the definition here is also
+unnecessary. So let's just quickly rewrite this as:
+
+```C++
+// file.hpp
+
+#ifndef FILE_HPP
+#define FILE_HPP
+
+int f(int) { return x + 1; }
+
+#endif /* FILE_HPP */
+```
+
+This is code one would be inclined to write before reading this article or after
+reading it but under influence of alcohol or strong drugs (e.g. pop tarts).
+
+So let's see why this is bad. We'll now have two implementation files: `a.cpp`
+and `b.cpp`, both including this `file.hpp`:
+
+```C++
+// a.cpp
+
+#include "file.hpp"
+
+/* ... */
+```
+
+```C++
+// b.cpp
+
+#include "file.hpp"
+
+/* ... */
+```
+
+Now let the compiler do its job and generate two translation units for the two
+implementation files above (remember that `#include`ing means to literally
+copy-paste):
+
+```C++
+// TU A, from a.cpp
+
+int f(int) { return x + 1; }
+
+/* ... */
+```
+
+```C++
+// TU B, from b.cpp
+
+int f(int) { return x + 1; }
+
+/* ... */
+```
+
+At this point, the linker will step in (linking comes after compilation). The
+linker will pick up the symbol `f` and look for definitions. Because it's the
+linker's lucky day, it will even find two! One in TU A and
+one in TU B. The linker will be so happy, it'll stop and tell you in a way
+similar to this:
+
+```
+duplicate symbol __Z1fv in:
+/path/to/a.o
+/path/to/b.o
+```
+
+The linker found two definitions for the same symbol `f`. Because it had
+external linkage, `f` was visible to the linker when processing both TU A and TU
+B. Naturally, this violates the One-Definition-Rule, so this causes a linker
+error. More specifically, this is when you get a *duplicate symbol* error, which
+is the one you'll get most often along with an *undefined symbol* error (if we
+had only ever declared, but never defined `f`).
 
 #### Usage
 
@@ -274,7 +432,7 @@ symbol when processing the translation unit in which the symbol was declared,
 and not later (as with symbols with external linkage). In practice, this means
 that when you declare a symbol to have internal linkage in a header file, each
 translation unit you include this file in will get *its own unique copy of that
-symbol*. I.e. it will be as if you would redefine each such symbol in every
+symbol*. I.e. it will be as if you redefined each such symbol in every
 translation unit. For objects, this means that the compiler will literally
 allocate an entirely new, unique copy for each translation unit, which can
 obviously incur high memory costs.
@@ -378,19 +536,24 @@ static int variable = 0;
 #### Usage
 
 So when and why would one make use of internal linkage? For objects, it is
-probably most often a very bad idea to make use of it, because the memory cost
-can be very high for large objects given that each translation unit gets its own
-copy. However, one interesting use case could be to hide translation-unit-local
-helper functions from the global scope. Imagine you have a helper function `foo`
-in your `file1.hpp` which you use in `file1.cpp`, but then you also have a
-helper function `foo` in your `file2.hpp` which you use in `file2.cpp`. The
-first `foo` does something completely different than the second `foo`, but you
-cannot think of a better name for them. So, you can declare them both
-`static`. Unless you include both `file1.hpp` and `file2.hpp` in some same
-translation unit, this will hide the respective `foo`s from each other. If you
-don't declare them `static`, they will implicitly have external linkage and the
-first `foo`'s definition will collide with the second `foo`s definition and
-cause a linker error due to a violation of the one-definition-rule.
+probably most often a very bad idea to make use of it. The memory cost can be
+very high for large objects given that each translation unit gets its own
+copy. But mainly, it can really just cause odd, unexpected behavior. Imagine you
+had a singleton (a class of which you instantiate only a single instance), and
+would suddenly end up having multiple instances of your "singleton" (one for
+every translation unit).
+
+However, one interesting use case could be to hide translation-unit-local helper
+functions from the global scope. Imagine you have a helper function `foo` in
+your `file1.hpp` which you use in `file1.cpp`, but then you also have a helper
+function `foo` in your `file2.hpp` which you use in `file2.cpp`. The first `foo`
+does something completely different than the second `foo`, but you cannot think
+of a better name for them. So, you can declare them both `static`. Unless you
+include both `file1.hpp` and `file2.hpp` in some same translation unit, this
+will hide the respective `foo`s from each other. If you don't declare them
+`static`, they will implicitly have external linkage and the first `foo`'s
+definition will collide with the second `foo`s definition and cause a linker
+error due to a violation of the one-definition-rule.
 
 ## References
 
