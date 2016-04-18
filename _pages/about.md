@@ -32,9 +32,8 @@ separate projects in parallel at the University of Klagenfurt and at Technical
 University of Munich. In Klagenfurt I'm part of the Institute of Networked and
 Embedded Systems where I'm building smart, unsupervised energy-monitoring
 algorithms to optimize energy-consumption. In Munich I'm with the the Chair for
-Database Systems, where I'm investigating if inter-process communication or
-shared-memory are an alternative to TCP sockets for low-latency transmission of
-database queries.
+Database Systems, where I'm investigating if inter-process communication is an
+alternative to TCP sockets for low-latency transmission of database queries.
 
 Starting this August I’ll be spending eight months doing back-to-back
 software-engineering internships in London. The first three months I'll be at
