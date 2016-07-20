@@ -620,7 +620,7 @@ und kurz:
 ```python
 def pca(X, cutoff=2):
     """
-    Performs principal components analysis on a data-set.
+    Performs principal components analysis on a data set.
 
     Arguments:
         X (np.array): A collection of data vectors, ordered in columns.
@@ -661,8 +661,8 @@ Eine volle Implementierung findet sich
 
 ## Zusammenfassung
 
-Hier sind noch zusammenfassend die Schritte kompoakt aufgelistet, über welche
-man eine Hauptkomponentenanalyse mit Dimensionreduktion auf einem Datensatz
+Hier sind noch zusammenfassend die Schritte kompakt aufgelistet, über welche man
+eine Hauptkomponentenanalyse mit Dimensionreduktion auf einem Datensatz
 $\mathbf{X} \in \mathbb{R}^{m \times n}$ machen kann. Dieser Datensatz hat also
 $n$ Datenpunkte mit jeweils $m$ Attributen in den Spalten.
 
