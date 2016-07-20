@@ -12,11 +12,12 @@
 
 #go-back {
 	margin-top: 5%;
-	color: $dark-gray;
+	color: $black;
 	font-size: 5rem;
 	opacity: 0.8;
 }
 
 #go-back:hover {
-	opacity: 1;
+		opacity: 1;
+		text-decoration: none;
 }
