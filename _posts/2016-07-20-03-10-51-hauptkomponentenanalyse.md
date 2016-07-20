@@ -1,21 +1,14 @@
 ---
 layout:		post
 title:		Hauptkomponentenanalyse
-summary:	Eine Einführung in die Hauptkomponentenanalyse
+summary:	Eine Tutorial zur Hauptkomponentenanalyse aus Sicht der linearen Algebra.
 date:		2016-07-20 03-10-51
 categories:	machine learning, python, data science
 ---
 
-# Hauptkomponentenanalyse (Principal Components Analysis)
-
 $\newcommand{\Var}{\mathop{\rm Var}\nolimits}$
 $\newcommand{\cov}{\mathop{\rm cov}\nolimits}$
 $\newcommand{\GL}{\mathop{\rm GL}\nolimits}$
-
-In diesem Kapitel wollen wir uns einer Anwendung der linearen Algebra widmen:
-der Hauptkomponentenanalyse (engl. *Principal Components Analysis*; PCA).
-
-## Hintergrund
 
 Die Hauptkomponentenanalyse ist eine Methode aus der Datenanalyse, dessen Ziel
 es grundsätzlich ist, eine geeignete Basis zur Darstellung einer gegebenen
@@ -70,8 +63,8 @@ wir beispielsweise Alter und Größe von Menschen, so meinen wir mit einem Alter
 von $20$ eben $20 \cdot 1 \text{ Jahr}$ und mit einer Größe von $180$ dann eben
 $180 \cdot 1 \text{ cm}$. Insofern wäre jeder Datenpunkt in unserer Matrix
 $\mathbf{X}$ ein zwei-dimensionaler Vektor $\mathbf{v} = (\text{Alter,
-Größe})^\top$, dargestellt zur Standardbasis $\begin{bmatrix}1 & 0 \\ 0 &
-1\end{bmatrix}$.
+Größe})^\top$, dargestellt zur Standardbasis $$\begin{bmatrix}1 & 0 \\ 0 &
+1\end{bmatrix}$$.
 
 Als Ausgabe wünschen wir uns von diesem Algorithmus eine Basis $\mathbf{C} \in
 \mathbb{R}^{k \times n}$, wobei $k \leq m$ und meist $k < m$ (dadurch die
@@ -624,7 +617,7 @@ Visualisierung eines praktischen Beispiels der Hauptkomponentenanalyse.
 Die Implementierung der Hauptkomponentennalyse in Code ist erstaunlich einfach
 und kurz:
 
-```Python
+```python
 def pca(X, cutoff=2):
     """
     Performs principal components analysis on a data-set.
