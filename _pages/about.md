@@ -36,9 +36,7 @@ Starting this August I’ll be spending seven months doing back-to-back
 software-engineering internships in London. The first three months I'll be at
 Google, working on a platform to visualize Google's ad technologies. After a
 good 48 hours vacation (i.e. the weekend) I'm then doing another 4 months at
-Bloomberg R&D. When I'm back in Munich I'll have another part-time gig at
-Helmholtz Institute for Computational Biology, working on biological deep
-learning.
+Bloomberg R&D.
 
 I'm more online than outside really, so you can find me in
 [lots of places](http://www.goldsborough.me/contact). I love and live
