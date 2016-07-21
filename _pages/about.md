@@ -14,8 +14,8 @@ permalink: /about/
 
 I’m Peter, $\sqrt{324}$ years old and I really love how computer science enables
 me to solve problems and leave an impact on the world. I’m especially fascinated
-by machine learning, data science, database engineering, low level electronics &
-hardware hacking and any kind of application development.
+by machine learning, data science, database engineering and any kind of
+application development.
 
 What I call fun is coming up with an idea for a project that solves a problem
 and coding away. By preference I’ll use C++ or Python for that, although I love
@@ -26,25 +26,26 @@ data structures to use. I think code should be more than what it does. In that
 sense code is a lot like a sandwich. It should do its job of filling you, but
 isn’t it much nicer when the sandwich is well organized and looks pretty too?
 
-I’m currently a first year CS student at Technical University of Munich. When
-I'm not working on my own projects, I work as a Research Assistant on two
-separate projects in parallel at the University of Klagenfurt and at Technical
-University of Munich. In Klagenfurt I'm part of the Institute of Networked and
-Embedded Systems where I'm building smart, unsupervised energy-monitoring
-algorithms to optimize energy-consumption. In Munich I'm with the the Chair for
-Database Systems, where I'm investigating if inter-process communication is an
-alternative to TCP sockets for low-latency transmission of database queries.
+I’m currently a first year CS student at Technical University of Munich. In my
+spare time (haha) I work on smart, unsupervised energy-monitoring algorithms at
+the Institute of Networked and Embedded Systems at the University of Klagenfurt
+and on inter-process communication techniques at the Chair for Database Systems
+at Technical University of Munich.
 
-Starting this August I’ll be spending eight months doing back-to-back
+Starting this August I’ll be spending seven months doing back-to-back
 software-engineering internships in London. The first three months I'll be at
 Google, working on a platform to visualize Google's ad technologies. After a
 good 48 hours vacation (i.e. the weekend) I'm then doing another 4 months at
-Bloomberg R&D, working on something with C++ (looking for a project right now).
+Bloomberg R&D. When I'm back in Munich I'll have another part-time gig at
+Helmholtz Institute for Computational Biology, working on biological deep
+learning.
 
-I'm more online than outside really, so you can find me in lots of places. I
-love and live open-source, so you’ll find my second home to be Github
+I'm more online than outside really, so you can find me in
+[lots of places](http://www.goldsborough.me/contact). I love and live
+open-source, so you’ll find my second home to be Github
 ([github.com/goldsborough](http://github.com/goldsborough)). I used to ramble on
 another blog, [thecodeinn.blogspot.com](http://github.com/goldsborough), where
 you'll find more technology-related articles I wrote to give back to the
-community. Lastly, be sure to add me on
-[LinkedIn](http://linkedin.com/in/petergoldsborough).
+community. Also recently, I have given a talk at the Python Meetup in Munich on
+the topic of *Deep Learning with TensorFlow*, and will be speaking again at
+PyConUK 2016 in Cardiff, Wales.
