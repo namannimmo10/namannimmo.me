@@ -6,6 +6,7 @@ date:		2016-07-20 03-10-51
 categories:	machine learning, python, data science
 ---
 
+$\newcommand{\Id}{\mathop{\rm Id}\nolimits}$
 $\newcommand{\Var}{\mathop{\rm Var}\nolimits}$
 $\newcommand{\cov}{\mathop{\rm cov}\nolimits}$
 $\newcommand{\GL}{\mathop{\rm GL}\nolimits}$
@@ -133,10 +134,22 @@ $\mathbf{C_X}$ unserer Daten $\mathbf{X}$. Hierzu zunächst ein kurzer Exkurs
 
 Sei $X$ eine diskrete Zufallsvariable mit Ergebnisraum (Menge möglicher Werte
 von $X$) $\Omega$, dann beschreibt die Varianz $\Var(X)$ wie sehr die konkreten,
-möglichen Werte der Zufallsvariable vom Mittelwert $\mu = \mathbf{E}[X]$ im
-Schnitt abweichen. Für ein Zufallsexperiment $\omega$ mit $n$ Ergebnissen, also
-$n$ Ausprägungen $x_i$ von $X$, ergibt sich die Varianz $\Var(X)$ von $X$ dann
-durch:
+möglichen Werte der Zufallsvariable vom Erwartungswert $\mu = \mathbf{E}[X]$ im
+Schnitt abweichen. Der Erwartungswert ist hierbei jener Wert, welchen die
+diskrete Zufallsvariable $X$ durchschnittlich -- und somit erwartungsgemäß --
+annimmt. Fuer ein Zufallsexperiment $E \subseteq \Omega$ mit $n$ Ergebnissen,
+also $n$ konkreten Ausprägungen $x_i$ von $X$, errechnet er sich einfach als
+Mittelwert ueber alle Ergebnisse. Sind schon die relativen Haeufigkeiten
+$\Pr[X = x_i] = p_i$ als Wahrscheinlichkeiten gegeben, ergibt sich
+$\mathbb{E}[X]$ als gewichtete Summe ueber alle Ergebnisse:
+
+$$\mu = \mathbb{E}[X] = \sum_{i=1}^n p_i \cdot x_i$$
+
+Hierbei notieren wir mit $\mathbb{E}[\varphi(X)]$ allgemein den Erwartungwert einer
+Zufallsvariable bezueglich einer *Bewertungsfunktion* $\varphi$, welche auf die
+Werte der Zufallsvariable in dieser gewichteten Summe angewandt wird (somit
+meint $\mathbb{E}[X]$ eigentlich $\mathbb{E}[\Id]$). Die Varianz $\Var(X)$ von
+$X$ ist dann gegeben durch:
 
 $$\Var(X) = \mathbb{E}[(X - \mu)^2] = \sum_{i=1}^n p_i \cdot (x_i - \mu)^2.$$
 
@@ -165,7 +178,7 @@ Daten im Schnitt drei Meter vom Mittelwert der Länge abweichen.
 
 Ist $\mathbf{X}$ ein *Zufallsvektor*, so betrachten wir jede Komponente von
 $\mathbf{X}$ separat als Zufallsvariable. Die Varianz eines Zufallsvektors
-ergibt sich also einfach kompnentenweise:
+ergibt sich also einfach komponentenweise:
 
 $$\Var(\mathbf{X})_j = \frac{1}{n} \sum_{i=1}^n (x_i - \mu_j)^2.$$
 
@@ -196,14 +209,20 @@ $$
 $$
 
 Hierbei wurde noch ausgenutzt, dass $\mathbb{E}[\mathbb{E}[X]] = \mathbb{E}[X]$,
-da $\mathbb{E}[X]$ schon Skalar ist und der Erwartungswert in einem einzigen
+da $\mathbb{E}[X]$ schon skalar ist und der Erwartungswert in einem einzigen
 Wert natürlich der Wert selbst ist. Sind die Werte von $X$ und $Y$ schon um den
 Mittelwert zentriert, sodass $\mathbb{E}[X] = \mathbb{E}[Y] = 0$, gilt somit
 insbesondere:
 
-$$\cov(X, Y) = \mathbb{E}[XY]$$
+$$\cov(X, Y) = \mathbb{E}[XY] = \sum_{i=1}^n p_i (x_i - \mu)(y_i - \gamma)$$
 
-Sind also $X$ und $Y$ um den Mittelwert zentriert, so hängt die Kovarianz linear
+Hierbei ist $p_i$ die Wahrscheinlichkeit sowohl $x_i$ als auch gleichzeitig
+$y_i$ als Ausprägungen von $X$ und $Y$ zu ziehen. Da $X$ und $Y$ nicht
+unabhängig sind gibt es für ein solches Ergebnispaar also nur eine
+Wahrscheinlichkeit $p_i$. Wir werden uns aber nun nicht weiter mit
+Wahrscheinlichkeiten beschäftigen (plagen?).
+
+Sind $X$ und $Y$ also um den Mittelwert zentriert, so hängt die Kovarianz linear
 vom Produkt $X \cdot Y$ ab. Der Wert $\cov(X, Y)$ der Kovarianz ist nun wie
 folgt zu interpretieren:
 
@@ -214,17 +233,17 @@ folgt zu interpretieren:
 * Ist $\cov(X, Y)$ negativ, so sind $X$ und $Y$ ebenso abhängig voneinander,
   aber indirekt. Wenn der Wert von $X$ positiv ist, ist $Y$ meist negativ und
   umgekehrt. $X$ und $Y$ würden also noch immer korrelieren.
-* Ist $\cov(X, Y) = 0$, so besteht keine Korrelation zwischen $X$ und $Y$. Wen
+* Ist $\cov(X, Y) = 0$, so besteht keine Korrelation zwischen $X$ und $Y$. Wenn
   $X$ positiv ist, so beeinflusst das den Wert und das Vorzeichen von $Y$ nicht.
   Im Schnitt heben sich die Werte dann auf. Die Zufallsvariablen sind also
   vollkommen *unabhängig*. Man sagt dann, dass $X$ und $Y$ nicht *korrelieren*.
 
 Gerade Letzteres sieht man in obiger Formel schön: Sind $X$ und $Y$ nämlich
 unabhängig, so ist $\mathbb{E}[XY] = \mathbb{E}[X] \cdot \mathbb{E}[Y]$. Dann
-ergibt $\mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]$ also Null.
+ergibt $\cov(X, Y) = \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]$ also Null.
 
-Für diskrete Zufallsvariablen $X$ und $Y$ ergibt sich die Kovarianz $\cov(X, Y)$
-rechnerisch dann durch folgenden Ausdruck:
+Für *gleichverteilte* diskrete Zufallsvariablen $X$ und $Y$ ergibt sich die
+Kovarianz $\cov(X, Y)$ rechnerisch dann durch folgenden Ausdruck:
 
 $$\cov(X, Y) = \frac{1}{n}\sum_{i=1}^n (x_i - \mu)(y_i - \gamma)$$
 
@@ -255,10 +274,10 @@ $$\cov(\mathbf{X, Y}) = \frac{1}{n}\mathbf{X} \mathbf{Y}^\top$$
 
 Betrachten wir nun ein konkretes Zufallsexperiment. Dann sind die
 Zufallsvariablen $\mathbf{X, Y}$ hier gleichbedeutend mit jeweils $n$
-Ausprägungen dieser Vektoren $\mathbf{X, Y}$, also behandeln wir $\mathbf{X, Y}$
-im Weiteren als Matrix, mit den Ausprägungen, also konkreten Datenvektoren, in
-den Spalten von $\mathbf{X}$ bzw. $\mathbf{Y}$. Die Kovarianz ergibt sich dann
-als Matrixprodukt von $\mathbf{X}$ mit $\mathbf{Y}^\top$.
+Ausprägungen dieser Vektoren $\mathbf{X, Y}$, also behandeln wir $\mathbf{X}$
+und $\mathbf{Y}$ im Weiteren als Matrizen, mit den Ausprägungen, also konkreten
+Datenvektoren, in den Spalten von $\mathbf{X}$ bzw. $\mathbf{Y}$. Die Kovarianz
+ergibt sich dann als Matrixprodukt von $\mathbf{X}$ mit $\mathbf{Y}^\top$.
 
 Wir können uns dieses Produkt veranschaulichen, wenn wir annehmen, dass $n = 1$,
 sodass $\mathbf{X}$ nur einen Spaltenvektor enthält und $\mathbf{Y}^\top$ nur
@@ -325,9 +344,9 @@ x_ny_1 & x_ny_2 & \dots  & x_ny_n
 $$
 
 Haben wir mehr als einen Datenpunkt pro Variable, also gilt $n > 1$, so artet
-$\mathbf{XY}$ zum Skalarprodukt jeder Zeile von $\mathbf{X}$ mit jeder Spalte
-von $\mathbf{Y}$ aus. Der einzige Unterschied zu vorhin ist, dass wir nun viele
-Ausprägungen für jede Zufallsvariable $\mathbf{X}_i$ und $\mathbf{Y}_i$
+$\mathbf{XY^\top}$ zum Skalarprodukt jeder Zeile von $\mathbf{X}$ mit jeder
+Spalte von $\mathbf{Y}$ aus. Der einzige Unterschied zu vorhin ist, dass wir nun
+viele Ausprägungen für jede Zufallsvariable $\mathbf{X}_i$ und $\mathbf{Y}_i$
 haben. Somit ergibt sich die Kovarianz $\cov(\mathbf{X}_i, \mathbf{Y}_j)$ eben
 durch obige Formel:
 
@@ -337,13 +356,13 @@ $$\cov(\mathbf{X}_i, \mathbf{Y}_i) = \frac{1}{n}\sum_{k=1}^n x_{i,k}y_{k,j} =
 Die Komponente $(i,j)$ der Kovarianzmatrix $\cov(\mathbf{X}_i, \mathbf{Y}_j)$
 ergibt sich also aus dem normierten Skalarprodukt $\mathbf{X}_i
 \mathbf{Y}_j^\top$ (Anmerkung: $\mathbf{X}_i$ sind hier Zeilenvektoren, denn es
-ist ja die $i$-te Komponente jedes Spaltenvektors $\in \mathbf{X}$).
+ist ja die $i$-te Komponente jeden Spaltenvektors $\in \mathbf{X}$).
 
 Interessant ist im Übrigen folgende Eigenschaft der Kovarianz(matrix):
 
 $$\cov(\mathbf{X}, \mathbf{Y}) = \cov(\mathbf{Y}, \mathbf{X})^\top$$
 
-##### $\mathbf{X} = \mathbf{Y}$
+##### Kovarianz zwischen $\mathbf{X}$ und $\mathbf{X}$
 
 Der nächste Schritt, welcher für die Hauptkomponentenanalyse wichtig ist, ist es
 nun, nur mehr einen Zufallsvektor $\mathbf{X}$ zu betrachten. Wir können auch
@@ -444,7 +463,7 @@ Matrix $\mathbf{P}$ eine Basis ist, so ist sie auch eine Basiswechselmatrix aus
 $\mathbf{P}$ in die Standardbasis. Ihr Inverses $\mathbf{P}^{-1}$ ist dann also
 eine Basiswechselmatrix von der Standardbasis in diese neue, bessere Basis
 $\mathbf{P}$. Da $\mathbf{P}$ orthonormal ist, ist $\mathbf{P}^{-1}$ dann im
-Uebrigen dasselbe wie $\mathbf{P}^\top$. Das heisst, dass folgende Eigenschaft
+Übrigen dasselbe wie $\mathbf{P}^\top$. Das heißt, dass folgende Eigenschaft
 gelten soll:
 
 $$\mathbf{Y} = \mathbf{P}^\top \mathbf{X}$$
@@ -463,18 +482,18 @@ $$
 			 \mathbf{X})^\top\\
 			 &= \frac{1}{n} (\mathbf{P}^\top \mathbf{X})(\mathbf{X}^\top
 			 \mathbf{P})\\
-			 &= \mathbf{P}^\top \frac{1}{n} \mathbf{X}\mathbf{X}^\top
+			 &= \mathbf{P}^\top (\frac{1}{n} \mathbf{X}\mathbf{X}^\top)
 			 \mathbf{P}\\
 			 &= \mathbf{P}^\top \mathbf{C_X} \mathbf{P}
 \end{align}
 $$
 
-Wir haben also herausgefunden, dass sich $\mathbf{C_X}$ sich durch
-$\mathbf{P}^\top \mathbf{C_X} \mathbf{P}$ ergibt. Das sieht verdächtig nach
-einer Diagonalisierung von $\mathbf{C_X}$ aus. Könnte es denn sein, dass
-$\mathbf{P}$ vielleicht aus Eigenvektoren von $\mathbf{C_X}$ besteht? Dann
-hätten wir nämlich durch $\mathbf{P}$ die Basistransformation aus $\mathbf{P}$
-in die Standardbasis, und mit $\mathbf{P}^\top = \mathbf{P}^{-1}$ dann die
+Wir haben also herausgefunden, dass sich $\mathbf{C_Y}$ durch $\mathbf{P}^\top
+\mathbf{C_X} \mathbf{P}$ ergibt. Das sieht verdächtig nach einer
+Diagonalisierung von $\mathbf{C_X}$ aus. Könnte es denn sein, dass $\mathbf{P}$
+vielleicht aus Eigenvektoren von $\mathbf{C_X}$ besteht? Dann hätten wir nämlich
+durch $\mathbf{P}$ die Basistransformation aus $\mathbf{P}$ in die
+Standardbasis, und mit $\mathbf{P}^\top = \mathbf{P}^{-1}$ dann die
 entsprechende Transformation aus der Standardbasis in die
 Eigenvektorbasis. $\mathbf{C_X}$ wäre dann also die Kovarianzmatrix unserer
 Datenmenge zur Standardbasis und $\mathbf{C_Y}$ zur Eigenvektorbasis. Dann
@@ -485,8 +504,9 @@ Matrix besteht, könnte das tatsächlich funktionieren.
 
 Wir prüfen das nun. Wir benutzen erstmal nur, dass $\mathbf{C_X}$ als
 symmetrische, rellwertige Matrix sicher diagonalisierbar ist. Es existiert also
-eine invertierbare Matrix $\mathbf{E} \in \GL_n(\mathbb{R})$, sodass es eine
-Diagonalmatrix $\mathbf{D}$ gibt, mit der Eigenschaft:
+eine invertierbare Matrix $\mathbf{E} \in \GL_n(\mathbb{R})$ mit Eigenvektoren
+von $C_X$ in den Spalten, sodass es eine Diagonalmatrix $\mathbf{D}$ gibt, mit
+der Eigenschaft:
 
 $$\mathbf{D} = \mathbf{E}^{-1} \mathbf{C_X} \mathbf{E}.$$
 
@@ -523,10 +543,10 @@ $$
 $$
 
 Es stimmt also, die gesuchte Kovarianzmatrix $\mathbf{C_Y}$ ist gerade die
-Diagonalisierung von $\mathbf{C_X}$! Dann stimmen also alle obigen
-Behauptungen. Die Hauptkomponenten sind gerade die Eigenvektoren von
-$\mathbf{C_X}$ und die entsprechenden Varianzen, also Diagonaleinträge von
-$\mathbf{C_Y}$, die Eigenwerte zu jedem Eigenvektor bzw. jeder Hauptkomponente.
+Diagonalisierung von $\mathbf{C_X}$! Dann stimmen also alle obigen Behauptungen:
+Die Hauptkomponenten sind gerade die Eigenvektoren von $\mathbf{C_X}$ und die
+entsprechenden Varianzen, also Diagonaleinträge von $\mathbf{C_Y}$, die
+Eigenwerte zu jedem Eigenvektor bzw. jeder Hauptkomponente.
 
 <!-- Frage: wieso sind die Kovarianzmatrizen ähnlich? -->
 
@@ -583,16 +603,17 @@ zweiten. Der Wert des Attributes $x_i$ ist hier dann eben gerade die Koordinate
 des Basisvektors $\mathbf{p}_i$.
 
 Hatte unser Datensatz vorher $50$ Attribute, so hätten wir ihn jetzt auf nur
-zwei reduziert. Wenn jeder ein Integer war, so verbrauchen wir jetzt $48$ Mal
-weniger Speicherplatz pro Vektor. Auch können wir die Daten jetzt entlang dieser
-Achsen plotten und genau sehen, wie ähnlich oder verschieden bestimmte Daten
-sind. So merken wir vielleicht, dass es ein Datum in unserer Menge gibt, das
-vollkommen verschieden von den anderen ist. Das ist für uns dann womöglich
-interessant. Wir könnten zu unseren ursprünglichen Daten zurückgehen und merken,
-dass sich dieses Datum tatsächlich in einem oder mehreren Attributen von den
-anderen stark unterscheidet. Erst die Hauptkomponentenanalyse hat uns darauf
-aufmerksam gemacht. Es hat uns nämlich eine neue Sicht auf unsere Daten gegeben,
-wo wir die Struktur und Besonderheiten der Daten leichter erkannt haben.
+zwei reduziert. Wenn jeder ein 32-Bit Integer war, so verbrauchen wir jetzt $48$
+Mal weniger Speicherplatz pro Vektor. Da wir nur mehr zwei Dimensionen haben,
+können wir die Daten jetzt auch entlang dieser Achsen plotten und genau sehen,
+wie ähnlich oder verschieden bestimmte Daten sind. So merken wir vielleicht,
+dass es ein Datum in unserer Menge gibt, das vollkommen verschieden von den
+anderen ist. Das ist für uns dann womöglich interessant. Wir könnten zu unseren
+ursprünglichen Daten zurückgehen und merken, dass sich dieses Datum tatsächlich
+in einem oder mehreren Attributen von den anderen stark unterscheidet. Erst die
+Hauptkomponentenanalyse hat uns darauf aufmerksam gemacht. Es hat uns nämlich
+eine neue Sicht auf unsere Daten gegeben, wo wir die Struktur und Besonderheiten
+der Daten leichter erkannt haben.
 
 Hierbei sei angemerkt, dass sich die Hauptkomponentenanalyse wirklich nur dazu
 eignet, solche Strukturen bzw. Eigenheiten in den Daten zu finden. Die
@@ -602,8 +623,8 @@ Gewicht oder Umfang. Es ist einfach ein Eigenvektor der Kovarianzmatrix. Er
 eignet sich also nur dazu, die Eigenschaften der Daten leichter erkenntlich zu
 machen.
 
-Da ueber die Basiswechselmatrix $\mathbf{E}$ (die Matrix von Eigenvektoren) auch
-eine (verlust-behafetete) Rekonstruktion von Vektoren zur Basis der
+Da über die Basiswechselmatrix $\mathbf{E}$ (die Matrix von Eigenvektoren) auch
+eine (verlust-behaftete) Rekonstruktion von Vektoren zur Basis der
 Hauptkomponenten wieder zurück in ihre ursprüngliche Basis möglich ist, können
 wir unsere Daten mit weniger Dimensionen (und Speicherplatz) speichern und dann
 später wiederherstellen. Da nur jene Dimensionen verloren gehen, die sowieso
@@ -667,19 +688,19 @@ $\mathbf{X} \in \mathbb{R}^{m \times n}$ machen kann. Dieser Datensatz hat also
 $n$ Datenpunkte mit jeweils $m$ Attributen in den Spalten.
 
 1. Daten um den Nullpunkt zentrieren: $\mathbf{X}' := \mathbf{X} -
-   \mathbb{E}^\star[\mathbf{X}]$.
+   \mathbb{E}^\star[\mathbf{X}]$
 2. Kovarianzmatrix aufstellen: $\mathbf{C} = \cov(\mathbf{X', X'}) = \frac{1}{n}
    \mathbf{X'} \mathbf{X'}^\top$
-3. Finde Eigenwerte und Eigenvektoren von $\mathbf{C}$.
-4. Ordne die Eigenvektoren absteigend nach Eigenwert.
+3. Finde Eigenwerte und Eigenvektoren von $\mathbf{C}$
+4. Ordne die Eigenvektoren absteigend nach Eigenwert
 5. Wähle optional nur jene Hauptkomponenten (Eigenvektoren), mit höchster
-   Varianz (Eigenwerten).
+   Varianz (Eigenwerte)
 6. Die verbleibenden Hauptkomponenten ergeben als Spalten angeordnet die neue
-   Basis der Daten.
+   Basis der Daten
 
-Hierbei ist mit $\mathbb{E}^\star$ ist der attribut-weise Mittelwert
-gemeint. Das ist dann also ein Spaltenvektor $\mathbf{\mu} = (\mu_1, \dots,
-\mu_m)^\top$ mit den Mittelwerten jedes Attributs als Komponenten. Dieser wird
-dann über die Spalten von $\mathbf{X}$ "gebroadcastet", sodass von jedem
-Attribut in $\mathbf{X}$ der entsprechende Mittelwert dieses Attributs abgezogen
-wird.
+Hierbei ist mit $\mathbb{E}^\star$ der attribut-weise Mittelwert gemeint. Das
+ist dann also ein Spaltenvektor $\mathbf{\mu} = (\mu_1, \dots, \mu_m)^\top$ mit
+den Mittelwerten jedes Attributs als Komponenten. Dieser wird dann über die
+Spalten von $\mathbf{X}$ "gebroadcastet", sodass von jedem Attribut
+$\mathbf{X}_i$ in $\mathbf{X}$ der entsprechende Mittelwert dieses Attributs
+abgezogen wird.
