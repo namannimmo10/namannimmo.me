@@ -1,7 +1,7 @@
 ---
 layout:		post
 title:		Hauptkomponentenanalyse
-summary:	Eine Tutorial zur Hauptkomponentenanalyse aus Sicht der linearen Algebra.
+summary:	Ein Tutorial zur Hauptkomponentenanalyse aus Sicht der linearen Algebra.
 date:		2016-07-20 03-10-51
 categories:	machine learning, python, data science
 ---
