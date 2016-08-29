@@ -16,7 +16,6 @@ magnitude. At the core of this library lies the `LD_PRELOAD` trick, which I will
 
 - [Introduction](#introduction)
 - [Code Injection](#code-injection)
-	- [OS X](#os-x)
 - [Symbol Fishing](#symbol-fishing)
 - [Outro](#outro)
 
