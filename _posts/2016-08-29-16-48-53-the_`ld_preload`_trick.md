@@ -1,7 +1,7 @@
 ---
 layout:		post
-title:		The `LD_PRELOAD` trick
-summary:	Using LD_PRELOAD and the dynamic linker for hidden code injection
+title:		The LD_PRELOAD trick
+summary:	Using LD_PRELOAD and the dynamic linker for hidden code injection.
 date:		2016-08-29 16-48-53
 categories:	c low-level kernel
 ---
@@ -52,7 +52,8 @@ the program reference *your symbols* rather than the original ones -- basically
 Let's see how. First, we'll write a small piece of C code as a playground for our injections. It simply reads a string from `stdin` and outputs it:
 
 `main.c`:
-```C
+
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -94,7 +95,7 @@ $ ./out
 Next, we'll put on our mad scientist hat and write a new definition for the `read` syscall that we'll then load before the definition provided by the standard C library. For this, we simply redefine `read` with the exact same signature as the original syscall, which you can find on its [man page](http://linux.die.net/man/2/read). Because we are very evil, we will not actually read the user's input, but simply return the string "I love cats" ([why?](https://i.imgur.com/OpFcp.jpg)):
 
 `inject.c`:
-```C
+```c
 #include <string.h>
 
 ssize_t read(int fd, void *data, size_t size) {
@@ -138,7 +139,8 @@ which should do the trick.
 Another requirement we may have when doing our malicious code-injections is to retrieve the original symbol --- *symbol fishing*, as I like to call it. Say you've successfully replaced the `write` syscall with your own shared-library definition, such that all calls to `write` end up resolving to your function. Often, your goal will not be to actually entirely replace the syscall, but rather to wrap it. For example, we may only want to log that the user made the call or echo some of the parameters, but ultimately call the original definition to effectively make your injection transparent to the program. Fortunately, this is also possible! For this, we can retrieve the original symbol using the `<dlfcn.h>` system library, which provides a [`dlsym`](http://pubs.opengroup.org/onlinepubs/009695399/functions/dlsym.html) function to retrieve symbols from the dynamic linker:
 
 `inject.c`:
-```C
+
+```c
 #define _GNU_SOURCE
 
 #include <string.h>
