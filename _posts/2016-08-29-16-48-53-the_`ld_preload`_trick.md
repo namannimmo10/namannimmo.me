@@ -130,7 +130,7 @@ I hope this article gave you some useful pointers on the `LD_PRELOAD` trick. The
 
 Lastly, here are some additional resources you may find useful:
 
-* https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_preload-to-cheat-inject-features-and-investigate-programs/
-* http://stackoverflow.com/questions/426230/what-is-the-ld-preload-trick
-* http://pubs.opengroup.org/onlinepubs/009695399/functions/dlsym.html
-* http://tldp.org/HOWTO/Program-Library-HOWTO/dl-libraries.html
+* [https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_preload-to-cheat-inject-features-and-investigate-programs/](https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_preload-to-cheat-inject-features-and-investigate-programs/)
+* [http://stackoverflow.com/questions/426230/what-is-the-ld-preload-trick](http://stackoverflow.com/questions/426230/what-is-the-ld-preload-trick)
+* [http://pubs.opengroup.org/onlinepubs/009695399/functions/dlsym.html](http://pubs.opengroup.org/onlinepubs/009695399/functions/dlsym.html)
+* [http://tldp.org/HOWTO/Program-Library-HOWTO/dl-libraries.html](http://tldp.org/HOWTO/Program-Library-HOWTO/dl-libraries.html)
