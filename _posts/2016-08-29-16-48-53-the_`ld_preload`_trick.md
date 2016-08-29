@@ -51,32 +51,7 @@ the program reference *your symbols* rather than the original ones -- basically
 
 Let's see how. First, we'll write a small piece of C code as a playground for our injections. It simply reads a string from `stdin` and outputs it:
 
-`main.c`:
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-int main(int argc, const char *argv[]) {
-  char buffer[1000];
-  int amount_read;
-  int fd;
-
-  fd = fileno(stdin);
-  if ((amount_read = read(fd, buffer, sizeof buffer)) == -1) {
-    perror("error reading");
-    return EXIT_FAILURE;
-  }
-
-  if (fwrite(buffer, sizeof(char), amount_read, stdout) == -1) {
-    perror("error writing");
-    return EXIT_FAILURE;
-  }
-
-  return EXIT_SUCCESS;
-}
-```
+{% gist 8d78f5dfcb152ee6bf22d7c2340b08c0 %}
 
 Then, we compile the file into a regular executable:
 
@@ -94,15 +69,7 @@ $ ./out
 
 Next, we'll put on our mad scientist hat and write a new definition for the `read` syscall that we'll then load before the definition provided by the standard C library. For this, we simply redefine `read` with the exact same signature as the original syscall, which you can find on its [man page](http://linux.die.net/man/2/read). Because we are very evil, we will not actually read the user's input, but simply return the string "I love cats" ([why?](https://i.imgur.com/OpFcp.jpg)):
 
-`inject.c`:
-```c
-#include <string.h>
-
-ssize_t read(int fd, void *data, size_t size) {
-  strcpy(data, "I love cats");
-  return 12;
-}
-```
+{% gist 014103b45239a935dd56441e0b52c916 %}
 
 Note that I don't care much for boundary checking here, though you obviously would for your purposes. Now, the fantastic thing about the `LD_PRELOAD` trick is that it's so little work. Most importantly, we won't have to touch a singe line of code in the original executable and not recompile it. All we have to do is compile our injection into a shared library:
 
@@ -138,57 +105,13 @@ which should do the trick.
 
 Another requirement we may have when doing our malicious code-injections is to retrieve the original symbol --- *symbol fishing*, as I like to call it. Say you've successfully replaced the `write` syscall with your own shared-library definition, such that all calls to `write` end up resolving to your function. Often, your goal will not be to actually entirely replace the syscall, but rather to wrap it. For example, we may only want to log that the user made the call or echo some of the parameters, but ultimately call the original definition to effectively make your injection transparent to the program. Fortunately, this is also possible! For this, we can retrieve the original symbol using the `<dlfcn.h>` system library, which provides a [`dlsym`](http://pubs.opengroup.org/onlinepubs/009695399/functions/dlsym.html) function to retrieve symbols from the dynamic linker:
 
-`inject.c`:
-
-```c
-#define _GNU_SOURCE
-
-#include <string.h>
-#include <dlfcn.h>
-#include <stdio.h>
-
-typedef ssize_t (*real_read_t)(int, void *, size_t);
-
-ssize_t real_read(int fd, void *data, size_t size) {
-  return ((real_read_t)dlsym(RTLD_NEXT, "read"))(fd, data, size);
-}
-
-ssize_t read(int fd, void *data, size_t size) {
-  strcpy(data, "I love cats");
-  return 12;
-}
-```
+{% gist 854a6c0f977e6ba6dba8a9bad5129e70 %}
 
 As you can see, we tell the `dlsym` function the name of the symbol we want to load as a plain string. It will then retrieve the structure, variable or, relevant to our use, function and return it as a `void*`, which we can safely cast to our `typedef`'d function pointer type. You'll also notice that we supply the `RTLD_NEXT` macro to the call, which is the only other value allowed for this parameter after `RTLD_DEFAULT`. `RTLD_DEFAULT` would simply load the default symbol present in the global scope, which is the same one accessible by direct invocation or reference in program code (our definition). On the other hand, `RTLD_NEXT` will apply a symbol resolution algorithm to find any definition for the requested symbol other than the default one -- i.e. the *next* one in the linker's load order. In our case, this *next* symbol will be the original definition of `read` in `libc`. Lastly, note that we need to define the `_GNU_SOURCE` macro to enable the dynamic linker functionality we require in our code, to have access to certain GNU extensions.
 
 Once we've retrieved the original syscall with `dlsym`, we can simply call it with the arguments it would normally take. As a result, we can now invoke the original syscall from within our evil variant to, for example, print everything the user `read`s to `stdout` before returning the original data:
 
-`inject.c`:
-```
-#define _GNU_SOURCE
-
-#include <dlfcn.h>
-#include <stdio.h>
-
-typedef ssize_t (*real_read_t)(int, void *, size_t);
-
-ssize_t real_read(int fd, void *data, size_t size) {
-  return ((real_read_t)dlsym(RTLD_NEXT, "read"))(fd, data, size);
-}
-
-ssize_t read(int fd, void *data, size_t size) {
-  ssize_t amount_read;
-
-  // Perform the actual system call
-  amount_read = real_read(fd, data, size);
-
-  // Our malicious code
-  fwrite(data, sizeof(char), amount_read, stdout);
-
-  // Behave just like the regular syscall would
-  return amount_read;
-}
-```
+{% gist 6b0e0d75b227be69aa835c22d044ffb5 %}
 
 Finally, we'll have to recompile our shared library with the `-ldl` flag to link the `dl` library, which is necessary for our dynamic linker magic:
 
