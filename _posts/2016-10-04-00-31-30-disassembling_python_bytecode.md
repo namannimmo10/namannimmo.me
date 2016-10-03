@@ -6,8 +6,6 @@ date:		2016-10-04 00-31-30
 categories:	python low-level
 ---
 
-# Disassembling Python Bytecode
-
 In Python, the `dis` module allows disassembly of Python code into the individual instructions executed by the Python interpreter (usually cPython) for each line. Passing a module, function or other piece of code to the `dis.dis` function will return a human-readable representation of the underlying, disassembled bytecode. This is useful for analyzing and hand-tuning tight loops or perform other kinds of necessary, fine-grained optimizations.
 
 ## Basic Usage
@@ -488,9 +486,9 @@ The one thing many people love about Python is the speed of development you get 
 
 Here some further resources and links I took inspiration and knowledge from:
 
-* https://late.am/post/2012/03/26/exploring-python-code-objects.html
-* http://www.aosabook.org/en/500L/a-python-interpreter-written-in-python.html
-* http://unpyc.sourceforge.net/Opcodes.html
-* https://github.com/nedbat/byterun
-* http://stackoverflow.com/questions/12673074/how-should-i-understand-the-output-of-dis-dis
-* https://docs.python.org/3.5/library/dis.html#python-bytecode-instructions
+* [https://late.am/post/2012/03/26/exploring-python-code-objects.html](https://late.am/post/2012/03/26/exploring-python-code-objects.html)
+* [http://www.aosabook.org/en/500L/a-python-interpreter-written-in-python.html](http://www.aosabook.org/en/500L/a-python-interpreter-written-in-python.html)
+* [http://unpyc.sourceforge.net/Opcodes.html](http://unpyc.sourceforge.net/Opcodes.html)
+* [https://github.com/nedbat/byterun](https://github.com/nedbat/byterun)
+* [http://stackoverflow.com/questions/12673074/how-should-i-understand-the-output-of-dis-dis](http://stackoverflow.com/questions/12673074/how-should-i-understand-the-output-of-dis-dis)
+* [https://docs.python.org/3.5/library/dis.html#python-bytecode-instructions](https://docs.python.org/3.5/library/dis.html#python-bytecode-instructions)
