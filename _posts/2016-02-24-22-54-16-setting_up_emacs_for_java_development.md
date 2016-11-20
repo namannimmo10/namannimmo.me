@@ -306,13 +306,13 @@ Now when I hit `M-x gradle-build`, I get:
 Oh, sorry, that was actually a picture from lunch (I'm a bad cook). This is what
 I wanted to show you:
 
-![Building](/images/27-02-2016/build.png)
+![Building](/images/emacs-java/build.png)
 
 Now, for building *and* running, i.e. compiling and executing our code, we will
 use `gradle-execute`. We are then prompted about what tasks we wish to run, and
 there we write `build run`, to get those two steps:
 
-![Building and Running](/images/27-02-2016/build-and-run.png)
+![Building and Running](/images/emacs-java/build-and-run.png)
 
 For me, this is just perfect. To make our lives nice and sweet we'll bind
 `M-x gradle-execute build run` to a key-combination in our `.emacs` file:
@@ -333,7 +333,7 @@ Now that we know how to do the most basic thing an IDE should do, compiling and
 running our code, we can add the fancy stuff. First up, let's have
 auto-complete. How does this below look to you?
 
-![Autocompletion](/images/27-02-2016/company.png)
+![Autocompletion](/images/emacs-java/company.png)
 
 It's quite easy to setup. Generally in emacs there are two *main* completion
 modes: *autocomplete* and *company*. We'll be using *company*, because it is
@@ -398,12 +398,12 @@ previously executed `eclim-project-create` or `eclim-project-open`). Also, note
 that often you have to save the file first for things to show up. However, then
 you get niceties like this:
 
-![Bugs](/images/27-02-2016/syntax-checking.png)
+![Bugs](/images/emacs-java/syntax-checking.png)
 
 When you go over an error with your cursor, you can then use `M-x
 eclim-problems-correct` to select some possible corrections:
 
-![Solutions](/images/27-02-2016/correcting.png)
+![Solutions](/images/emacs-java/correcting.png)
 
 You might want to bind that to something quicker:
 
