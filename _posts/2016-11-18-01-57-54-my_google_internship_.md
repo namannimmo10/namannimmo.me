@@ -6,11 +6,14 @@ date:		2016-11-18 01-57-54
 categories:	google internship
 ---
 
-![Noogler Hat](/images/google/noogler-hat.png)
+<div class="figure">
+  <img alt="Noogler Hat" src="/images/google/hat.jpg"/>
+  <span class="caption">The famed Noogler hat</span>
+</div>
 
 My internship at Google is 2 years away. 1 year from now. 6 months left. Only 3. One month from now. Next Monday. Tomorrow. This is my first week. It's been a month. I just had my midpoint. I have one month left. I leave next Thursday. Today is my last day. I interned at Google for three months last summer.
 
-Phew, time flies. Scary. Yet I'm happy. My engineering internship at Google in London has gone from an impossibility, to a possibility; to a distant reality, to a near one; to an actuality and now a memory. I've had enough experiences over the last three months to fill a lifetime. I'll try to recollect a few of those in the next few paragraphs.
+Phew, time flies. Scary. Yet I'm happy. My engineering internship at Google in London has gone from an impossibility, to a possibility; to a distant reality, to a near one; to an actuality and now a memory. I've had enough experiences over the last three months to fill a lifetime and I'll try to recollect a few of those in the next few paragraphs.
 
 ## Prologue
 
@@ -36,7 +39,7 @@ Either way, I arrived at one of Google's four London offices on Monday, August 2
 
 On my second day, I was shown my desk and introduced to my team, including my manager. I was excited and obviously nervous about the months ahead, especially since the project I was to work on was quite opposite to my experience and expertise. I would later learn that very many, if not most, interns got projects that don't necessarily match their skill set. Already here I noticed that one of the most essential skills at Google is to be flexible, open-minded and have strong fundamentals in CS (algorithms/engineering) to be able to fit a variety of costumes in the various teams at Google. As such, the first two weeks of my internship were mostly filled with learning, learning and learning. I did online courses, read books and asked questions, trying to make the most of the fact that the people immediately around me, one floor up or down from mine, or even in a different office around the world, are probably the best-fit human beings to sit in their chair.
 
-![Android](/images/google/droid.png)
+![Android](/images/google/droid.jpg)
 
 ## Weeks 3 - 6: Settling In
 
@@ -48,7 +51,7 @@ This simple message of trust is the basis of many benefits and perks at Google. 
 
 Going back to my internship, this first half of my internship concluded with me continuing to work on my project and actually getting large parts of it finished in half the time. This allowed me to work on two more projects in the latter part of my internship, including open sourcing one of my side projects under an official Google GitHub organization as well as working on chatbots in Go using Allo's Natural Language Processing engine in a related engineering team.
 
-![Belgrave Park](/images/google/bel-park.png)
+![Belgrave Park](/images/google/bel-park.jpg)
 
 In these weeks, I thankfully got to learn more technologies and explore larger parts of Google's engineering infrastructure. One thing that allowed me to learn so many things, including 5 programming languages and around 15 technologies (AngularJs, AppEngine, Borg etc.), is Google's gigantic internal documentation and database of tutorials. Any topic you want to learn about, from Python to Google's data center infrastructure, there's an article on it internally and some tutorial code to step you through setting things up and getting from 0 to 99 as fast as possible. For anyone needing to go from nothing to being super productive, like me, this is gold.
 
@@ -58,7 +61,7 @@ Next to learning new technologies, my time at Google was also very much about le
 
 Internships at Google are usually three months, like mine, but can be as long as six months. At the middle of your internship is the *midpoint evaluation*. This is a form you and your host (manager/team lead) have to fill out to evaluate your performance so far and to set goals for the latter half of the internship. My feedback was thankfully very good ("exceeds expectations"), so I was happy to be on track.
 
-![Badge](/images/google/badge.png "My badge")
+![Badge](/images/google/badge.jpg "My badge")
 
 One negative thing mentioned in my midpoint review was my work/life balance. By that time, I had fully settled into my Google life, which was, well quite extreme. Google, at least in engineering organizations, has no working hours. You can come any time you want and leave any time, as long as you get your typical eight hours in but most importantly, as long as you get your work done on time. For most people, this means coming to work some time between 9 and 11 AM (breakfast ends at 10 AM) and leaving between 5 and 8 PM (dinner starts at 6:30 PM). My schedule was a little different: I came to work between 9 and 10 AM and left between 12 and 2 AM. Yes, you read that right. I spent a *lot* of time in the office, to the extent that my co-workers asked me if I lived there.
 
@@ -66,7 +69,7 @@ I didn't work the entire typical 14-16 hours of course. I'd usually work around 
 
 Let me explain more what the Google office is like and why I spent so much time there. You can imagine Google offices as playgrounds inside five star hotels. There is free food, soda and coffee, a gym and an infinity of quirky, fun chillout areas where you can lie upside down hacking away on your laptop. The office I stayed had a spaceship theme and one particular room called "the cog":
 
-![The Cog](/images/google/bel-cog.png)
+![The Cog](/images/google/bel-cog.jpg)
 
 People would come here during the day to work, take a nap or meditate and I mostly did the first.
 
@@ -80,13 +83,13 @@ In this time, I also got to visit some of Google's other offices in London. Curr
 
 Belgrave, where I worked, was, until November, the main engineering office in London. At the start of November all engineering teams in Belgrave moved to 6PS, leaving only the sales (Google for Work) teams and some mixed sales/engineering teams (like mine) behind. 6PS is now Google's largest office in London, where some day, apparently, all of Google London will be located. It's a massive but very cool office with a fantastic view of London from the top floor. It is also where Google DeepMind, Alphabet's AI powerhouse, is stationed. Since I'm personally very involved in machine learning and had some contacts at DeepMind, I went there a few times to meet with some of DeepMind's minds. You can find some pictures of 6PS below.
 
-![6PS](/images/google/6ps-view.png)
+![6PS](/images/google/6ps-view.jpg)
 
 CSG is the sales office and also the quirkiest of Google's London offices. It has a lot of cool hangout areas and is also the only office that, at least from what I saw, has a higher female than non-female population.
 
-![CSG Library](/images/google/csg-library.png)
-![CSG Stairs](/images/google/csg-stairs.png)
-![CSG Hangout](/images/google/csg-hangout.png)
+![CSG Library](/images/google/csg-library.jpg)
+![CSG Stairs](/images/google/csg-stairs.jpg)
+![CSG Hangout](/images/google/csg-hangout.jpg)
 
 ## Week 12: The Final Stretch
 
@@ -99,10 +102,10 @@ Another core point all my reviewers mentioned was my continued trouble with gett
 
 And that was it, my internship was over. I was sad about leaving my team and the Google life, but very happy that all the late nights and early mornings paid off in form of a very good final review that would hopefully open more doors at Google for the future. On my last day, my team got me some cake and gave me some very sweet farewell gifts, such as the potato below.
 
-![Potato](/images/google/potato.png)
+![Potato](/images/google/potato.jpg)
 
 ## Epilogue
 
 What now? What happened next? As I'm writing this, it's too early to know. My internship feedback is being processed by HR to evaluate how well I was able to demonstrate my technical abilities, how well I fit the Google culture and how much of an impact I was able to have. The last part, impact, is the most essential thing Google interns strive for. No matter how amazing your project is, if no one uses it, your impact at Google is poor and your performance will suffer. The challenge is to build something that has value to your team and Google as whole. It'll be exciting to see what my reviewers thought of me in that respect and whether I'll be given the chance to come back to Google next summer. In the meantime, I'm starting another internship at Bloomberg R&D in London, interviewing with Facebook and refreshing my emails every 12 seconds to hear back from my Google recruiter.
 
-No matter what happens next, I want to say thank you to everyone at Google who made the last three months the most exciting of my life. See you soon.
+No matter what happens next, I want to say thank you to everyone at Google who made the last three months some of the most exciting of my life. See you soon.
