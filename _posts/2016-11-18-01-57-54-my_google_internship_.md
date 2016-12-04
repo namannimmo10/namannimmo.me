@@ -66,11 +66,6 @@ Next to learning new technologies, my time at Google was also very much about le
 
 Internships at Google are usually three months, like mine, but can be as long as six months. At the middle of your internship is the *midpoint evaluation*. This is a form you and your host (manager/team lead) have to fill out to evaluate your performance so far and to set goals for the latter half of the internship. My feedback was thankfully very good ("exceeds expectations"), so I was happy to be on track.
 
-<div class="figure">
-  <img alt="My Badge" src="/images/google/badge.jpg"/>
-  <span class="caption">My Badge</span>
-</div>
-
 One negative thing mentioned in my midpoint review was my work/life balance. By that time, I had fully settled into my Google life, which was, well quite extreme. Google, at least in engineering organizations, has no working hours. You can come any time you want and leave any time, as long as you get your typical eight hours in but most importantly, as long as you get your work done on time. For most people, this means coming to work some time between 9 and 11 AM (breakfast ends at 10 AM) and leaving between 5 and 8 PM (dinner starts at 6:30 PM). My schedule was a little different: I came to work between 9 and 10 AM and left between 12 and 2 AM. Yes, you read that right. I spent a *lot* of time in the office, to the extent that my co-workers asked me if I lived there.
 
 I didn't work the entire typical 14-16 hours of course. I'd usually work around 8-10 hours on my project and then just worked on personal projects, prepared for interviews or read books the rest of the time. It's just that instead of going home, I stayed in the office. This had several reasons. For one, my flat was around 45 minutes away from the office, had no/bad WiFi, was ridiculously run down, had three annoying room-mates and if you wanted to get food or something to drink, you actually had to buy it yourself! Compared to the Google office, I had few reasons to go home, which is why I didn't.
