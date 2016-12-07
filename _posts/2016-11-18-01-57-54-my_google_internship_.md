@@ -8,7 +8,7 @@ categories:	google internship
 
 <div class="figure space-below">
   <img alt="Noogler Hat" src="/images/google/hat.jpg"/>
-  <span class="caption">The famous Noogler hat</span>
+  <span class="caption">The Noogler hat</span>
 </div>
 
 My internship at Google is 2 years away. 1 year from now. 6 months left. Only 3. One month from now. Next Monday. Tomorrow. This is my first week. It's been a month. I just had my midpoint. I have one month left. I leave next Thursday. Today is my last day. I interned at Google for three months last summer.
