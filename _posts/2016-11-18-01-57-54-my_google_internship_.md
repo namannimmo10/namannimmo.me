@@ -120,3 +120,7 @@ And that was it, my internship was over. I was sad about leaving my team and the
 What now? What happened next? As I'm writing this, it's too early to know. My internship feedback is being processed by HR to evaluate how well I was able to demonstrate my technical abilities, how well I fit the Google culture and how much of an impact I was able to have. The last part, impact, is the most essential thing Google interns strive for. No matter how amazing your project is, if no one uses it, your impact at Google is poor and your performance will suffer. The challenge is to build something that has value to your team and Google as whole. It'll be exciting to see what my reviewers thought of me in that respect and whether I'll be given the chance to come back to Google next summer. In the meantime, I'm starting another internship at Bloomberg R&D in London, interviewing with Facebook and refreshing my emails every 12 seconds to hear back from my Google recruiter.
 
 No matter what happens next, I want to say thank you to everyone at Google who made the last three months some of the most exciting of my life. See you soon.
+
+__Update__
+
+Thanks everyone for the amazing response! It was cool to see a lively discussion on my post on [HackerNews](https://news.ycombinator.com/item?id=13084693). Also, I've decided to join Facebook in London next summer. See you there 😉
