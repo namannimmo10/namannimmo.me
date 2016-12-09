@@ -121,6 +121,6 @@ What now? What happened next? As I'm writing this, it's too early to know. My in
 
 No matter what happens next, I want to say thank you to everyone at Google who made the last three months some of the most exciting of my life. See you soon.
 
-__Update__
+## Update
 
-Thanks everyone for the amazing response! It was cool to see a lively discussion on my post on [HackerNews](https://news.ycombinator.com/item?id=13084693). Also, I've decided to join Facebook in London next summer. See you there 😉
+Thanks everyone for the amazing response! It was cool to see a lively discussion on my post on [HackerNews](https://news.ycombinator.com/item?id=13084693). Also, I've decided to join Facebook next summer.
