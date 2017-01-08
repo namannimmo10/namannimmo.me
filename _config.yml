@@ -5,6 +5,7 @@ author:      Peter Goldsborough
 baseurl:     ""
 url:         "http://www.goldsborough.me"
 date_format: "%b %-d, %Y"
+description: A blog on computer science, artificial intelligence and the excitement of life.
 
 # Jekyll settings
 gems:
