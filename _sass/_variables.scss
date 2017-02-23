@@ -8,7 +8,7 @@ $heading-font-weight: 900 !default;
 $heading-line-height: 1.25 !default;
 $monospace-font-family: Consolas, monospace !default;
 $h1: 2.998rem !default;
-$h2: 1.9rem !default;
+$h2: 2.3rem !default;
 $h3: 1.7rem !default;
 $h4: 1.3rem !default;
 $h5: .875rem !default;
@@ -24,7 +24,7 @@ $h1-responsive-max: 3.84rem !default;
 $abbr-border-bottom: 1px black dotted;
 
 // Page width
-$measure-width: 42rem !default;
+$measure-width: 70% !default;
 
 // Viewport widths
 $viewport-extra-small: 16em;
@@ -56,6 +56,7 @@ $darken-1: rgba(#000,.0625) !default;
 $darken-2: rgba(#000,.125) !default;
 $darken-3: rgba(#000,.25) !default;
 $darken-4: rgba(#000,.5) !default;
+$shadow-black: transparentize($black, .5);
 
 // Breakpoints
 $breakpoint-md: '(min-width: 52em)';
@@ -94,7 +95,6 @@ $form-field-padding-y: .5rem;
 $form-field-padding-x: .5rem;
 
 // Code
-$pre-border-radius: .5rem;
 $pre-background-color: #fafafa;
 $hljs-comment: $mid-gray;
 $hljs-keyword: $pink;

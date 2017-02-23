@@ -6,6 +6,8 @@
 .posts .post {
   margin-bottom: 0.75em;
   border-bottom: thin solid #f3f3f3;
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
 }
 
 .posts .post:last-child {
@@ -17,6 +19,18 @@
 .post-link .post-title {
   margin-top: 0;
   font-weight: 600;
+  text-align: center;
+  text-shadow: -1px 1px $shadow-black;
+  transition: all .25s;
+
+  &:hover {
+    color: $red;
+    text-shadow: -1px 1px darken($red, 20%);
+  }
+}
+
+.post-summary {
+  text-align: center;
 }
 
 .post-content {
@@ -64,13 +78,30 @@
   font-size: $h4;
   font-weight: 300;
   margin: 0;
-  padding: .25em 0;
-  color: #7a7a7a;
+  color: $mid-gray;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: .8em;
 }
+
+.posts .post-meta { padding-bottom: 1em; }
 
 .post-meta-small {
   @extend .post-meta;
-  font-size: .8rem;
+  font-size: .9rem;
+}
+
+.related-posts {
+  .post {
+    padding-bottom: 10px;
+  }
+  .post-title, .post-title:hover {
+    text-shadow: none;
+  }
+  .post-summary {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
 }
 
 .related-post-title {

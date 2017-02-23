@@ -1,7 +1,10 @@
+// pre = block
+// code without pre = inline
+
 pre,
 pre code {
   background-color: transparent;
-  border-radius: $pre-border-radius;
+  color: $black;
 }
 
 pre,
@@ -11,14 +14,16 @@ code {
 }
 
 code {
-  color: $black;
+  background: none;
 }
 
 pre {
-  border: 0;
+  background-color: $pre-background-color;
+  border: thin solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
   line-height: 1.11;
   overflow-x: scroll;
-  background-color: $pre-background-color;
+  padding: 12px 16px;
 }
 
 .highlight .p {
@@ -26,28 +31,29 @@ pre {
 }
 
 pre {
-    counter-reset: line-numbering;
-    white-space: pre;
-    overflow-x: auto;
-    word-break: inherit;
-    word-wrap: inherit;
+  counter-reset: line-numbering;
+  white-space: pre;
+  overflow-x: auto;
+  word-break: inherit;
+  word-wrap: inherit;
 }
+
 pre a::before {
-  content: counter(line-numbering);
-  counter-increment: line-numbering;
-  padding-right: 1em; /* space after numbers */
-  width: 25px;
-  text-align: right;
-  opacity: 0.7;
-  display: inline-block;
-  color: $light-gray;
-  margin-right: 16px;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  color: $light-gray;
+  content: counter(line-numbering);
+  counter-increment: line-numbering;
+  display: inline-block;
+  margin-right: 16px;
+  opacity: 0.7;
+  padding-right: 1em; /* space after numbers */
+  text-align: right;
   user-select: none;
+  width: 25px;
 }
 
 pre a:first-of-type::before {
