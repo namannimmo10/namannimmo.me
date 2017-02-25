@@ -1,7 +1,7 @@
 ---
 layout:		post
-title:		Emitting Diagnostics and FixIt hints in Clang tools
-summary:	I explain thow to plug into the available infrastructure for diagnostics and ffixit hints for custom clang tools.
+title:		Emitting Diagnostics in Clang
+summary:	I explain thow to plug into the available infrastructure for diagnostics and fixit hints for custom clang tools.
 date:		2017-02-24 00-00-06
 categories:	c++ clang llvm tools
 ---
