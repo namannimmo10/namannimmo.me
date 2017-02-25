@@ -771,7 +771,7 @@ class FixItRewriterOptions : public clang::FixItOptions {
   /// Constructor.
   ///
   /// The \p RewriteSuffix is the option from the command line.
-  FixItRewriterOptions(const std::string& RewriteSuffix)
+  explicit FixItRewriterOptions(const std::string& RewriteSuffix)
   : RewriteSuffix(RewriteSuffix) {
     super::InPlace = false;
   }
@@ -822,10 +822,10 @@ class MatchHandler : public clang::ast_matchers::MatchFinder::MatchCallback {
   void run(const MatchResult& Result) {
     auto& Context = *Result.Context;
 
-    const auto& Op = *Result.Nodes.getNodeAs<clang::BinaryOperator>("op");
+    const auto& Op = Result.Nodes.getNodeAs<clang::BinaryOperator>("op");
     assert(Op != nullptr);
 
-    const auto StartLocation = Op.getOperatorLoc();
+    const auto StartLocation = Op->getOperatorLoc();
     const auto EndLocation = StartLocation.getLocWithOffset(+1);
     const clang::SourceRange SourceRange(StartLocation, EndLocation);
     const auto FixIt = clang::FixItHint::CreateReplacement(SourceRange, "-");
