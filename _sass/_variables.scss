@@ -96,7 +96,7 @@ $form-field-padding-x: .5rem;
 
 // Code
 $pre-background-color: #fafafa;
-$hljs-comment: $mid-gray;
+$hljs-comment: lighten($mid-gray, 8%);
 $hljs-keyword: $pink;
 $hljs-name: $dark-gray;
 $hljs-number: #f10002 !default;
