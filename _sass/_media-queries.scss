@@ -6,11 +6,16 @@
   }
 
   .site-header a {
-   font-size: $h2;
+    font-size: 1.3rem;
+  }
+
+  .post-meta {
+    font-size: $h5;
   }
 
   .site-nav a {
    font-size: $h3;
+   font-size: 1.1rem;
   }
 
   footer div {
@@ -90,6 +95,10 @@
 
   footer div {
     display: block;
+  }
+
+  .post-meta {
+    font-size: 1rem;
   }
 
   .footer-left {
