@@ -1,4 +1,6 @@
 @media screen and (min-width: $viewport-extra-small) {
+  .h1.post-title { font-size: 1.7rem; }
+
   .site-header {
     padding-top: $space-3;
     padding-bottom: 0;
@@ -6,7 +8,7 @@
   }
 
   .site-header a {
-    font-size: 1.3rem;
+    font-size: 1.7rem;
   }
 
   .post-meta {
@@ -45,6 +47,8 @@
   .h1 {
     font-size: $h1;
   }
+
+  .h1.post-title { font-size: 1.7rem; }
 
   .site-header {
     padding-top: $space-2;
@@ -92,6 +96,8 @@
   html {
     font-size: 14px;
   }
+
+  .h1.post-title { font-size: 3rem; }
 
   footer div {
     display: block;
