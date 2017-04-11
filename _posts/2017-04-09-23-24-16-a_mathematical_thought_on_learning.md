@@ -1,7 +1,7 @@
 ---
 layout:		post
 title:		A Mathematical Thought on Learning
-summary:	What differentiates a proactive learner from a passive learner?
+summary:	What differentiates a strong learner from a weak learner?
 date:		2017-04-09 23-24-16
 categories:	learning
 ---
