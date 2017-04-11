@@ -11,10 +11,24 @@ permalink: /about/
 	<br>
 </div>
 
-I’m Peter, 19, and out to tackle challenges that leave an impact on the community and solve real problems. I’m especially fascinated by machine learning and particularly deep learning. I feel these fields are the closest mankind has ever come to magic and, frankly, I've always wanted to be a wizard.
+I’m Peter, 19, and out to tackle challenges that leave an impact on the
+community and solve real problems.
 
-I’m currently a first year CS student at Technical University of Munich (TUM). I've worked on smart, unsupervised energy-monitoring algorithms at the Institute of Networked and Embedded Systems at the University of Klagenfurt, inter-process communication techniques at the Chair for Database Systems at TUM, chatbots at Google and currently chat backends at Bloomberg.
+While I have experience across the entire tech stack, from low level kernel and
+systems programming all the way to building web apps, my interests and skills
+today lie mostly on a spectrum with engineering on the one end and machine
+learning research on the other end. I enjoy building solid, low level and
+distributed infrastructure in C, C++ and Python (and have a knack for compilers)
+and at the same time am fascinated by recent advances in deep learning,
+especially reinforcement learning.
 
-I also love and live open-source, so you’ll find my second home to be [Github](http://github.com/goldsborough). I maintain two blogs, this one here and also an [old one](http://thecodeinn.blogspot.com), where I write technology-related articles to give back to the community. Also, I have given tech talks at the Python Meetup in Munich, PyConUK 2016 in Cardiff and the Cambridge Academy, on the topic of *Deep Learning with TensorFlow*.
+I finished my first year of university in the top 5% of my class. After that I
+figured I'd get some industry experience, so I'm now on a gap year doing
+internships at Google, Bloomberg, Facebook and an AI startup.
+
+I live on GitHub (github.com/goldsborough) and publish tutorials and thoughts on
+my blog, goldsborough.me. You might also catch me giving a talk at a conference
+somewhere around the world, on topics ranging from Deep Learning with TensorFlow
+to building C++ tools with LLVM and clang.
 
 In the future, I see myself mostly doing machine learning and fixing the world.
