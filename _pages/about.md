@@ -26,8 +26,7 @@ I finished my first year of university in the top 5% of my class. After that I
 figured I'd get some industry experience, so I'm now on a gap year doing
 internships at Google, Bloomberg, Facebook and an AI startup.
 
-I live on GitHub (github.com/goldsborough) and publish tutorials and thoughts on
-my blog, goldsborough.me. You might also catch me giving a talk at a conference
+I live on [GitHub](github.com/goldsborough) and publish tutorials and thoughts right here, on my blog. You might also catch me giving a talk at a conference
 somewhere around the world, on topics ranging from Deep Learning with TensorFlow
 to building C++ tools with LLVM and clang.
 
