@@ -6,7 +6,7 @@
 .site-header a:focus,
 .site-header a:active {
   border-bottom: 2px solid $red;
-  text-shadow: 0 1px 2px $shadow-black;
+  text-shadow: 0 .5px 1.75px $shadow-black;
   transition: text-shadow .1s;
   margin-bottom: 20px;
 }
