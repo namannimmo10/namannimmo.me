@@ -172,8 +172,7 @@ diagnostics. For example, given that we have created a custom diagnostic ID, we
 can use the following method to get information about the level of a diagnostic:
 
 ```cpp
-const clang::DiagnosticsEngine::Level level = DE.getDiagosticLevel(ID, SourceLocation());
-
+clang::DiagnosticsEngine::Level level = DE.getDiagosticLevel(ID, SourceLocation());
 ```
 
 and more ...
@@ -203,8 +202,8 @@ those arguments. For example:
 const auto ID = DE.getCustomDiagID(clang::DiagnosticsEngine::Warning,
                                    "variable %0 is bad, it appears %1 time%s1");
 
-clang::DiagnosticBuilder DB = DE.Report(FunctionDecl->getLocStart(), ID);
-DB.AddString(FunctionDecl->getName())
+clang::DiagnosticBuilder DB = DE.Report(VarDecl->getLocStart(), ID);
+DB.AddString(VarDecl->getName())
 DB.AddTaggedVal(6, clang::DiagnosticsEngine::ArgumentKind::ak_uint);
 ```
 
