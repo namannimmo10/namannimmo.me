@@ -389,6 +389,8 @@ very happy. As always, I spent 10 times longer than required when making my
 slides by artfully crafting them in LaTeX instead of PowerPoint. Why make your
 slides in one hour if you can spend eight hours instead?
 
+![castle](/images/facebook/castle.jpg)
+
 One last mindblowingly cool thing I experienced around this time was Facebook's
 annual summer party. Again, some companies will have their parties in the office
 or some nice place downtown. Instead, Facebook rented an entire castle outside
@@ -397,8 +399,6 @@ at. There was free food, people dressed up as trees and dinosaurs, free food,
 free drinks, free food, free food and a disco at night. Oh, there was obviously
 also a ferris wheel there. I mean, who doesn't have a ferris wheel at their
 summer party.
-
-![castle](/images/facebook/castle.jpg)
 
 ## Facebye
 
