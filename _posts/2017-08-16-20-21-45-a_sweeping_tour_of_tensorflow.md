@@ -1,7 +1,7 @@
 ---
 layout:		post
 title:		A Sweeping Tour of TensorFlow
-summary:	A five minute read to get you up to scratch on the TensorFlow API
+summary:	A ten minute read to get you up to scratch on the TensorFlow API
 date:		2017-06-28 20-21-45
 categories:	tensorflow ml ai python
 ---

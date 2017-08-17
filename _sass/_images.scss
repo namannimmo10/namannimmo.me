@@ -7,14 +7,41 @@
 }
 
 .figure.space-below {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+}
+
+.figure.float {
+  padding-bottom: 0;
+  padding-top: 0;
+
+  img {
+    margin-top: 8px;
+  }
+}
+
+.figure.float-right {
+  @extend .figure.float;
+  float: right;
+
+  img {
+    margin-left: 8px;
+  }
+}
+
+.figure.float-left {
+  @extend .figure.float;
+  float: left;
+
+  img {
+    margin-right: 8px;
+  }
 }
 
 .caption {
+  border-bottom: 0.9px solid rgba(0, 0, 0, 0.25);
+  font-size: 90%;
   margin-top: 0px;
   text-transform: uppercase;
-  font-size: 90%;
-  border-bottom: 0.9px solid rgba(0, 0, 0, 0.25);
 }
 
 .caption.small {
