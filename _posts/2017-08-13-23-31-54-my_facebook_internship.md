@@ -2,7 +2,7 @@
 layout:		post
 title:		My Facebook Internship
 summary:	Living the wonders of the Facelife
-date:		2017-08-13 23-31-54
+date:		2017-08-17 23-31-54
 categories:	internship facebook
 ---
 
