@@ -30,9 +30,8 @@
 	{% endif %}
 
 	<div class="py2 post-footer-center">
-	 	<img src="/images/gravatar.jpeg" alt="Peter Goldsborough" class="avatar" />
-	 	<p> <a href="{{ site.base_url }}/about/">Peter Goldsborough</a> </p>
-		<p> No Obstacles, Only Challenges.</p>
+	 	<img src="/images/me.jpg" alt="Peter Goldsborough" class="avatar" />
+		<p> Fix the World</p>
 	</div>
 
 	{% if site.show_sharing_icons %}
@@ -77,7 +76,7 @@
 		{
 			var links = containers[c].getElementsByTagName("li")
 			for (var i = 0; i < links.length; ++i)
-			{	
+			{
 				var variant = " share-links-" + variants[(c + i) % 2]
 				links[i].getElementsByTagName("a")[0].className += variant
 			}
