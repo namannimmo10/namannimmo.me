@@ -279,7 +279,7 @@ summer olympics. This was actually my first hackathon ever (also outside of
 Facebook), so I was very excited.
 
 <div class="figure space-below float-right">
-  <img src="/images/facebook/velo.JPG"/>
+  <img src="/images/facebook/velo.jpg"/>
   <span class="caption">A wild tribe of Facepeople, hacking</span>
 </div>
 
@@ -408,7 +408,7 @@ insanely fast internships go by. I tried very hard to ignore that statement, but
 my last day did come. I was very sad, but made a good exit by fixing one last
 bug in the fading hours of my internship.
 
-![not-afraid](/images/facebook/not-afraid.JPG)
+![not-afraid](/images/facebook/not-afraid.jpg)
 
 And that was it, the twelve weeks of my internship had passed. All I can say is
 that I not only grew an enormous amount as an engineer, but also as a person.
