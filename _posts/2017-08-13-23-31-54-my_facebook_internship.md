@@ -17,7 +17,7 @@ Hackathons, like the timeline or videos on Facebook. For a full day, people from
 various teams and various backgrounds come together to create something new. We
 ask that they be creative and that they be bold. And we tell them: 'Do not ask
 for permission, ask for forgiveness'. Actually, there was this one time at a
-Hackathon were some folks were really unhappy with this wall we had in the
+Hackathon where some folks were really unhappy with this wall we had in the
 office that was separating them from part of their team. So they just took a
 sledgehammer and tore down the wall."
 
