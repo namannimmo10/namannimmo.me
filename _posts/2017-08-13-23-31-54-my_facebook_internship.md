@@ -168,7 +168,6 @@ new neighborhood, since Facebook provided us with free corporate housing for the
 entire duration of our internship.
 
 <div class="figure space-below">
-  <img src="/images/facebook/room.jpg"/>
   <img src="/images/facebook/living-room.jpg"/>
   <span class="caption">Mah crib</span>
 </div>
@@ -261,11 +260,6 @@ the entire London Velodrome, the venue of the cycling competition at the 2012
 summer olympics. This was actually my first hackathon ever (also outside of
 Facebook), so I was very excited.
 
-<div class="figure space-below float-right">
-  <img src="/images/facebook/velo.jpg"/>
-  <span class="caption">A wild tribe of Facepeople, hacking</span>
-</div>
-
 The way it works is that anyone at Facebook can propose a project for the
 hackathon in advance, and anyone who wants to join a team can simply sign up.
 This is a really wonderful opportunity to meet new people from different teams
@@ -281,6 +275,11 @@ with people who just seem like ordinary, friendly chaps, but turn out to have
 invented the internet or done some other amazing thing. In my case, one of the
 people in my hackathon team (writing my Python server for me) was one of the top
 10 ranked people on StackOverflow; which is a pretty big deal for some folks.
+
+<div class="figure space-below float-right">
+  <img src="/images/facebook/velo.jpg"/>
+  <span class="caption">A wild tribe of Facepeople, hacking</span>
+</div>
 
 Facebook has a very rich culture outside of Hackathons too, of course. People
 are extremely friendly, smart and like moving fast. If I had to pick two words
@@ -324,11 +323,6 @@ workshop.
 
 ## Weeks 8-12: Wrapping up
 
-<div class="figure space-below float-left">
-  <img src="/images/facebook/whale.jpg"/>
-  <span class="caption">My whale</span>
-</div>
-
 I spent the last few weeks of my internship implementing a couple more features
 and finishing up a couple more tasks for my project, but also focused more and
 more on helping with the release of our code. Since the system I was working on
@@ -346,6 +340,11 @@ was the fact that we had to roll back everything multiple times because of some
 bugs I caused. I wrote around 30,000 lines of code during my internship and made
 major changes to our codebase, so a little trouble was to be expected. However,
 I still felt a tad bad and awkward when I found a stupid mistake I had made.
+
+<div class="figure space-below float-left">
+  <img src="/images/facebook/whale.jpg"/>
+  <span class="caption">My whale</span>
+</div>
 
 Continuing the above thought, I certainly did enjoy a lot of responsibility over
 my work. In general, interns are treated as equals in almost all respects at

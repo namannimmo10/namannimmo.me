@@ -1,5 +1,8 @@
 @media screen and (min-width: $viewport-extra-small) {
   .h1.post-title { font-size: 1.7rem; }
+  h2,.h1  { font-size: 1.8rem; }
+  .figure.float-left { float: none; }
+  .figure.float-right { float: none; }
 
   .site-header {
     padding-top: $space-3;
@@ -47,6 +50,11 @@
   .h1 {
     font-size: $h1;
   }
+
+  h2,.h2  { font-size: $h2; }
+
+  .figure.float-left { float: left; }
+  .figure.float-right { float: right; }
 
   .h1.post-title { font-size: 1.7rem; }
 
