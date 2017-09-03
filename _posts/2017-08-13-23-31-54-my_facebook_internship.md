@@ -321,7 +321,7 @@ casual game of pool after dinner. There were also a few cool group events
 throughout our internship, like going to a musical, go-karting or a graffiti
 workshop.
 
-## Weeks 8-12: Wrapping up
+## Weeks 9-12: Wrapping up
 
 I spent the last few weeks of my internship implementing a couple more features
 and finishing up a couple more tasks for my project, but also focused more and
@@ -341,7 +341,7 @@ bugs I caused. I wrote around 30,000 lines of code during my internship and made
 major changes to our codebase, so a little trouble was to be expected. However,
 I still felt a tad bad and awkward when I found a stupid mistake I had made.
 
-<div class="figure space-below float-left">
+<div class="figure space-below">
   <img src="/images/facebook/whale.jpg"/>
   <span class="caption">My whale</span>
 </div>
