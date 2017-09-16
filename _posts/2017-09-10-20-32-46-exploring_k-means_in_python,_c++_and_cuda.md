@@ -807,7 +807,7 @@ Conceptually, you can think of a tree-reduction like this:
 
 ![tree-reduction](/images/k-means/tree-reduction.png)
 
-though practically speaking, we implement it more like this:
+though practically speaking, we implement it more like so:
 
 ![tree-reduction-left](/images/k-means/tree-reduction-left.png)
 
@@ -965,6 +965,8 @@ __global__ void coarse_reduce(float* __restrict__ means_x,
 
 Recall that in the fine reduction step, each block produces one sum per cluster.
 As such, you can visualize the input to the fine reduction like this:
+
+![fine-reduction-output](/images/k-means/fine-reduction-output.png)
 
 The goal is all these values into k sums, by summing up the individual,
 interleaved block-wise cluster sums. To do so, all we need to do is stop the
