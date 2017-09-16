@@ -968,9 +968,10 @@ As such, you can visualize the input to the fine reduction like this:
 
 ![fine-reduction-output](/images/k-means/fine-reduction-output.png)
 
-The goal is all these values into k sums, by summing up the individual,
-interleaved block-wise cluster sums. To do so, all we need to do is stop the
-reduction at stride $k$, as you can see in the code above. Easy.
+The goal is to combine all these values into k sums, by summing up the
+individual, interleaved block-wise cluster sums (i.e. have one sum for each
+$k_i$). To do so, all we need to do is stop the reduction at stride $k$, as you
+can see in the code above. Easy.
 
 The last step is to launch the kernels of course:
 
