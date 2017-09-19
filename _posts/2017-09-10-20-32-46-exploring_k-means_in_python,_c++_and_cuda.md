@@ -318,7 +318,7 @@ code with Eigen:
 #include <random>
 
 
-Eigen::MatrixXd k_means(const Eigen::MatrixXd& data,
+Eigen::ArrayXXd k_means(const Eigen::ArrayXXd &data,
                         uint16_t k,
                         size_t number_of_iterations) {
   static std::random_device seed;
@@ -339,8 +339,9 @@ Eigen::MatrixXd k_means(const Eigen::MatrixXd& data,
   for (size_t iteration = 0; iteration < number_of_iterations; ++iteration) {
     // This will be optimized nicely by Eigen because it's a large and
     // arithmetic-intense expression tree.
-    auto distances = (data_x.rowwise() - means.col(0).transpose()).square() +
-                     (data_y.rowwise() - means.col(1).transpose()).square();
+    Eigen::ArrayXXd distances =
+        (data_x.rowwise() - means.col(0).transpose()).square() +
+        (data_y.rowwise() - means.col(1).transpose()).square();
     // Unfortunately, Eigen has no vectorized way of retrieving the argmin for
     // every row, so we'll have to loop, and iteratively compute the new
     // centroids.
@@ -365,12 +366,12 @@ So, how fast is it?
 | :---------------- | :---------- | :------------- |
 | Our Python        | 0.01432s    | 7.42498s       |
 | Our C++           | __0.00054s__ | __0.26804s__  |
-| *Our C++ (Eigen)* | 0.00137s    | 0.985s         |
+| *Our C++ (Eigen)* | 0.00055s    | 0.56903s       |
 | scikit-learn      | 0.00137s    | 1.22683s       |
 | scipy             | 0.01474s    | 1.54127s       |
 
-It turns out that the Eigen version of k-means is barely faster than
-scikit-learn and not as fast as the basic C++ code. Disappointing!
+The Eigen version of k-means is still a lot faster than scikit-learn, but not
+quite as fast as the vanilla C++ code. A little disappointing!
 
 # CUDA
 
@@ -550,7 +551,7 @@ NVIDIA Titan X (PASCAL) GPU. And?
 | :---------------- | :---------- | :------------- |
 | Our Python        | 0.01432s    | 7.42498s       |
 | Our C++           | __0.00054s__ | 0.26804s      |
-| Our C++ (Eigen)   | 0.00137s    | 0.985s         |
+| Our C++ (Eigen)   | 0.00055s    | 0.56903s       |
 | *Our CUDA*        | 0.00956s    | __0.0752s__    |
 | scikit-learn      | 0.00137s    | 1.22683s       |
 | scipy             | 0.01474s    | 1.54127s       |
@@ -789,7 +790,7 @@ Easy. Is the improvement noticeable? Let's see:
 | :---------------- | :---------- | :------------- |
 | Our Python        | 0.01432s    | 7.42498s       |
 | Our C++           | __0.00054s__ | 0.26804s      |
-| Our C++ (Eigen)   | 0.00137s    | 0.985s         |
+| Our C++ (Eigen)   | 0.00055s    | 0.56903s       |
 | Our CUDA          | 0.00956s    | 0.0752s        |
 | *Our CUDA (2)*    | 0.00878s    | __0.0611s__    |
 | scikit-learn      | 0.00137s    | 1.22683s       |
@@ -1012,7 +1013,7 @@ see:
 | :---------------- | :---------- | :------------- |
 | Our Python        | 0.01432s    | 7.42498s       |
 | Our C++           | __0.00054s__ | 0.26804s      |
-| Our C++ (Eigen)   | 0.00137s    | 0.985s         |
+| Our C++ (Eigen)   | 0.00055s    | 0.56903s       |
 | Our CUDA          | 0.00956s    | 0.0752s        |
 | Our CUDA (2)      | 0.00878s    | 0.0611s        |
 | *Our CUDA (3)*    | 0.00822s    | __0.0171s__    |
