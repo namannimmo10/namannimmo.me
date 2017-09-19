@@ -7,7 +7,7 @@ categories:	c++ python cuda
 ---
 
 
-K-means is a popular clustering algorithm that is not only simple, but also very
+*K-means* is a popular clustering algorithm that is not only simple, but also very
 fast and effective, both as a quick hack to preprocess some data and as a
 production-ready clustering solution. I've spent the last few weeks diving deep
 into GPU programming with CUDA (following [this](https://www.udacity.com/course/intro-to-parallel-programming--cs344) awesome course) and now
@@ -73,9 +73,8 @@ especially in our CUDA implementations.
 
 One last note I want to make is that k-means is very strongly related to the
 *expectation maximization* (EM) algorithm, which maximizes the likelihood of a
-dataset under some parameters of a parameterized probability distribution. In
-fact, k-means is a special case of EM where we assume isotropic (spherical)
-Gaussian priors.
+dataset under some parameterized probability distribution. In fact, k-means is a
+special case of EM where we assume isotropic (spherical) Gaussian priors.
 
 # Python
 
@@ -96,7 +95,7 @@ k = 3
 data, labels = sklearn.datasets.make_blobs(
     n_samples=n, n_features=2, centers=k)
 
-# scipiy
+# scipy
 means, _ = scipy.cluster.vq.kmeans(data, k, iter=300)
 
 # scikit-learn
@@ -118,12 +117,12 @@ write our own implementation in Python. Before doing so, we need to discuss one
 aspect that I mentioned above as being important: centroid initialization. That
 is, what do we set $\mathbf{\mu_i}$ to in the very beginning? A naive idea might
 be to pick random coordinates within the range ($max - min$) of our data. This
-turns out to be very bad and lead to slow convergence. A similarly simple and in
-practice very effective method is to pick random points from our data as the
-initial centroids. I'll use this method below. There does exist a superior
-method called [*KMeans++*](https://en.wikipedia.org/wiki/K-means%2B%2B) that
-scikit-learn provides, but we'll avoid it for simplicity in our code (I will
-also pick the random-points method when benchmarking scikit-learn).
+turns out to be a very bad idea and leads to slow convergence. A similarly
+simple but in practice very effective method is to pick random points from our
+data as the initial centroids. I'll use this method below. There does exist a
+superior method called [*KMeans++*](https://en.wikipedia.org/wiki/K-means%2B%2B)
+that scikit-learn provides, but we'll avoid it for simplicity in our code (I
+will also pick the random-points method when benchmarking scikit-learn).
 
 ```python
 def k_means(data, k, number_of_iterations):
@@ -160,10 +159,10 @@ def k_means(data, k, number_of_iterations):
     return means.T
 ```
 
-One thing I want to highlight is that if you plan on writing reasonably
-high-performance Python code like here, you'll want to *_avoid Python loops at
-all costs_*. They will *destroy* your performance. In my code above, I used a
-few tricks that allowed us to use NumPy vector operations for everything.
+One thing I want to highlight is that if you plan on writing any kind of
+reasonably high-performance Python code like here, you'll want to __avoid Python
+loops at all costs__. They will *destroy* your performance. In my code above, I
+use a few tricks that allow us to exclusively use NumPy vector operations.
 
 This post is not as much about the k-means algorithm itself as it is about
 comparing the performance of implementations of k-means across various
@@ -175,17 +174,17 @@ average time of 5 runs:
 
 | Implementation | $n = 100$   | $n = 100\,000$ |
 | :------------- | :---------- | :------------- |
-| Our Python     | 0.01431668s | 7.42497623s    |
-| scikit-learn   | __0.00136526s__ | __1.22683280s__    |
-| scipy          | 0.01473536s | 1.54126954s    |
+| Our Python        | 0.01432s | 7.42498s       |
+| scikit-learn      | __0.00137s__ | __1.22683s__       |
+| scipy             | 0.01474s | 1.54127s       |
 
 So, for low numbers our algorithm seems to be fine, but it doesn't scale well.
-scipy and scikit-learn both outsource their computation to CPython, so they're
-simply more efficient.
+Scipy and scikit-learn both outsource their computation to C, so they're simply
+more efficient.
 
 # C++
 
-It seems that pure Python simply cannot keep up with optimized CPython
+It seems that pure Python simply cannot keep up with optimized C
 implementations, so
 
 ![we need to go deeper](/images/k-means/deeper.jpg)
@@ -269,14 +268,15 @@ DataFrame k_means(const DataFrame& data,
 ```
 
 Let's see how this super obvious, straight-from-my-brain C++ code fairs for our
-100 and 100k datapoint benchmarks. I compile with `-std=c++11 -O3`:
+100 and 100k data point benchmarks. I compile with `-std=c++11 -O3`:
 
 | Implementation | $n = 100$   | $n = 100\,000$ |
 | :------------- | :---------- | :------------- |
-| Our Python     | 0.01431668s | 7.42497623s    |
-| *Our C++*      | __0.00053558s__ | __0.26804200s__ |
-| scikit-learn   | 0.00136526s | 1.22683280s    |
-| scipy          | 0.01473536s | 1.54126954s    |
+| Our Python        | 0.01432s | 7.42498s       |
+| *Our C++*         | __0.00054s__ | __0.26804s__  |
+| scikit-learn      | 0.00137s | 1.22683s       |
+| scipy             | 0.01474s | 1.54127s       |
+
 
 
 Wow, we didn't even try hard and this C++ implementation is already almost an
@@ -295,12 +295,12 @@ Another thing I've wanted to try out for a while is
 manipulation library underpinning large parts of TensorFlow, for example.
 Eigen's power comes from, among many optimizations, its concept of *expression
 templates*, which are essentially static computation graphs it can optimize to
-produce better C++ code under the hood. For example, adding two matrices
-together will not immediately perform this operation, but instead result in an
-object representing this addition. If we then multiply the result with a scalar,
-for example, Eigen can optimize this whole $s \cdot (A + B)$ term into a single
-loop (ideally the compiler should do this for us, but alas, the library helps
-out).
+produce better C++ code under the hood. For example, adding two vectors
+$\mathbf{a, b}$ together will not immediately perform this operation, but
+instead result in an object representing this addition. If we then multiply the
+result with a scalar $s$, for example, Eigen can optimize this whole $s \cdot
+(\mathbf{a} + \mathbf{b})$ term into a single loop (ideally the compiler should
+do this for us, but alas, the library helps out).
 
 This was my first time using Eigen and I was hoping it would be like NumPy for
 Python. It turned out to be that, just in a very limited way. Shortcomings
@@ -364,13 +364,14 @@ So, how fast is it?
 
 | Implementation    | $n = 100$   | $n = 100\,000$ |
 | :---------------- | :---------- | :------------- |
-| Our Python        | 0.01431668s | 7.42497623s    |
-| Our C++           | __0.00053558s__ | __0.26804200s__ |
-| *Our C++ (Eigen)* | 0.00137069s | 0.985069s      |
-| scikit-learn      | 0.00136526s | 1.22683280s    |
-| scipy             | 0.01473536s | 1.54126954s    |
+| Our Python        | 0.01432s    | 7.42498s       |
+| Our C++           | __0.00054s__ | __0.26804s__  |
+| *Our C++ (Eigen)* | 0.00137s    | 0.985s         |
+| scikit-learn      | 0.00137s    | 1.22683s       |
+| scipy             | 0.01474s    | 1.54127s       |
 
-As you can see, the Eigen version of k-means is barely faster than scikit-learn and not as fast as the basic C++ code. Somewhat disappointing!
+It turns out that the Eigen version of k-means is barely faster than
+scikit-learn and not as fast as the basic C++ code. Disappointing!
 
 # CUDA
 
@@ -380,21 +381,21 @@ do I think so? Well, let's look at the definition of the *assignment* step:
 1. Compute the distance from each point $\mathbf{x_i}$ to each cluster centroid $\mathbf{\mu_j}$,
 2. Assign each point to the centroid it is closest to.
 
-What's important to notice here is that each datapoint $\mathbf{x_i}$ does *its
-own thing*, i.e. no information or data is shared across individual datapoints,
-except for the here immutable (read-only) cluster centroids. This is nice,
-because complexity in parallel programming arises almost exclusively when data
-needs to be shared. If all we're doing is performing some computation on each
-point individually, then coding this up on a GPU is a piece of cake.
+What's important to notice here is that each data point $\mathbf{x_i}$ does *its
+own thing*, i.e. no information or data is shared across individual data points,
+except for the here immutable cluster centroids. This is nice, because
+complexity in parallel programming arises almost exclusively when data needs to
+be shared. If all we're doing is performing some computation on each point
+individually, then coding this up on a GPU is a piece of cake.
 
 Things get less rosy when we consider the *update* step, where we recompute the
 cluster centroids to be the mean of all points assigned to a particular
 centroid. Essentially, this is an average reduction, just that we aren't
 averaging over all values in the dataset, but doing one reduction over each
-cluster's respective subsets. The simplest way to do such a reduction is to use
-a global, *atomic* counter. This will be slow since the atomic counter increment
-will be greatly contended and serialize all threads, but doesn't require much
-thought -- so let's get to it! Here is the CUDA code:
+cluster's respective subset. The simplest way to do such a reduction is to use
+an *atomic* counter. This is slow since the atomic counter increment will be
+greatly contended and serialize all threads' accesses. However, it's easy to
+implement -- so let's get to it! Here is the CUDA code:
 
 ```cpp
 #include <algorithm>
@@ -544,19 +545,19 @@ int main(int argc, const char* argv[]) {
 This is largely unoptimized CUDA code that makes no effort to come up with an
 efficient parallel algorithm to perform the reduction (we'll get to one in a
 bit). I'll compile this with `nvcc -std=c++11 -O3` and run on a fairly recent
-NVIDIA Tesla X (PASCAL) GPU. And?
+NVIDIA Titan X (PASCAL) GPU. And?
 
 | Implementation    | $n = 100$   | $n = 100\,000$ |
 | :---------------- | :---------- | :------------- |
-| Our Python        | 0.01431668s | 7.42497623s    |
-| Our C++           | __0.00053558s__ | 0.26804200s |
-| Our C++ (Eigen)   | 0.00137069s | 0.985069s      |
-| *Our CUDA*        | 0.00956427s | __0.0752131s__ |
-| scikit-learn      | 0.00136526s | 1.22683280s    |
-| scipy             | 0.01473536s | 1.54126954s    |
+| Our Python        | 0.01432s    | 7.42498s       |
+| Our C++           | __0.00054s__ | 0.26804s      |
+| Our C++ (Eigen)   | 0.00137s    | 0.985s         |
+| *Our CUDA*        | 0.00956s    | __0.0752s__    |
+| scikit-learn      | 0.00137s    | 1.22683s       |
+| scipy             | 0.01474s    | 1.54127s       |
 
-Interesting! Running a GPU for 100 datapoints is a little like launching a space
-rocket to get from the living room to the kitchen in your house: totally
+Interesting! Running a GPU for 100 data points is a little like launching a
+space rocket to get from the living room to the kitchen in your house: totally
 unnecessary, not using the full potential of the vehicle and the overhead of
 launching itself will outweigh any benefits once the rocket, or GPU kernel, is
 running. On the other hand, we see that GPUs simply *scale* so beautifully
@@ -565,9 +566,9 @@ our previous CPU algorithm scaled linearly w.r.t. the number of observations in
 our dataset, the [span
 complexity](https://en.wikipedia.org/wiki/Analysis_of_parallel_algorithms) of
 our GPU implementation stays constant and only the overall work increases. That
-is, adding more data does not alter the execution time of a single point. Of
+is, adding more data does not alter the overall execution time (in theory). Of
 course, this only holds if you have enough threads to assign one to each point.
-In my experiments here I will assume this.
+In my experiments here I will assume such favorable circumstances.
 
 As part of my exploration of GPU programming, I also wanted to try out
 [Thrust](http://thrust.github.io), a cool library that provides STL-like
@@ -683,9 +684,9 @@ int main(int argc, const char* argv[]) {
 
 The running time of this code is actually slightly lower for the 100 point
 version, but equal to the pure CUDA version for 100k points. I don't really
-consider Thrust to be a separate "platform" or algorithm, so I won't list it in
+consider Thrust to be a separate *platform* or algorithm, so I won't list it in
 the comparison. This more to see what working with Thrust is like (not doing
-manual `cudaMalloc`s is nice).
+manual `cudaMalloc` is nice).
 
 Now, even though we can be quite happy with this speedup already, we haven't
 really invested much effort into this. Using atomic operations is somewhat
@@ -701,14 +702,14 @@ const float distance =
 ```
 
 I'm not talking about the function call, but about the global memory loads
-`means_x[cluster]` and `means_y[cluster]`. Having every thread go to global GPU
+`means_x[cluster]` and `means_y[cluster]`. Having every thread go to global
 memory to fetch the cluster means is inefficient. One of the first things we
 learn about GPU programming is that understanding and utilizing the memory
 hierarchy in GPUs is essential to building efficient programs, much more so than
 on CPUs, where compilers or the hardware itself handle register allocation and
-L1, L2, L3 caching for us. The simple fix for the above global memory loads is
-to place the means into shared memory and have the threads load them from there.
-The code changes are quite minor. First in the `assign_clusters` kernel:
+caching for us. The simple fix for the above global memory loads is to place the
+means into shared memory and have the threads load them from there. The code
+changes are quite minor. First in the `assign_clusters` kernel:
 
 ```cpp
 __global__ void assign_clusters(const float* __restrict__ data_x,
@@ -787,13 +788,14 @@ Easy. Is the improvement noticeable? Let's see:
 
 | Implementation    | $n = 100$   | $n = 100\,000$ |
 | :---------------- | :---------- | :------------- |
-| Our Python        | 0.01431668s | 7.42497623s    |
-| Our C++           | __0.00053558s__ | 0.26804200s |
-| Our C++ (Eigen)   | 0.00137069s | 0.985069s      |
-| Our CUDA          | 0.00956427s | 0.0752131s     |
-| *Our CUDA (2)*    | 0.00877843s | __0.0610812s__ |
-| scikit-learn      | 0.00136526s | 1.22683280s    |
-| scipy             | 0.01473536s | 1.54126954s    |
+| Our Python        | 0.01432s    | 7.42498s       |
+| Our C++           | __0.00054s__ | 0.26804s      |
+| Our C++ (Eigen)   | 0.00137s    | 0.985s         |
+| Our CUDA          | 0.00956s    | 0.0752s        |
+| *Our CUDA (2)*    | 0.00878s    | __0.0611s__    |
+| scikit-learn      | 0.00137s    | 1.22683s       |
+| scipy             | 0.01474s    | 1.54127s       |
+
 
 Indeed, sweet! But we're still doing atomic increments, so let's think a bit
 more.
@@ -811,14 +813,13 @@ though practically speaking, we implement it more like so:
 
 ![tree-reduction-left](/images/k-means/tree-reduction-left.png)
 
-As you can see, the work complexity is still the same ($n - 1$ addition
-operations), but the span complexity is only logarithmic. For large $n$, this
-benefit is enormous. One thing to note about the practical implementation of
-this tree reduction is that it usually requires two kernel launches. The first
-performs block-wise reductions, yielding one sum per block, of all values in
-each block. The second then launches one more thread block to reduce those
-block-wise sums into a single, overall sum (this assumes we have enough threads
-and stuff).
+The work complexity is still the same ($n - 1$ addition operations), but the
+span complexity is only logarithmic. For large $n$, this benefit is enormous.
+One thing to note about the practical implementation of this tree reduction is
+that it requires two kernel launches. The first performs block-wise reductions,
+yielding the sum of all values for each block. The second then launches one more
+thread block to reduce those block-wise sums into a single, overall sum (this
+assumes we have enough threads and stuff).
 
 Now, the tricky thing in our case is that we can't just average over all our
 data. Instead, for each cluster, we have to only average over the points
@@ -828,12 +829,12 @@ cluster are next to each other in memory, then do one standard reduction per
 segment.
 
 The approach I picked is a bit different. Essentially, I wanted to do more work
-in the same kernel. So my ideas was the following: keep a shared memory segment
+in the same kernel. So my idea was the following: keep a shared memory segment
 in each thread block and for each cluster and each thread, check if the thread
 is assigned to the cluster and write the thread's value into the shared memory
 segment if yes, otherwise write a zero in that place. Then do a simple
 reduction. Since we also need the count of assigned points per cluster, we can
-also map values to binary values and reduce over those in the same sweep to get
+also map values to zeros and ones and reduce over those in the same sweep to get
 the cluster counts. This approach has both very high shared memory utilization
 and overall occupancy (we're doing lots of work in each block and in many
 blocks). Here is the code for the "fine", per-block reduction (it's quite a
@@ -964,14 +965,14 @@ __global__ void coarse_reduce(float* __restrict__ means_x,
 ```
 
 Recall that in the fine reduction step, each block produces one sum per cluster.
-As such, you can visualize the input to the fine reduction like this:
+As such, you can visualize the input to the coarse reduction like this:
 
 ![fine-reduction-output](/images/k-means/fine-reduction-output.png)
 
-The goal is to combine all these values into k sums, by summing up the
-individual, interleaved block-wise cluster sums (i.e. have one sum for each
-$k_i$). To do so, all we need to do is stop the reduction at stride $k$, as you
-can see in the code above. Easy.
+The goal is to combine all these values into $k$ sums, by summing up the
+individual, block-wise cluster sums (i.e. have one sum for each $k_i$). To do
+so, we simply stop the reduction at stride $k$, as you can see in the code
+above. Easy.
 
 The last step is to launch the kernels of course:
 
@@ -1010,14 +1011,14 @@ see:
 
 | Implementation    | $n = 100$   | $n = 100\,000$ |
 | :---------------- | :---------- | :------------- |
-| Our Python        | 0.01431668s | 7.42497623s    |
-| Our C++           | __0.00053558s__ | 0.26804200s |
-| Our C++ (Eigen)   | 0.00137069s | 0.985069s      |
-| Our CUDA          | 0.00956427s | 0.0752131s     |
-| Our CUDA (2)      | 0.00877843s | 0.0610812s     |
-| *Our CUDA (3)*    | 0.00821661s | __0.0170668s__ |
-| scikit-learn      | 0.00136526s | 1.22683280s    |
-| scipy             | 0.01473536s | 1.54126954s    |
+| Our Python        | 0.01432s    | 7.42498s       |
+| Our C++           | __0.00054s__ | 0.26804s      |
+| Our C++ (Eigen)   | 0.00137s    | 0.985s         |
+| Our CUDA          | 0.00956s    | 0.0752s        |
+| Our CUDA (2)      | 0.00878s    | 0.0611s        |
+| *Our CUDA (3)*    | 0.00822s    | __0.0171s__    |
+| scikit-learn      | 0.00137s    | 1.22683s       |
+| scipy             | 0.01474s    | 1.54127s       |
 
 Boom, that's fast! Our CUDA implementation is around 72 times faster than
 scikit-learn and 90 times faster than scipy (for large data). That's pretty
@@ -1029,7 +1030,8 @@ So is this the best we can do? Definitely not. I imagine someone with more GPU
 programming experience could get even more out of it. `nvprof` does give me
 pretty good specs, but I'm certain that the right intrinsics and loop unrolling
 tricks sprinkled around could speed up the implementation even more. If you have
-any ideas, let me know! I've published all my code in [this repository](https://github.com/goldsborough/k-means).
+any ideas, let me know! I've published all my code in [this
+repository](https://github.com/goldsborough/k-means).
 
 In conclusion, I have to say that GPU programming with CUDA is a lot of fun.
 I've realized that dealing with such highly parallel code and hundreds of
@@ -1039,4 +1041,4 @@ differently than on serial CPUs. But getting speedups like the ones we saw is
 definitely amazing. I feel like I've gained a much greater appreciation for the
 algorithms that make my neural networks run 10x faster on a single GPU than even
 on a 32-core CPU. But there's so much more to explore in this space. Apparently
-convolutions are supposed to be pretty fast on GPUs, right?
+convolutions are supposed to be pretty fast on GPUs?
