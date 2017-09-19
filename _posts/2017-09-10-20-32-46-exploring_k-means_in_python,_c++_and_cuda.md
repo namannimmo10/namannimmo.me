@@ -286,9 +286,8 @@ vectorized beautifully:
 
 ![vectorized](/images/k-means/vectorized.png)
 
-You can see this from the use of `xmm` registers, which are [vector
-registers](https://en.wikipedia.org/wiki/Streaming_SIMD_Extensions#Registers).
-Thanks, compiler!
+You can see this from the use of `xmm` registers with packed instructions (`ps`
+or `pd` suffixes). Thanks, compiler!
 
 Another thing I've wanted to try out for a while is
 [*Eigen*](https://eigen.tuxfamily.org), an apparently fantastic C++ matrix
