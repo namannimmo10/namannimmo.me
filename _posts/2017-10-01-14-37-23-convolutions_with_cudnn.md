@@ -28,7 +28,7 @@ cuDNN. In this post, I'll walk you through the implementation of a basic
 convolution operation with cuDNN. Given that the library is very low-level, this
 is quite a lot more work than you'd expect.
 
-## Setup
+# Setup
 
 To execute the code I'll discuss in this post, you will need access to an NVIDIA
 GPU. If you don't have one yet, I recommend grabbing a [Titan
@@ -41,7 +41,7 @@ capability](https://en.wikipedia.org/wiki/CUDA#GPUs_supported) of at least 3.0
 to run cuDNN kernels. You'll also need the cuDNN library, which you can download
 [here](https://developer.nvidia.com/cudnn).
 
-## Basic Overview
+# Basic Overview
 
 CuDNN is a CUDA library that abstracts various high performance deep learning
 kernels, such as convolutions or activations. The basic programming model
@@ -52,7 +52,7 @@ operations. Even though the bulk of the work is hidden behind functions, we'll
 still need to perform one or the other `cudaMalloc`, `cudaMemcpy` and other
 low-level CUDA operations ourselves.
 
-## Walkthrough
+# Walkthrough
 
 The basics out of the way, let me now walk you through the code for a basic
 cuDNN convolution operation. We begin by including the necessary header and
@@ -110,7 +110,7 @@ cv::Mat load_image(const char* image_path) {
 cv::Mat image = load_image("/path/to/image.png");
 ```
 
-### Describing Operands
+## Describing Operands
 
 Next, we need to describe the three data structures that participate in the
 convolution operation: the *input* tensor, the *output* tensor and the *kernel*
@@ -182,7 +182,7 @@ difference is that the `batch_size` is now the number of output channels
 argument to `NCHW`. This will make it easier to define the kernel weights later
 on.
 
-### Describing the Convolution Kernel
+## Describing the Convolution Kernel
 
 With the parameter description out of the way, we now need to tell cuDNN what
 kind of (convolution) operation we want to perform. For this, we again declare
@@ -268,7 +268,7 @@ std::cerr << "Workspace size: " << (workspace_bytes / 1048576.0) << "MB"
           << std::endl;
 ```
 
-### Allocating Memory
+## Allocating Memory
 
 At this point, we need to allocate the required resources for the convolution.
 The number of buffers and memory requirements for each buffer will differ
@@ -330,7 +330,7 @@ each output feature map we want to produce.
 
 Can you guess what that kernel does? Read on to find out!
 
-### The Convolution (finally)
+## The Convolution (finally)
 
 At last, we can perform the actual convolution operation:
 
@@ -403,7 +403,7 @@ void save_image(const char* output_filename,
 save_image("cudnn-out.png", h_output, height, width);
 ```
 
-### Running the Code
+## Running the Code
 
 Nearly 200 lines later, we have our basic convolution operation in place. So let's try it out! You can compile this code using a Makefile like this:
 
@@ -440,7 +440,7 @@ to get ...
 a convolved TensorFlow logo. Hooray! As you can see, the kernel I used in this
 example is a basic edge detector.
 
-### Bonus: Sigmoid Activation
+## Bonus: Sigmoid Activation
 
 I mentioned that besides convolutions, cuDNN also has efficient implementations
 of activation functions (both forward and backward passes). Here is an example
@@ -471,7 +471,7 @@ cudnnDestroyActivationDescriptor(activation_descriptor);
 
 Done!
 
-## Outro
+# Outro
 
 In this post I outlined the minimal steps required to perform a convolution with
 cuDNN, NVIDIA's high performance library for neural network primitives. The one
