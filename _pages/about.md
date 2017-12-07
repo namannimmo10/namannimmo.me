@@ -12,7 +12,7 @@ permalink: /about/
 Hi! I'm Peter and I'm 20 years old. I grew up in a small town in Austria and I've always liked
 building things. I studied Computer Science at TU Munich for one year, then went on an adventure and
 did a bunch of internships. I worked on infrastructure at Google, Facebook and Bloomberg in
-London. I also did blue-skies deep learning research at an AI startup, and worked on applying novel
+London. I did blue-skies deep learning research at an AI startup and worked on applying novel
 machine learning methods to cell biology at the Broad Institute of MIT and Harvard in Cambridge. I'm
 now back at Facebook in Silicon Valley, making the world more open and connected.
 
