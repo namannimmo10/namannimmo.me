@@ -1,7 +1,7 @@
 ---
 layout:		post
 title:		A Promenade of PyTorch
-summary:	A brief overview of the most popular dynamic-graph deep learning framework
+summary:	A brief discussion of a research-first deep learning framework
 date:		2018-02-04 20-17-20
 categories:	ml ai python
 ---
