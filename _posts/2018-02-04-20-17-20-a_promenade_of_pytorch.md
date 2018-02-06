@@ -16,30 +16,33 @@ the PyTorch team at [Facebook AI Research](https://research.fb.com/category/face
 competitor to date, and currently much favored in the research community for
 reasons that will become apparent in subsequent paragraphs.
 
-In this article, I want to provide a sweeping promenade of PyTorch (having
-given a [tour of TensorFlow](http://www.goldsborough.me/tensorflow/ml/ai/python/2017/06/28/20-21-45-a_sweeping_tour_of_tensorflow/) in another blog post), shedding some light on its
-raîson d'être, giving an overview of its API and walking through the
-implementation of a GAN model in PyTorch. This post is essentially a brushed-up
-version of my study notes as I familiarize myself with the framework.
+In this article, I want to provide a sweeping promenade of PyTorch (having given
+a [tour of
+TensorFlow](http://www.goldsborough.me/tensorflow/ml/ai/python/2017/06/28/20-21-45-a_sweeping_tour_of_tensorflow/)
+in another blog post), shedding some light on its raîson d'être and giving an
+overview of its API.
 
 ## Overview and Philosophy
 
 Let's begin by reviewing what PyTorch is fundamentally, what programming model
 it imposes on its users and how it fits into the existing deep learning
-framework ecosystem.
+framework ecosystem:
 
 > PyTorch is, at its core, a Python library enabling GPU-accelerated tensor computation, similar to NumPy. On top of this, PyTorch provides a rich API for neural network applications.
 
 PyTorch differentiates itself from other machine learning frameworks in that it
 does not use *static* computational graphs -- defined once, ahead of time --
-like TensorFlow, Caffe2 or MXNet. Instead, PyTorch computation graphs are
-*dynamic* and *defined-by-run*. This means that each invocation of a PyTorch
+like TensorFlow, [Caffe2](http://caffe2.ai) or
+[MXNet](https://mxnet.apache.org). Instead, PyTorch computation graphs are
+*dynamic* and *defined by run*. This means that each invocation of a PyTorch
 model's layers defines a new computation graph, on the fly. The creation of this
 graph is implicit, in the sense that the library takes care of recording the
 flow of data through the program and linking function calls (nodes) together
 (via edges) into a computation graph.
 
-Let's look at a concrete example of what I mean with *static* versus *dynamic*.
+### Dynamic vs. Static Graphs
+
+Let's go into more detail about what I mean with *static* versus *dynamic*.
 Generally, in the majority of programming environments, adding two variables `x`
 and `y` representing numbers produces a value containing the result of that
 addition. For example, in Python:
@@ -68,18 +71,18 @@ Out[4]: <tf.Tensor 'add:0' shape=() dtype=int32>
 
 As such, when we write TensorFlow code, we are in fact not programming, but
 *metaprogramming* -- we write a program (our code) that creates a program (the
-TensorFlow computation graph). Naturally, the former programming model is much
-simpler than the latter. It is much simpler to speak and think in terms of
+TensorFlow computation graph). Naturally, the first programming model is much
+simpler than the second. It is much simpler to speak and think in terms of
 things that *are* than speak and think in terms of things that *represent
 things that are*.
 
 PyTorch's major advantage is that it's execution model is much closer to the
-first than the second. At its core, PyTorch is simply regular Python, with
+former than the latter. At its core, PyTorch is simply regular Python, with
 support for Tensor computation like NumPy, but with added GPU acceleration of
 Tensor operations and, most importantly, built-in [*automatic
 differentiation*](https://en.wikipedia.org/wiki/Automatic_differentiation)
-(*AD*). Since the majority of contemporary machine learning algorithms
-rely heavily on linear algebra datatypes (matrices and vectors) and use gradient
+(*AD*). Since the majority of contemporary machine learning algorithms rely
+heavily on linear algebra datatypes (matrices and vectors) and use gradient
 information to improve their estimates, these two pillars of PyTorch are
 sufficient to enable arbitrary machine learning workloads.
 
@@ -96,8 +99,6 @@ Out[4]:
 [torch.FloatTensor of size 1]
 ```
 
-### Dynamic vs. Static Graphs
-
 PyTorch deviates from the basic intuition of programming in Python in one
 particular way: it records the execution of the running program. That is,
 PyTorch will silently "spy" on the operations you perform on its datatypes and,
@@ -106,27 +107,28 @@ graph is required for automatic differentiation, as it must walk the chain of
 operations that produced a value backwards in order to compute derivatives (for
 reverse mode AD). The way this computation graph, or rather the process of
 assembling this computation graph, differs notably from TensorFlow or MXNet, is
-that a new graph is constructed dynamically, on the fly, each time a fragment of
+that a new graph is constructed eagerly, on the fly, each time a fragment of
 code is evaluated. Conversely, in Tensorflow, a computation graph is constructed
 only once, by the metaprogram that is your code. Furthermore, while PyTorch will
 actually walk the graph backwards dynamically each time you ask for the
 derivative of a value, TensorFlow will simply inject additional nodes into the
 graph that (implicitly) calculate this derivative and are evaluated like all
-other nodes. This is where the distinction between *dynamic* and *static* graphs
-is most apparent.
+other nodes. This is where the distinction between dynamic and static graphs is
+most apparent.
 
 The choice of using static or dynamic computation graphs severely impacts the
 ease of programming in one of these environments. The aspect it influences most
 severely is *control flow*. In a static graph environment, control flow must be
-represented as specialized nodes in the graph. For example, Tensorflow has a
-`tf.cond()` operation, which takes three subgraphs as input: a condition
-subgraph and two subgraphs for the `if` and `else` branches of the conditional.
-Similarly, loops must be represented in TensorFlow graphs as `tf.while()`
-operations, taking a `condition` and `body` subgraph as input. In a dynamic
-graph setting, all this is simplified. Since graphs are traced from Python code
-*as it appears* during each evaluation, control flow can be implemented natively
-in the language, using `if` clauses and `while` loops as you would for any other
-program. This turns awkward and unintuitive Tensorflow code:
+represented as specialized nodes in the graph. For example, to enable branching,
+Tensorflow has a `tf.cond()` operation, which takes three subgraphs as input: a
+condition subgraph and two subgraphs for the `if` and `else` branches of the
+conditional. Similarly, loops must be represented in TensorFlow graphs as
+`tf.while()` operations, taking a `condition` and `body` subgraph as input. In a
+dynamic graph setting, all this is simplified. Since graphs are traced from
+Python code *as it appears* during each evaluation, control flow can be
+implemented natively in the language, using `if` clauses and `while` loops as
+you would for any other program. This turns awkward and unintuitive Tensorflow
+code:
 
 ```python
 import tensorflow as tf
@@ -152,9 +154,9 @@ while x.sum() < 100:
 The benefits of dynamic graphs from an ease-of-programming perspective reach far
 beyond this, of course. Simply being able to inspect intermediate values with
 `print` statements (as opposed to `tf.Print()` nodes) or a debugger is already a
-big plus. Of course, as much as dynamism can aid programmability, it harms
-performance and makes it harder to optimize graphs. The differences and
-tradeoffs between PyTorch and TensorFlow are thus much the same as the
+big plus. Of course, as much as dynamism can aid programmability, it can also
+harm performance and makes it more difficult to optimize graphs. The differences
+and tradeoffs between PyTorch and TensorFlow are thus much the same as the
 differences and tradeoffs between a dynamic, interpreted language like Python
 and a static, compiled language like C or C++. The former is easier and faster
 to work with, while the latter can be transformed into more optimized artifacts.
@@ -168,18 +170,18 @@ network computation, compared to other libraries like TensorFlow or MXNet, is
 that it is quite *batteries-included*. As someone once remarked to me,
 TensorFlow's API never really went beyond the "assembly level", in the sense
 that it only ever provided the basic "assembly" instructions required to
-construct computational graphs programs (addition, multiplication, pointwise
-functions etc.), with a basically non-existent "standard library" for the most
-common kinds of program fragments people would eventually go on to repeat
-thousands of times. Instead, it relied on the community to build higher level
-APIs on top of TensorFlow.
+construct computational graphs (addition, multiplication, pointwise functions
+etc.), with a basically non-existent "standard library" for the most common
+kinds of program fragments people would eventually go on to repeat thousands of
+times. Instead, it relied on the community to build higher level APIs on top of
+TensorFlow.
 
 And indeed, the community did build higher level APIs. Unfortunately, however,
-not just one such API, but about a dozen, concurrently. This means that on a bad
-day you could read five papers for your research, and the source code of each of
-these papers would use a different "frontend" to TensorFlow. These APIs
+not just one such API, but about a dozen -- concurrently. This means that on a
+bad day you could read five papers for your research and find the source code of
+each of these papers to use a different "frontend" to TensorFlow. These APIs
 typically have quite little in common, such that you would essentially have to
-learn 5 different frameworks, not just "TensorFlow". A few of the most popular
+learn 5 different frameworks, not just *TensorFlow*. A few of the most popular
 such APIs are:
 
 - [Keras](https://keras.io)
@@ -189,15 +191,17 @@ such APIs are:
 
 PyTorch, on the other hand, already comes with the most common building blocks
 required for every-day deep learning research. It essentially has a "native"
-Keras-like API, allowing chaining of high-level neural network *layers*.
+Keras-like API in its `torch.nn` package, allowing chaining of high-level neural
+network modules.
 
 ### PyTorch's Place in the Ecosystem
 
 Having explained how PyTorch differs from static graph frameworks like MXNet,
 TensorFlow or Theano, let me say that PyTorch is not, in fact, unique in its
 approach to neural network computation. Before PyTorch, there were already
-libraries such as [Chainer](https://chainer.org) or [DyNet](https://github.com/clab/dynet) that provided a similar dynamic graph
-API. At the moment, PyTorch is more popular than these others, though.
+libraries like [Chainer](https://chainer.org) or
+[DyNet](https://github.com/clab/dynet) that provided a similar dynamic graph
+API. Today, PyTorch is more popular than these alternatives, though.
 
 At Facebook, PyTorch is also not the only framework in use. The majority of our
 production workloads currently run on [Caffe2](https://caffe2.ai), which is a static graph
@@ -216,15 +220,17 @@ providing a Python API to its users. Let's talk about this Python API next.
 
 ## Using PyTorch
 
-We will begin by diving into the core components of the PyTorch library,
-covering its basic datatypes and neural network specific functionality.
+In the following paragraphs I will discuss the basic concepts and core
+components of the PyTorch library, covering its fundamental datatypes, its
+automatic differentiation machinery, its neural network specific functionality
+as well as utilities for loading and processing data.
 
 ### Tensors
 
 The most fundamental datatype in PyTorch is a `tensor`. The `tensor` datatype is
 very similar, both in importance and function, to NumPy's `ndarray`.
 Furthermore, since PyTorch aims to interoperate reasonably well with NumPy, the
-API of `tensor` also *resembles* (not *equals*) that of `ndarray`. PyTorch
+API of `tensor` also *resembles* (but not *equals*) that of `ndarray`. PyTorch
 tensors can be created with the `torch.Tensor` constructor, which takes the
 tensor's dimensions as input and returns a tensor occupying an *uninitialized*
 region of memory:
@@ -238,7 +244,7 @@ In practice, one will most often want to use one of PyTorch's functions that ret
 
 - `torch.rand`: values initialized from a random *uniform* distribution,
 - `torch.randn`: values initialized from a random *normal* distribution,
-- `torch.eye(n)`: an `n x n` identity matrix,
+- `torch.eye(n)`: an $n \times n$ identity matrix,
 - `torch.from_numpy(ndarray)`: a PyTorch tensor from a NumPy `ndarray`,
 - `torch.linspace(start, end, steps)`: a 1-D tensor with `steps` values spaced linearly between `start` and `end`,
 - `torch.ones` : a tensor with ones everywhere,
@@ -258,7 +264,7 @@ underscore, e.g. `x.add_(y)`.
 A selection of operations includes:
 
 - `torch.add(x, y)`: elementwise addition,
-- `torch.mm(x, y)`: matrix multiplication,
+- `torch.mm(x, y)`: matrix multiplication (not `matmul` or `dot`),
 - `torch.mul(x, y)`: elementwise multiplication,
 - `torch.exp(x)`: elementwise exponential,
 - `torch.pow(x, power)`: elementwise exponentiation,
@@ -272,7 +278,7 @@ A selection of operations includes:
 
 
 Tensors support many of the familiar semantics of NumPy `ndarray`'s, such as
-broadcasting, advanced (fancy) indexing (`x[x > 5]`) and element-wise relational
+broadcasting, advanced (fancy) indexing (`x[x > 5]`) and elementwise relational
 operators (`x > y`). PyTorch tensors can also be converted to NumPy `ndarray`'s
 directly via the `torch.Tensor.numpy()` function. Finally, since the primary
 improvement of PyTorch tensors over NumPy `ndarray`s is supposed to be GPU
@@ -299,15 +305,15 @@ PyTorch, however, does not have static computation graphs and thus does not have
 the luxury of adding gradient nodes after the rest of the computations have
 already been defined. Instead, PyTorch must *record* or *trace* the flow of
 values through the program as they occur, thus creating a computation graph
-*dynamically*. Once such a graph is recorded, PyTorch has all the information
+*dynamically*. Once such a graph is recorded, PyTorch has the information
 required to walk this computation flow backwards and calculate gradients of
 outputs from inputs.
 
-The PyTorch `Tensor` currently does not have sufficient machinery to participate
-in automatic differentiation. For a tensor to be "recordable", it must be
-wrapped with `torch.autograd.Variable`. The `Variable` class provides almost the
-same API as `Tensor`, but augments it with the ability to interplay with
-`torch.autograd.Function` in order to be differentiated automatically. More
+The PyTorch `Tensor` *currently* does not have sufficient machinery to
+participate in automatic differentiation. For a tensor to be "recordable", it
+must be wrapped with `torch.autograd.Variable`. The `Variable` class provides
+almost the same API as `Tensor`, but augments it with the ability to interplay
+with `torch.autograd.Function` in order to be differentiated automatically. More
 precisely, a `Variable` records the history of operations on a `Tensor`.
 
 Usage of `torch.autograd.Variable` is very simple. One needs only to pass it a
@@ -321,13 +327,13 @@ x = torch.autograd.Variable(torch.ones(4, 4), requires_grad=True)
 The `requires_grad` function may need to be `False` in the case of data inputs
 or labels, for example, since those are usually not differentiated. However,
 they still need to be `Variable`s to be usable in automatic differentiation.
-Note that `requires_grad` defaults to `False`, thust must be set to `True` for learnable parameters.
+Note that `requires_grad` defaults to `False`, thus must be set to `True` for learnable parameters.
 
 To compute gradients and perform automatic differentiation, one calls the
 `backward()` function on a `Variable`. This will compute the gradient of that
-tensor with respect to the *leaves* of the computation graph (i.e. all inputs
-that influenced that value). These gradients are then collected in the
-`Variable` class' `grad` member:
+tensor with respect to the *leaves* of the computation graph (all inputs that
+influenced that value). These gradients are then collected in the `Variable`
+class' `grad` member:
 
 ```python
 In [1]: import torch
@@ -335,7 +341,7 @@ In [2]: from torch.autograd import Variable
 In [3]: x = Variable(torch.ones(1, 5))
 In [4]: w = Variable(torch.randn(5, 1), requires_grad=True)
 In [5]: b = Variable(torch.randn(1), requires_grad=True)
-In [6]: y = x.mm(w) + b # mm = matrix-multiply
+In [6]: y = x.mm(w) + b # mm = matrix multiply
 In [7]: y.backward() # perform automatic differentiation
 In [8]: w.grad
 Out[8]:
@@ -355,9 +361,9 @@ In [10]: x.grad
 None
 ```
 
-Since every `Variable` except for inputs are the result of an operation, each
+Since every `Variable` except for inputs is the result of an operation, each
 `Variable` has an associated `grad_fn`, which is the `torch.autograd.Function`
-that is used to compute the backward step (for inputs it is `None`):
+that is used to compute the backward step. For inputs it is `None`:
 
 ```python
 In [11]: y.grad_fn
@@ -409,14 +415,62 @@ the `grad` member of all `Variable`s to zero. Your training loop will commonly
 call `zero_grad()` at the start, or just before calling `backward()`, to reset
 the gradients for the next optimization step.
 
+When writing your own neural network models, you will often end up having to
+write *your own* module subclasses to encapsulate common functionality that you
+want to integrate with PyTorch. You can do this very easily, by deriving a class
+from `torch.nn.Module` and giving it a `forward` method. For example, here is a
+module I wrote for one of my models that adds gaussian noise to its input:
+
+```python
+class AddNoise(torch.nn.Module):
+    def __init__(self, mean=0.0, stddev=0.1):
+        super(AddNoise, self).__init__()
+        self.mean = mean
+        self.stddev = stddev
+
+    def forward(self, input):
+        noise = input.clone().normal_(self.mean, self.stddev)
+        return input + noise
+```
+
+To connect or *chain* modules into full-fledged models, you can use the
+`torch.nn.Sequential()` container, to which you pass a sequence of modules and
+which will in turn act as a module of its own, evaluating the modules you passed
+to it sequentially on each invocation. For example:
+
+```python
+In [1]: import torch
+In [2]: from torch import nn
+In [3]: from torch.autograd import Variable
+In [4]: model = nn.Sequential(
+   ...:     nn.Conv2d(1, 20, 5),
+   ...:     nn.ReLU(),
+   ...:     nn.Conv2d(20, 64, 5),
+   ...:     nn.ReLU())
+   ...:
+
+In [5]: image = Variable(torch.rand(1, 1, 32, 32))
+In [6]: model(image)
+Out[6]:
+Variable containing:
+(0 ,0 ,.,.) =
+  0.0026  0.0685  0.0000  ...   0.0000  0.1864  0.0413
+  0.0000  0.0979  0.0119  ...   0.1637  0.0618  0.0000
+  0.0000  0.0000  0.0000  ...   0.1289  0.1293  0.0000
+           ...             ⋱             ...
+  0.1006  0.1270  0.0723  ...   0.0000  0.1026  0.0000
+  0.0000  0.0000  0.0574  ...   0.1491  0.0000  0.0191
+  0.0150  0.0321  0.0000  ...   0.0204  0.0146  0.1724
+```
+
 #### Losses
 
 `torch.nn` also provides a number of *loss functions* that are naturally
 important to machine learning applications. Examples of loss functions include:
 
-- `torch.nn.MSELoss`: a mean-squared-error loss,
-- `torch.nn.BCELoss`: a binary-cross-entropy loss,
-- `torch.nn.KLDivLoss`: a KL-divergence loss.
+- `torch.nn.MSELoss`: a mean squared error loss,
+- `torch.nn.BCELoss`: a binary cross entropy loss,
+- `torch.nn.KLDivLoss`: a Kullback-Leibler divergence loss.
 
 In PyTorch jargon, loss functions are often called *criterions*. Criterions are
 really just simple modules that you can parameterize upon construction and then
@@ -443,10 +497,10 @@ piece of the puzzle is an *optimizer* to run (a variant of) stochastic gradient
 descent. For this, PyTorch provides the `torch.optim` package, which defines a
 number of common optimization algorithms, such as:
 
-- `torch.optim.SGD`: stochastic gradient descent,
-- `torch.optim.Adam`: adaptive moment estimation,
-- `torch.optim.RMSprop`: an algorithm Hinton developed in his Coursera course,
-- `torch.optim.LBFGS`: limited-memory Broyden–Fletcher–Goldfarb–Shanno,
+- `torch.optim.SGD`: [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent),
+- `torch.optim.Adam`: [adaptive moment estimation](https://arxiv.org/pdf/1412.6980.pdf),
+- `torch.optim.RMSprop`: [an algorithm developed by Geoffrey Hinton in his Coursera course](https://www.coursera.org/learn/deep-neural-network/lecture/BhJlm/rmsprop),
+- `torch.optim.LBFGS`: [limited-memory Broyden–Fletcher–Goldfarb–Shanno](https://en.wikipedia.org/wiki/Limited-memory_BFGS),
 
 Each of these optimizers are constructed with a list of parameter objects,
 usually retrieved via the `parameters()` method of a `nn.Module` subclass, that
@@ -460,9 +514,9 @@ In [2]: import torch.optim
 In [3]: from torch.autograd import Variable
 In [4]: x = Variable(torch.randn(5, 5))
 In [5]: y = Variable(torch.randn(5, 5), requires_grad=True)
-In [6]: z = x.mm(y).mean()
+In [6]: z = x.mm(y).mean() # Perform an operation
 In [7]: opt = torch.optim.Adam([y], lr=2e-4, betas=(0.5, 0.999))
-In [8]: z.backward()
+In [8]: z.backward() # Calculate gradients
 In [9]: y.data
 Out[9]:
 -0.4109 -0.0521  0.1481  1.9327  1.5276
@@ -497,6 +551,8 @@ and the `__getitem__` method to access a single value at a certain index. For
 example, this would be a simple dataset encapsulating a range of integers:
 
 ```python
+import math
+
 class RangeDataset(torch.utils.data.Dataset):
   def __init__(self, start, end, step=1):
     self.start = start
@@ -531,7 +587,7 @@ the `batch_size` parameter. Here is a simple example:
 ```python
 dataset = RangeDataset(0, 10)
 data_loader = torch.utils.data.DataLoader(
-    dataset, batch_size=4, shuffle=True, num_workers=4, drop_last=True)
+    dataset, batch_size=4, shuffle=True, num_workers=2, drop_last=True)
 
 for i, batch in enumerate(data_loader):
   print(i, batch)
@@ -544,30 +600,30 @@ order. We also passed `drop_last=True`, so that if the number of samples left
 for the final batch of the dataset is less than the specified `batch_size`, that
 batch is not returned. This ensures that all batches have the same number of
 elements, which may be an invariant that we need. Finally, we specified
-`num_workers` to be four, meaning data will be fetched in parallel by four
-processes.
+`num_workers` to be two, meaning data will be fetched in parallel by two
+processes. Once the `DataLoader` has been created, iterating over the dataset
+and thereby retrieving batches is simple and natural.
 
-Once the `DataLoader` has been created, iterating over the dataset and thereby
-retrieving batches is simple and natural. A final interesting observation I want
-to share is that the `DataLoader` actually has [some reasonably sophisticated
+A final interesting observation I want to share is that the `DataLoader`
+actually has [some reasonably sophisticated
 logic](https://github.com/pytorch/pytorch/blob/master/torch/utils/data/dataloader.py#L131)
 to determine how to *collate* individual samples returned from your dataset's
 `__getitem__` method into a batch, as returned by the `DataLoader` during
 iteration. For example, if `__getitem__` returns a dictionary, the `DataLoader`
 will aggregate the values of that dictionary into a single mapping for the
-entire batch, using the same keys. This means that if the `Dataset`'s'
-`__getitem__` returns `dict(example=example, label=label)`, then the batch
+entire batch, using the same keys. This means that if the `Dataset`'s
+`__getitem__` returns a `dict(example=example, label=label)`, then the batch
 returned by the `DataLoader` will return something like `dict(example=[example1,
 example2, ...], label=[label1, label2, ...])`, i.e. unpacking the values of
 indidvidual samples and re-packing them into a single key for the batch's
 dictionary. To override this behavior, you can pass a function argument for the
 `collate_fn` parameter to the `DataLoader` object.
 
-Note that the `torchvision` package already provides a number of datasets, such
-as `torchvision.datasets.CIFAR10`, ready to use. The same is true for
-`torchaudio` and `torchtext` packages.
+Note that the [`torchvision`](https://github.com/pytorch/vision) package already
+provides a number of datasets, such as `torchvision.datasets.CIFAR10`, ready to
+use. The same is true for `torchaudio` and `torchtext` packages.
 
-## Outro and Further Reading
+## Outro
 
 At this point, you should be equipped with an understanding of both PyTorch's
 philosophy as well as its basic API, and are thus ready to go forth and conquer
@@ -580,7 +636,7 @@ lying around [in PyTorch](https://gist.github.com/goldsborough/21fb5e1167a13b49a
 
 Summing up, PyTorch is a very exciting player in the field of deep learning
 frameworks, exploiting its unique niche of being a research-first library, while
-still providing the performance necessary for everyday research. Its dynamic
-graph computation model is an exciting contrast to static graph frameworks like
-TensorFlow or MXNet, that many will find more suitable for performing research
+still providing the performance necessary to get the job done. Its dynamic graph
+computation model is an exciting contrast to static graph frameworks like
+TensorFlow or MXNet, that many will find more suitable for performing their
 experiments. I sure look forward to working on it.
