@@ -76,7 +76,7 @@ simpler than the second. It is much simpler to speak and think in terms of
 things that *are* than speak and think in terms of things that *represent
 things that are*.
 
-PyTorch's major advantage is that it's execution model is much closer to the
+PyTorch's major advantage is that its execution model is much closer to the
 former than the latter. At its core, PyTorch is simply regular Python, with
 support for Tensor computation like NumPy, but with added GPU acceleration of
 Tensor operations and, most importantly, built-in [*automatic
