@@ -1091,11 +1091,20 @@ following:
 ![bounding box display](/images/google-ocr/bounding-box-display.png)
 
 As you can see, the Vision API detected the bottom text and the word "gum", but not the word "Orbit
--- that one is probably too stylized. Pretty cool! Let's now make these bounding boxes more
-interactive. What we want is a subclass of `UIButton` that we can give the shape of a bounding box.
-This is actually a little difficult because `UIButton` can, by default, only have a rectangular
-shape, so we'll have to manually detect when the user really touched down inside the bounding box
-shape, and not the surrounding rectangle the `UIButton` actually lives in. Other than that, the implementation of this `BoundingBoxButton` is fairly straightforward:
+-- that one is probably too stylized. Pretty cool! But does it scale? Let's try more text:
+
+![does it scale](/images/google-ocr/scale.png)
+
+Looks like it does!
+
+#### Making the Bounding Boxes Interactive
+
+Let's now make these bounding boxes more interactive. What we want is a subclass of `UIButton` that
+we can give the shape of a bounding box. This is actually a little difficult because `UIButton` can,
+by default, only have a rectangular shape, so we'll have to manually detect when the user really
+touched down inside the bounding box shape, and not the surrounding rectangle the `UIButton`
+actually lives in. Other than that, the implementation of this `BoundingBoxButton` is fairly
+straightforward:
 
 ```swift
 import UIKit
