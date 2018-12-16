@@ -237,6 +237,9 @@ photos using the phone's camera. Subsequently we will discuss making the API cal
 from within our app. The last step is to display the bounding boxes on the captured image. I'll also
 hint at how to perform actions based on interactions with bounding boxes and their associated text.
 
+The full code for this tutorial can be found in [this repository](https://github.com/goldsborough/GoogleCloudVisionOCRExample)
+if you want to follow along.
+
 ### A Basic App
 
 I assume you have *some* (minimal) prior experience with developing iOS apps with Swift and XCode,
@@ -1251,3 +1254,5 @@ required the use of machine learning to having a minimal prototype up and
 running and working sufficiently well to prove or disprove the idea's
 feasibility. The tools to solve the world's hard problems, if they're solvable
 with AI, are certainly there. Time to make use of them.
+
+P.S.: The full code for the Swift app we built here can be found in [this repository](https://github.com/goldsborough/GoogleCloudVisionOCRExample).
