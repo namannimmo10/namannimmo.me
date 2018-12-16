@@ -1,7 +1,7 @@
 ---
 layout:		post
-title:		Using the Google Vision API for OCR in Swift
-summary:	Interacting with the Google Vision API to detect text bounding boxes in a Swift app
+title:		Using the Google Cloud Vision API for OCR in Swift
+summary:	A showcase of interacting with the Google Cloud Vision API to recognize text in the wild from within a Swift iOS application
 date:		2018-12-10 20-49-02
 categories:	swift ios app ml
 ---
@@ -21,20 +21,20 @@ off-the-shelf cloud API. Since all my devices have Apple logos on them the first
 The second I pondered over for a little longer. I had wanted to learn Swift for some time, having
 heard much praise and much criticism of this relatively new language, and wanted to compare it to
 Rust and other new-ish languages. On the other hand, React Native sounded very exciting too, being
-an immensely popular framework developed by my "home team". I ultimately settled on Swift for the
-reasons I mentioned, and I think that was a fine decision. The last discussion point warranted some
-more intensive investigation. I spent some time reviewing the latest literature and state-of-the-art
-in object character recognition (OCR) and while I did settle on a particular model and had my GPUs
-all warmed up and ready to flop some FLOPs, I finally decided that using the [Google Cloud Vision
-API](https://cloud.google.com/vision/) would save me a couple weeks of work with perfectly
-acceptable results. Their free tier also sufficiently covered my needs, so I called it a day and
-conceded that Google knows a thing or two about OCR too.
+an immensely popular framework developed by my "home team", Facebook. I ultimately settled on Swift
+for the reasons I mentioned, and I think that was a fine decision. The last discussion point
+warranted more intensive investigation. I spent some time reviewing the latest literature and
+state-of-the-art in object character recognition (OCR) and while I did settle on a particular model
+and had my GPUs all warmed up and ready to flip some FLOPs, I finally decided that using the [Google
+Cloud Vision API](https://cloud.google.com/vision/) would save me a couple weeks of work with
+perfectly acceptable results. Their free tier also sufficiently covered my needs, so I called it a
+day and conceded that Google knows a thing or two about OCR too.
 
 Now that you have all the background you were never interested in, let's move on to the technical
 part of this post. I'll begin by discussing the Google Cloud Vision API with a particular focus on
-OCR and show how to interact with it purely via cURL and the command line for starters. I'll then
+OCR and show how to interact with it purely via cURL and the command line as an appetizer. I'll then
 walk you through setting up photo capture in a basic Swift app, sending captured images to Google's
-clouds and collecting and displaying the recognized text and bounding boxes that rain back down.
+clouds and displaying the recognized text and bounding boxes that rain back down.
 
 ## Using the Google Cloud Vision API
 
@@ -42,19 +42,19 @@ The Google Cloud Vision API is a set of API endpoints that provide various forms
 as a service. Given an image, you can ask for the class of the object to be recognized, for reverse
 image search results, for unsafe content detection (e.g. nudity or violence) and -- relevant to our
 use case -- text recognition. What is convenient about the latter service is that it actually
-provides two kinds of results in one: you get bounding box coordinates of any groupings (words,
-sentences, paragraphs) of text *as well as* the recognized text content within each bounding box.
-This means you can display visual markers for each bounding box, and then perform some action based
-on the detected text when a user interacts with a certain bounding box. This OCR service is free up
-to 1000 API calls per month at the time of this writing. Refer to the [full pricing
+provides two kinds of results in one: you get bounding box coordinates of any text "groupings"
+(words, sentences, paragraphs) *as well as* the recognized text within each bounding box. This means
+you can display visual markers for each bounding box and then perform some action based on the
+detected text when a user interacts with a certain bounding box. This OCR service is free up to 1000
+API calls per month at the time of this writing. Refer to the [full pricing
 information](https://cloud.google.com/vision/pricing) to see where the price goes from there (it's
 reasonable).
 
 Allow me to leave you to the [official guides](https://cloud.google.com/vision/docs/how-to) on
 setting up Google Cloud and enabling the API. When you come back, you want to be in a position where
-the following API (taken from
+the following command (taken from
 [here](https://cloud.google.com/vision/docs/ocr#vision-detect-labels-cli-curl)) gives you a
-succesful response:
+successful response:
 
 ```shell
 $ curl -X POST \
@@ -83,22 +83,21 @@ later on. The request itself is an object, with a single key `requests` whose va
 API requests in a list. Each request in turn contains an image, and specifies one or more services
 we request for this image. The image can be supplied in various forms. Above, we specify a URI
 pointing at a Google Cloud storage bucket. In our application, we'll instead be embedding the entire
-image as a base-64 encoded string, in which case the `source` key is replaced with `content`. One
-noteworthy detail about the features we request to be analyzed is that we could swap
-`TEXT_DETECTION` for `DOCUMENT_TEXT_DETECTION`. `TEXT_DETECTION` uses a model more optimized for
-text "in the wild", such as street signs or food menus. `DOCUMENT_TEXT_DETECTION` instead provides
-better results for very dense text as is common for documents like pages of a book. The endpoint we
-target with this request is `images:annotate` to access the OCR service.
+image as a base64 encoded string. One noteworthy detail about the features we request to be analyzed
+is that we could swap `TEXT_DETECTION` for `DOCUMENT_TEXT_DETECTION`. `TEXT_DETECTION` uses a model
+more optimized for text "in the wild", such as street signs or food menus. `DOCUMENT_TEXT_DETECTION`
+instead provides better results for very dense text as found in documents such as pages of a book.
+Lastly, the API endpoint we target with this request is `images:annotate` to access the OCR service,
+which we append to `https://vision.googleapis.com/v1` to form the complete URL.
 
-The full JSON response from the above cURL command is quite a lot to digest. To get a more succint
+The full JSON response from the above cURL command is quite a lot to digest. To get a more succinct
 overview, let's beam up the following image (download it and save it to disk as `test-image.png`):
 
 ![test image](/images/google-ocr/test-image.png)
 
-We'll now employ the alternative mechanism of supplying the image payload: embedding a base-64
+We'll now employ the alternative mechanism of supplying the image payload: embedding a base64
 encoded string of the image data. Unix systems conveniently have a `base64` command into which we
-can simply pipe the image to get the base64 encoded string. We can even embed this into the curl
-command:
+can simply pipe the image to get the encoded string. We can even embed this into the cURL command:
 
 ```shell
 $ curl -X POST \
@@ -231,23 +230,20 @@ although you can inspect the [documentation for
 `AnnotateImageResponse`](https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#AnnotateImageResponse)
 to get the full picture (without bounding boxes -- ha). We'll dive into developing the app next.
 
-## Recognizing and Displaying Text Bounding Boxes in a Swift app
+## Building the Swift iOS Application
 
 The next few paragraphs explore setting up a basic iOS app in Swift that has the ability to capture
 photos using the phone's camera. Subsequently we will discuss making the API calls we just studied
-from within our app. The last step is then to display the bounding boxes on the captured image. I'll
-also leave stubs for performing actions based on interactions with bounding boxes and their
-associated text.
+from within our app. The last step is to display the bounding boxes on the captured image. I'll also
+hint at how to perform actions based on interactions with bounding boxes and their associated text.
 
-### Creating a Basic Application
+### A Basic App
 
 I assume you have *some* (minimal) prior experience with developing iOS apps with Swift and XCode,
 so I won't cover the basic basics. If either of these are new to you, I found the [Swift language
 guide](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html) and [official tutorial on iOS
 development](https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/)
-pretty good to get started.
-
-Begin by creating a new single view app project in XCode:
+pretty good to get started. Let's start by creating a new single view app project in XCode:
 
 ![create a project](/images/google-ocr/create-project.png)
 
@@ -259,9 +255,9 @@ the Simulator should present you with a beautiful white screen filled with bliss
 ### Setting Up Basic Image Capture
 
 Let's continue by changing our most bare `ViewController.swift` to import `AVFoundation`, the kit
-that exposes the relevant photo capture interface, and setting up a live photo preview in our main
-`ViewController`. To reduce the number of screenshots in this post, I'll do most of this
-programatically. You can just as well use the InterfaceBuilder and connect the apropriate outlets to
+that exposes the relevant photo capture interface. We'll begin by setting up a live photo preview in
+our main `ViewController`. To reduce the number of screenshots in this post, I'll do most of this
+programatically. You can naturally use the InterfaceBuilder and connect the apropriate outlets to
 the `ViewController` if you prefer a more visual approach. Also note that the XCode iOS simulator
 does not have a camera, so you will need to connect a physical phone from here on. The
 `ViewController.swift` that comes with the empty app should be populated as follows:
@@ -309,12 +305,14 @@ class ViewController: UIViewController {
 ```
 
 We first declare an `AVCaptureSession` that allows starting and stopping the video preview layer
-displayed in the app. Upon `viewDidLoad()`, we initialize this capture session by supplying it an
-appropriate `AVCaptureDevice`, configured for video (or photo) input, and adding a preview layer to
-our main view. When the view appears, we start the capture session, and stop it again if the view
-were to disappear before a segue to a different view controller for example. Before we launch the
-app, we need to edit our `Info.plist` file to enable permissions for accessing the camera device.
-Add a line like this:
+displayed in the app. Upon `viewDidLoad()` we call `setupCamera()`, where we initialize this capture
+session by supplying it an appropriate `AVCaptureDevice`, configured for video (or photo) input.
+We also add a preview layer to our main view. When the `viewDidAppear()` we start the capture
+session and stop it again in `viewWillDisappear()` if the view were to segue to a
+different view controller.
+
+Before we can run the app properly, we need to edit our `Info.plist` file to
+enable permissions for accessing the camera device. Add a line like this:
 
 ![Info.plist](/images/google-ocr/info-plist.png)
 
@@ -323,21 +321,21 @@ currently captures:
 
 ![live preview](/images/google-ocr/live-preview.png)
 
-Next, we need to setup the flow for taking a picture. For this, we add a tap recognizer which will
-notify us when the user taps the screen, and then handle capturing the photo. We'll connect the tap
-recognizer to a method on our `ViewController` that allows us to react to taps (this will be our
-signal to take a picture):
+Next, we need to setup the flow for taking a picture. For this, we'll add a
+`UITapGestureRecognizer` to our `ViewController`. We can connect this tap
+gesture recognizer to a custom handler function, inside which we'll snap a
+picture and process it further:
 
 ```swift
 class ViewController: UIViewController {
 
   var captureSession: AVCaptureSession!
-  var tapRecognizer: UITapGestureRecognizer! // NEW!
+  var tapRecognizer: UITapGestureRecognizer! // NEW
 
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCamera()
-    setupTapRecognizer() // NEW!
+    setupTapRecognizer() // NEW
   }
 
   private func setupTapRecognizer() {
@@ -354,13 +352,11 @@ class ViewController: UIViewController {
   }
 ```
 
-If you now run the app and tap on the screen once the live preview shows up, you should see friendly
-"Tap!" exclamations in the XCode output terminal:
-
-![tap](/images/google-ocr/tap.png)
-
-Let's continue by acting on these taps. We need to add a new `AVCapturePhotoOutput` property to our
-`ViewController` and a method to initialize this object, which we call in `viewDidLoad()` after
+If you now run the app and tap on the screen once the live preview shows up, you
+should see friendly `"Tap!"` exclamations in the XCode output terminal. Let's
+continue by acting on these taps beyond just printing a message in the terminal.
+We need to add a new `AVCapturePhotoOutput` property to our `ViewController` and
+a method to initialize this object, which we call in `viewDidLoad()` after
 `setupCamera()`:
 
 ```swift
@@ -368,13 +364,13 @@ class ViewController: UIViewController {
 
   var captureSession: AVCaptureSession!
   var tapRecognizer: UITapGestureRecognizer!
-  var capturePhotoOutput: AVCapturePhotoOutput! // NEW!
+  var capturePhotoOutput: AVCapturePhotoOutput! // NEW
 
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCamera()
     setupTapRecognizer()
-    setupPhotoOutput() // NEW!
+    setupPhotoOutput() // NEW
   }
 
   private func setupPhotoOutput() {
@@ -384,8 +380,9 @@ class ViewController: UIViewController {
   }
 ```
 
-Next, we extend our `ViewController` with the methods necessary to take a photo and be an
-`AVCapturePhotoCaptureDelegate`:
+Next, we extend our `ViewController` with the methods necessary to take a photo
+and be an `AVCapturePhotoCaptureDelegate`. Add the following block of code just
+below the main `ViewController` class definition inside `ViewController.swift`:
 
 ```swift
 extension ViewController : AVCapturePhotoCaptureDelegate {
@@ -394,7 +391,6 @@ extension ViewController : AVCapturePhotoCaptureDelegate {
     photoSettings.isAutoStillImageStabilizationEnabled = true
     photoSettings.isHighResolutionPhotoEnabled = true
     photoSettings.flashMode = .auto
-    // Set ourselves as the delegate for `capturePhoto`.
     capturePhotoOutput?.capturePhoto(with: photoSettings, delegate: self)
   }
 
@@ -415,12 +411,15 @@ extension ViewController : AVCapturePhotoCaptureDelegate {
 }
 ```
 
-Inside `capturePhoto`, we configure some settings for taking the picture, and then set ourselves
-(our `AVCapturePhotoCaptureDelegate` self) as the delegate for the `capturePhoto` method. Our final
-destination is the `photoOutput` method, in which iOS serves us a newly captured image on a silver
-platter (almost). After some error handling and tedious boilerplate, we end up with a `UIImage` of
-whatever we captured at the time the user tapped the screen. For now, we'll just print the size to
-give us some sense of success. The ultimate but most crucial step is then to replace our joyous "Tap!" message with a call to `capturePhoto` in our `ViewController`'s `handleTap` method:
+Inside `capturePhoto`, we configure some settings for taking the picture, and
+then set our `AVCapturePhotoCaptureDelegate` self as the delegate for calling
+the `AVCapturePhotoOutput` class' `capturePhoto` method. The effect of this is
+that the `photoOutput` method we define right below will be called when a
+picture is taken. After some error handling and tedious boilerplate, we end up
+with a `UIImage` of whatever we captured at the time the user tapped the screen.
+For now, we'll just print the size to give us some sense of success. The
+ultimate but most crucial step is then to replace our joyous `"Tap!"` message
+with a call to `capturePhoto` in our `ViewController`'s `handleTap` method:
 
 ```swift
 @objc func handleTap(sender: UITapGestureRecognizer) {
@@ -430,35 +429,36 @@ give us some sense of success. The ultimate but most crucial step is then to rep
 }
 ```
 
-Rebuild, run, tap, rejoice:
+Rebuild, run, tap:
 
 ![print size](/images/google-ocr/print-size.png)
 
-Notice that the size (in pixels) is quite large. We'll have to crop the images we capture later on
-to fit onto the screen and also to not exceed the Google Vision API's image size limit.
+If all goes well, you should see the image dimensions in pixel units printed in the terminal.
 
 ### Displaying a Captured Image
 
-At this point, we have a way of getting a live preview of our camera as well as the ability to
-capture a photo. Sweet! The next step is to display this image in a new view controller. This view
-controller will also have a button to close the image view and return to the live preview to capture
-a new photo; an activity indicator that will spin while we await results from the Vision API and
-finally will also serve as the target view for the bounding boxes we'll draw based on the API
-results once they arrive. Let's begin by creating a new view controller in the interface builder:
+At this point, we have a way of getting a live preview of our camera as well as
+the ability to capture a photo. Sweet! The next step is to display this image in
+a new view controller. This view controller will have a button to return to the
+live preview as well as an activity indicator that spins while we await results
+from the Vision API. We will also draw the bounding box for each recognized
+segment of text.
+
+Let's begin by creating a new view controller in the interface builder:
 
 ![creating the image view controller](/images/google-ocr/image-view-controller.png)
 
 ![creating the image view controller 2](/images/google-ocr/image-view-controller-2.png)
 
-and connect it to our main view controller via a "present modally" segue:
+and connect it to our main view controller via a `Present Modally` segue:
 
 ![create segue](/images/google-ocr/create-segue.png)
 
 I gave the segue the identifier `ShowImageSegue` so we can refer to it with that name in our
 implementation. I also disabled the `Animated` checkbox since this will make the impression that the
-photo preview is being "frozen", while the animation would fly in the new view from the edge of the
+photo preview is being "frozen", while the animation would fly the new view in from the edge of the
 screen. Next, create an `ImageViewController` subclass of `UIViewController` in a new Cocoa
-Touch/Swift file:
+Touch file:
 
 ![image view controller file](/images/google-ocr/image-view-controller-file.png)
 
@@ -470,7 +470,7 @@ Also inherit the view controller from this new class in the interface builder:
 
 Now that we have the basic visual infrastructure configured, let's work on passing the captured
 image to our new view controller, which will display the image and later on show the bounding boxes
-too. For this, we'll add a `readyImage` property to our main view controller (the one we've been coding so far):
+too. For this, we'll add a `readyImage` property to our main `ViewController` (the one we've been writing so far):
 
 ```swift
 class ViewController: UIViewController {
@@ -478,11 +478,11 @@ class ViewController: UIViewController {
   var captureSession: AVCaptureSession!
   var capturePhotoOutput: AVCapturePhotoOutput!
   var tapRecognizer: UITapGestureRecognizer!
-  var readyImage: UIImage!                        // NEW!
+  var readyImage: UIImage!                        // NEW
 ```
 
-Then, remove the `print(image.size)` line in `photoOutput` in favor of a more useful one that
-performs a segue to the `ImageViewController`:
+Next, let's remove the `print(image.size)` line in `photoOutput` in favor of
+some more useful code that performs a segue to the `ImageViewController`:
 
 ```swift
 func photoOutput(_ output: AVCapturePhotoOutput,
@@ -498,19 +498,19 @@ func photoOutput(_ output: AVCapturePhotoOutput,
     fatalError("Failed to convert image data to UIImage")
   }
 
-  // NEW!
+  // NEW
   readyImage = image
   performSegue(withIdentifier: "ShowImageSegue", sender: self)
 }
 ```
 
-Notice that we pass `"ShowImageSegue"` as the identifier of the segue, as we configured this in the
-InterfaceBuilder earlier. Once we initiate the segue, iOS allows us to `prepare` for the transition
-to the new view controller in the aptly named `prepare()` method. Inside, our task is effectively to
-prepare the upcoming view controller for its time to shine. For us, this means passing it the image
-we just captured. Unfortunately, there is to my knowledge no cleaner way to do this than assigning
-to some field of the target controller. Add this override anywhere within our `ViewController`
-class:
+Notice that we pass `"ShowImageSegue"` as the identifier of the segue, as we
+configured this in the InterfaceBuilder earlier. Once we initiate the segue, iOS
+allows us to prepare for the transition to the new view controller in the aptly
+named `prepare()` method. Inside, our task is to lay the groundwork for upcoming
+view controller's time to shine. For us this means passing it the image we just
+captured. Unfortunately, there is to my knowledge no cleaner way to do this than
+assigning to some field of the target controller:
 
 ```swift
 override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -545,15 +545,16 @@ class ImageViewController: UIViewController {
 }
 ```
 
-We create a `UIImageView` to hold the image, assign it the image that was set by the main
-`ViewController` before the segue, and add the `UIImageView` as a subview of the view controller's
-`view`. With this, you can now re-run the app and if you tap on the screen, the screen should
-"freeze" and display the captured image.
+We create a `UIImageView` to hold the image, assign it the image that was set by
+the main `ViewController` before the segue, and add the `UIImageView` as a
+subview of the view controller's `view`. With this, you can now reload the app
+and if you tap on the screen, the screen should "freeze" and display the
+captured image.
 
 #### Adding a Close Button
 
-Next, let's add a button in the top left corner that allows closing the view and returning to our
-live preview, so that we can take a new picture if we're unhappy with the current one:
+Next, let's add a button in the top left corner that allows closing the view and
+returning to our live preview so that we can take a new picture:
 
 ```swift
 override func viewDidLoad() {
@@ -563,14 +564,14 @@ override func viewDidLoad() {
   imageView.image = image
   view.addSubview(imageView)
 
-  setupCloseButton() // NEW!
+  setupCloseButton() // NEW
 }
 
 private func setupCloseButton() {
   let closeButton = UIButton()
   view.addSubview(closeButton)
 
-  // Setup stylistic elements.
+  // Stylistic features.
   closeButton.setTitle("✕", for: .normal)
   closeButton.setTitleColor(UIColor.white, for: .normal)
   closeButton.titleLabel?.font = UIFont.systemFont(ofSize: 32)
@@ -589,14 +590,16 @@ private func setupCloseButton() {
 }
 ```
 
-In the `setupCloseButton()` method, we create a new `UIButton`, change its style and appearance,
-then add a target function which will be called when the button is tapped, and finally constrain the
-button to be located in the top left corner of the base view. Note that the button text here is the
-[unicode multiplication symbol](http://www.fileformat.info/info/unicode/char/2715/index.htm), which
-a suprising number of apps out in the wild actually use for their close buttons. Inside
-`closeAction()`, we simply call `dismiss()` to hide the current view controller and bring back the
-main one. After re-running and tapping the screen, the `ImageViewController` with the captured image
-should look like this, with the close button in the top left corner:
+In the `setupCloseButton()` method, we create a new `UIButton`, change its style
+and appearance, then add a target function which will be called when the button
+is tapped, and finally constrain the button to be located in the top left corner
+of the base view. Note that the button text here is the
+[unicode multiplication symbol](http://www.fileformat.info/info/unicode/char/2715/index.htm),
+which a suprising number of apps out in the wild actually use for their close
+buttons. Inside `closeAction()`, we simply call `dismiss()` to hide the current
+view controller and bring back the main one. After re-running and tapping the
+screen, the `ImageViewController` with the captured image should (structurally)
+look like this, with the close button in the top left corner:
 
 ![capture with close](/images/google-ocr/capture-with-close.png)
 
@@ -606,16 +609,17 @@ Fun!
 
 #### Adding an Activity Indicator
 
-Before we get to the fun part of fetching bounding boxes and displaying them, let's add one more
-nicety to our UI: an activity indicator that will run while our API request and its corresponding
-response are floating through the internet, and stop once we are ready to display bounding boxes.
-Add the following changes to the `ImageViewController`:
+Before we get to the exciting part of fetching bounding boxes and displaying
+them, let's add one more nicety to our UI: an activity indicator that is visible
+while our API request and its corresponding response are floating through the
+internet. We'll hide it as soon as we are ready to display bounding boxes. Add
+the following changes to the `ImageViewController`:
 
 ```swift
 class ImageViewController: UIViewController {
 
   var image: UIImage!
-  var activityIndicator: UIActivityIndicatorView! // NEW!
+  var activityIndicator: UIActivityIndicatorView! // NEW
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -625,7 +629,7 @@ class ImageViewController: UIViewController {
     view.addSubview(imageView)
 
     setupCloseButton()
-    setupActivityIndicator() // NEW!
+    setupActivityIndicator() // NEW
   }
 
   private func setupActivityIndicator() {
@@ -638,7 +642,7 @@ class ImageViewController: UIViewController {
   }
 ```
 
-We have a property for the `activityIndicator` -- of type `UIActivityIndicatorView` -- on our
+We add a property for the `activityIndicator` -- of type `UIActivityIndicatorView` -- on our
 `ImageViewController` because we'll need to access it to stop its animation once the response
 arrives. Beyond that, `setupActivityIndicator()` simply instantiates the indicator, centers it
 within the base view and starts its animation (a spinning wheel). The live `ImageViewController`
@@ -648,15 +652,16 @@ should now look like this:
 
 #### Making Requests to the Google Cloud Vision API from Swift
 
-We now, finally, come to the part of our journey where we will make API calls to the Google Cloud
-Vision API to perform OCR and detect text bounding boxes in the image the user captured. To make the
-API call in a more convenient fashion than is possible with Swift and iOS' native HTTP request
-library, we will use [Alamofire](https://github.com/Alamofire/Alamofire) -- the equivalent to
-[`requests`](https://github.com/requests/requests) for Python, but in Swift. I like to use
-[CocoaPods](https://cocoapods.org) for dependency management. An alternative dependency management
-toolchain for iOS is [Carthage](https://github.com/Carthage/Carthage), which you are free to use of
-course. If you go with CocoaPods, start by running `pod init` in your project folder, and then
-updating your Podfile to look like this:
+We now, finally, come to the part of our journey where we will make API calls to
+the Google Cloud Vision API to perform OCR and detect text bounding boxes in the
+image the user captured. To make the API call in a more convenient fashion than
+is possible with Swift and iOS' native HTTP request library, we will use [Alamofire](https://github.com/Alamofire/Alamofire).
+Alamofire makes writing HTTP requests short and concise. It is similar in spirit
+to the popular [`requests`](https://github.com/requests/requests) package in
+Python. I like to use [CocoaPods](https://cocoapods.org) for dependency
+management. An alternative dependency management toolchain for iOS is [Carthage](https://github.com/Carthage/Carthage),
+which you are free to use of course. If you go with CocoaPods, start by running
+`pod init` in your project folder. Your `Podfile` should then look like this:
 
 ```ruby
 platform :ios, '10.0'
@@ -667,7 +672,8 @@ target 'GoogleCloudVisionOCRExample' do
 end
 ```
 
-You'll now want to close the XCode project you have open. Then, run `pod install`:
+You have to close the XCode project you have open and then run `pod install`
+from the command line:
 
 ```shell
 $ pod install
@@ -680,12 +686,14 @@ Sending stats
 Pod installation complete! There is 1 dependency from the Podfile and 1 total pod installed.
 ```
 
-and finally re-open the `GoogleCloudVisionOCRExample.xcworkspace` CocoaPods generated for us. We're
-now all set to use `Alamofire` in our project to make API calls to Google Cloud. For the actual
-request and response handling, we'll want to create two new files in our project:
-`GoogleCloudOCR.swift` for the request logic, and `GoogleCloudOCRModel.swift` to define a set of
-structs into which we'll decode the response from the API (i.e. the object relational mapping, or
-ORM). Let's begin by implementing a first version of the request logic in `GoogleCloudOCR.swift`:
+Finally, re-open the `GoogleCloudVisionOCRExample.xcworkspace` CocoaPods
+generated for us. We're now all set to use `Alamofire` in our project to make
+API calls to Google Cloud. For the actual request and response handling, let's
+create two new files in our project: `GoogleCloudOCR.swift` for the request
+logic and `GoogleCloudOCRModel.swift` to define a set of structs into which
+we'll decode the JSON response from the API (i.e. the object relational mapping,
+or ORM). Let's begin by implementing a first version of the request logic in
+`GoogleCloudOCR.swift`:
 
 ```swift
 import Foundation
@@ -747,25 +755,25 @@ class GoogleCloudOCR {
 }
 ```
 
-This `GoogleCloudOCR` class exposes only a single method: `detect()`, which takes an image and a
+This `GoogleCloudOCR` class exposes only a single method, `detect()`, which takes an image and a
 completion handler which is called once we get a successful response for our API call. This
-`detect()` method then does two things: First, it base-64 encodes the image so we can send it over
-the wire as a simple string in our API request. Second, it makes a request to Google Cloud in
+`detect()` method then does two things: first, it base64 encodes the image so we can send it over
+the wire as a character string; second, it makes the request to Google Cloud in
 `callGoogleVisionAPI`. The `parameters` dictionary in `callGoogleVisionAPI` describes the API
 request in the same way as we did from the command line at the start of this article. The
 `X-Ios-Bundle-Identifier` header is a security measure that identifies the request source as our
 application. This is not required, but certainly a very sound thing to do. To enable this access
 restriction, go to your Google Cloud console and then to the `Credentials` section under `APIs &
-Services` (these days). It'll look something like this, with
+Services`. It'll look something like this, with
 `me.goldsborough.GoogleCloudVisionOCRExample` replaced with your app's bundle identifier:
 
 ![access restriction](/images/google-ocr/access-restriction.png)
 
 We then use `Alamofire.request` to make the actual API call. In the completion handler, we do some
 rudimentary error handling and then print the result. The latter is simply to arrive at a temporary
-"checkpoint" before we look into actually processing the response in the next few paragraphs. Also,
+checkpoint before we look into actually processing the response in the next few paragraphs. Also,
 before we continue, be sure to replace the `<YOUR API KEY>` string in the code with your actual API
-key from Google Cloud. Let's continue by wiring this `GoogleCloudOCR` class we built with our
+key from Google Cloud. Let's continue by wiring up this `GoogleCloudOCR` class we built with our
 `ImageViewController`. Update the `ImageViewController` as follows:
 
 ```swift
@@ -779,7 +787,7 @@ override func viewDidLoad() {
   setupCloseButton()
   setupActivityIndicator()
 
-  detectBoundingBoxes(for: image) // NEW!
+  detectBoundingBoxes(for: image) // NEW
 }
 
 private func detectBoundingBoxes(for image: UIImage) {
@@ -793,9 +801,10 @@ private func detectBoundingBoxes(for image: UIImage) {
 }
 ```
 
-Inside `detectBoundingBoxes`, we call the `detect()` method on a fresh `GoogleCloudOCR` instance and
-give it a completion handler which, for the moment, will simply print whatever result we funnel into
-it (we'll deal with all these loose ends soon, I promise). Later on, this is where we'll hand the
+Inside `detectBoundingBoxes()`, we call the `detect()` method on a fresh
+`GoogleCloudOCR` instance and give it a completion handler which, for the
+moment, will simply print whatever result we funnel into it (we'll tie together
+all these loose ends soon, I promise). Later on, this is where we'll hand the
 `ocrResult` off to the routine that manages displaying the bounding boxes.
 
 There is one last step required before we can succesfully run this application. If you run it as is,
@@ -812,12 +821,14 @@ SUCCESS: {
 }
 ```
 
-As you can see, the response succesfully error'd ... or erroneously succeeded? Besides making a
-slightly schizophrenic impression, this response is telling us that the payload we sent it was
-larger than the maximum allowed size of 1MB. An easy way to resolve this, which will incidentally
-make displaying the bounding boxes later on much easier too, is to resize the image to the size of
-the screen. That will definitely make the image small enough (given a regular phone), and also make
-the image fit the screen exactly. For this, let's update the `ImageViewController` a little bit:
+As you can see, the response succesfully error'd ... or erroneously succeeded?
+Besides making a slightly schizophrenic impression, this response is telling us
+that the image payload we sent it was larger than the maximum allowed size of
+1MB. An easy way to resolve this, which will incidentally make displaying the
+bounding boxes later on much easier too, is to resize the image to the size of
+the screen. That will definitely make the image small enough (on current phones)
+and also make the image fit the screen exactly. For this, let's update the
+`ImageViewController` a little bit:
 
 ```swift
 override func viewDidLoad() {
@@ -893,15 +904,18 @@ SUCCESS: {
                                         },
 ```
 
-This is a pretty exciting step. We now have the raw data we want to display in our application --
-the "model" -- and the only thing left to do now is post-process and visualize this data. The first
-thing we want to do for this is to transform this raw JSON response into a structured representation
-of Swift objects that we can manipulate better in our code. Swift actually comes with a very
-powerful deserialization API that we can make use of here. We simply need to define a set of nesting
-Swift structs, implement a single *decoding* method per struct that tells Swift's decoder how to
-convert a particular field in the response data to the corresponding field in the struct, and then
-finally pipe Google Cloud's response through this tree of deserialization routines to decode it into
-a Swift object. While this is quite neat to work with, it's also not the most exciting code you'll ever write, so I'll just paste it here in one go:
+This is a pretty exciting step. We now have the raw data we want to display in
+our application -- the *model*. The only thing left to do now is post-process
+and visualize this data. The first thing we want to do is transform the raw JSON
+response into a structured representation of Swift objects that we can
+manipulate better in code. Swift actually comes with a very powerful
+deserialization API that we can make use of here. We simply need to define a set
+of nesting Swift structs, implement a single *decoding* method per struct that
+tells Swift's decoder how to convert a particular field in the response data to
+the corresponding field in the struct, and then finally pipe Google Cloud's
+response through this tree of deserialization routines to decode it into a Swift
+object. While this is quite neat to work with, it's also not the most exciting
+code you'll ever write, so I'll just paste it here in one go:
 
 ```swift
 import Foundation
@@ -972,11 +986,13 @@ struct GoogleCloudOCRResponse: Codable {
 }
 ```
 
-This code should go into a new Swift file called `GoogleCloudOCRModel.swift`. Let's now use this
-structured representation. in `GoogleCloudOCR.swift`, we previously used `.responseJSON` method on
-the Alamofire request object to get the response in JSON format. Instead, we'll now want to access
-the raw data coming off the wire via `.responseData` and decode it into a `GoogleCloudOCRResponse`
-object. Update the Alamofire request in the `callGoogleVisionAPI` method to look like this:
+This code should go into a new Swift file called `GoogleCloudOCRModel.swift`.
+Let's now use this structured representation. In `GoogleCloudOCR.swift`, we
+previously called `responseJSON()` on the Alamofire request object to get the
+response in JSON format. Instead, we'll now want to access the raw data coming
+off the wire via `responseData()` and decode it into a `GoogleCloudOCRResponse`
+object. Update the Alamofire request in the `callGoogleVisionAPI()` method to
+look like this:
 
 ```swift
 Alamofire.request(
@@ -1017,25 +1033,28 @@ private func detectBoundingBoxes(for image: UIImage) {
 }
 ```
 
-Re-running the application and snapping a picture should now hopefully print something like:
+Re-running the application and snapping a picture with text in it should now
+hopefully print something like:
 
-```
+```shell
 Found 38 bounding box annotations in the image!
 ```
 
-We're now all set for the final challenge on our journey: displaying the bounding boxes in the
-image. Onwards!
+We're now all set for the final challenge on our journey: displaying the
+bounding boxes in the image. Onwards!
 
 #### Displaying Bounding Boxes on the Captured Image
 
-We can split the final step of displaying the bounding boxes into two separate tasks. First, let's
-figure out how to simply draw the bounding box. Then, because displaying the bounding box alone is
-not really that useful from a user interface perspective, let's actually make each bounding box into
-a button that the user can tap, allowing the application to perform some action based on the text
-inside that bounding box.
+We can split the final step of displaying the bounding boxes into two separate
+tasks. First, let's figure out how to simply draw the bounding box on the
+screen, without any interactivity. Then, because displaying the bounding box
+alone is not really that useful from a user interface perspective, we'll make
+each bounding box into a button that the user can tap. This will allow our
+application to perform some action based on the text inside the bounding box
+that was tapped.
 
-Let's start with the first -- easier -- task of just displaying the bounding box. Begin with the
-following updates to `ImageViewController.swift`:
+Let's start with the first (easier) task of just displaying the bounding box.
+Begin with the following updates to `ImageViewController.swift`:
 
 ```swift
 private func detectBoundingBoxes(for image: UIImage) {
@@ -1044,7 +1063,7 @@ private func detectBoundingBoxes(for image: UIImage) {
     guard let ocrResult = ocrResult else {
       fatalError("Did not recognize any text in this image")
     }
-    self.displayBoundingBoxes(for: ocrResult) // New!
+    self.displayBoundingBoxes(for: ocrResult) // NEW
   }
 }
 
@@ -1057,11 +1076,13 @@ private func displayBoundingBoxes(for ocrResult: OCRResult) {
 }
 ```
 
-We replaced the `print` statement with a call to `displayBoundingBoxes`. Inside of that method, we
-iterate through every annotation (bounding box), and do two things: first, create a `UIBezierPath`
-that goes through the vertices by which that particular annotation is defined and second, make that
-path the border of a `CAShape` which we can further style to our liking. This `CAShape` is then
-added on top of the main view. The two outstanding methods look like this:
+In the above code, we replaced the `print()` statement with a call to
+`displayBoundingBoxes()`. In the implementation of that method we iterate
+through every annotation (bounding box) and do two things: first, create a
+`UIBezierPath` that goes through the vertices by which that particular
+annotation is defined and second, make that path the border of a `CAShape` which
+we can further style to our liking. This `CAShape` is then added on top of the
+main view. The two outstanding methods look like this:
 
 ```swift
 private func createBoundingBoxPath(along vertices: [Vertex]) -> UIBezierPath {
@@ -1084,9 +1105,9 @@ private func shapeForBoundingBox(path: UIBezierPath) -> CAShapeLayer {
 }
 ```
 
-You can change the line width, color and other visual properties inside `shapeForBoundingBox` if you
-like, of course. With the above code, however, we can already display exciting results like the
-following:
+You can change the line width, color and other visual properties inside
+`shapeForBoundingBox` if you like. With the above code, however, we can already
+display exciting results like the following:
 
 ![bounding box display](/images/google-ocr/bounding-box-display.png)
 
@@ -1099,12 +1120,13 @@ Looks like it does!
 
 #### Making the Bounding Boxes Interactive
 
-Let's now make these bounding boxes more interactive. What we want is a subclass of `UIButton` that
-we can give the shape of a bounding box. This is actually a little difficult because `UIButton` can,
-by default, only have a rectangular shape, so we'll have to manually detect when the user really
-touched down inside the bounding box shape, and not the surrounding rectangle the `UIButton`
-actually lives in. Other than that, the implementation of this `BoundingBoxButton` is fairly
-straightforward:
+Let's now make these bounding boxes more interactive. What we want is a subclass
+of `UIButton` that we can give the shape and look of a bounding box. This is
+actually a little difficult because a `UIButton` can only have a rectangular
+frame. This means we'll have to manually detect when the user really touched
+down inside the bounding box shape and not the surrounding rectangle the
+`UIButton` actually lives in. Other than that, the implementation of this
+`BoundingBoxButton` is fairly straightforward:
 
 ```swift
 import UIKit
@@ -1152,29 +1174,33 @@ class BoundingBoxButton: UIButton {
 }
 ```
 
-Let's discuss this code, which should go into a new file called `BoundingBoxButton.swift`, a little.
-We give our `BoundingBoxButton` a custom constructor, which takes the path of the annotation and the
-text it represents. Both of these pieces of information come from the backing model in our
-`GoogleCloudOCRResponse` object. The custom constructor calls the `init(frame: CGRect)` constructor
-which the `UIButton` has by default, in order to create the overall frame in which the button will
-live. As I mentioned, `UIButton`s, or `UIView`s in general, can only have rectangular frames. As
-such, we need to supply such a rectangular frame, which in this case we can access very conveniently
-via `path.bounds`, which spans a rectangle into which the `UIBezierPath`, no matter how windy and
-complex, will fit. We then apply a `CGAffineTransform` to the path. This is because we created the
-path relative to the original image frame, but now want to place it within the frame of the button,
-which may have a different origin than the frame's origin at `(0, 0)`.
+Let's discuss this code, which should go into a new file called
+`BoundingBoxButton.swift`. We give our `BoundingBoxButton` a custom constructor,
+which takes the path of the annotation and the text it represents. Both of these
+pieces of information come from the backing model in our
+`GoogleCloudOCRResponse` object. The custom constructor calls the
+`init(frame: CGRect)` constructor which the `UIButton` has by default, in order
+to create the surrounding frame in which the button will live. As I mentioned,
+`UIButton`s -- in fact `UIView`s in general -- can only have rectangular frames.
+Therefore, we need to supply such a rectangular frame, which we get very
+conveniently via `path.bounds`, which spans a rectangle the `UIBezierPath`, no
+matter how windy and complex, will fit into. We then apply a `CGAffineTransform`
+to the path. This is because we created the path relative to the original image
+frame, but now want to place it within the frame of the button, which may have a
+different origin.
 
-We also add a target function for the `.touchDown` event. The connected function, also called
-`touchDown`, takes care of determining when the user actually clicked inside the bounding box's
-path, as opposed to the surrounding space of the button's overall frame. In the latter case, we
-`cancelTracking`.
+We also add a target function for the `.touchDown` event. The connected
+function, here also called `touchDown`, takes care of determining when the user
+actually clicked inside the bounding box's path, as opposed to the surrounding
+space of the button's frame. In the latter case, we `cancelTracking`.
 
-Lastly, `draw()` is exactly the code we had in `shapeForBoundingBox` earlier, just that we directly
-add this shape to the `BoundingBoxButton`.
+Lastly, `draw()` is exactly the code we had in `shapeForBoundingBox` earlier,
+just that we directly add this shape to the `BoundingBoxButton`.
 
-And that's it for the implementation of the `BoundingBoxButton`. Next, let's create one such buttton
-for every annotation inside of our `displayBoundingBoxes` method in `ImageViewController.swift`. It
-should be updated to look like this:
+And that's it for the implementation of the `BoundingBoxButton`. Next, let's
+create one such buttton for every annotation inside of our
+`displayBoundingBoxes()` method in `ImageViewController.swift`. It should be
+updated to look like this:
 
 ```swift
 private func displayBoundingBoxes(for ocrResult: OCRResult) {
@@ -1197,8 +1223,9 @@ private func displayBoundingBoxes(for ocrResult: OCRResult) {
 }
 ```
 
-This will add one `BoundingBoxButton` per annotation to the screen. When tapped, we should see the
-text in a message box. Let's try it out! First we take a snap:
+This will add one `BoundingBoxButton` per annotation to the screen. When tapped,
+we should see the contained text in a message box. Let's try it out! First we
+take a snap:
 
 ![bounding box button 1](/images/google-ocr/bounding-box-button-1.png)
 
@@ -1210,15 +1237,17 @@ Yey! That worked, and also concludes the implementation of our innovative, breat
 
 ## Outro
 
-In the beginning of this post, we set out to use the Google Cloud Vision API -- which provides
-access to world class machine learning based predictions on image data -- and build a tiny sample
-application with it. We first looked at talking to this API purely from the command line, and then
-in the context of a more beefy iOS application written in Swift. I hope you learned a thing or two!
-More importantly, however, I hope this sample application gives you food for thought on many real
-world problems you can solve using this or other APIs, or maybe even by training your own machine
-learning models (with PyTorch, of course).
+In the beginning of this post we set out to use the Google Cloud Vision API --
+which provides access to world class machine learning algorithms -- and build a
+tiny sample application with it. We first looked at talking to this API purely
+from the command line and then in the context of a more beefy iOS application
+written in Swift. I hope you learned a thing or two! More importantly, however,
+I hope this sample application gives you food for thought on many real world
+problems you can solve using this or other APIs, or maybe even by training your
+own machine learning models (with PyTorch, of course).
 
-Personally, I found it exciting how quickly I could go from an idea that required the use of machine
-learning to having a minimal prototype up and running and working sufficiently well to prove or
-disprove the idea's feasibility. The tools to solve the world's hard problems, if they're solvable
+Personally, I found it exciting how quickly I could go from an idea that
+required the use of machine learning to having a minimal prototype up and
+running and working sufficiently well to prove or disprove the idea's
+feasibility. The tools to solve the world's hard problems, if they're solvable
 with AI, are certainly there. Time to make use of them.
