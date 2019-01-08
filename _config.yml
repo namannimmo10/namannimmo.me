@@ -56,7 +56,7 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 permalink:    pretty
-paginate:     4
+paginate:     8
 sass:
   compressed: true
 
