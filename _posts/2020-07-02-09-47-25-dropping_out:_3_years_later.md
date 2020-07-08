@@ -276,15 +276,22 @@ of. It's a shame.
 Many of my peers describe me as fairly mature for my age. Maturity is a fuzzy
 subject, but for the sake of discussion we can define it as one's exposure to
 the real world, degree of emotional stability and general soundness in decision
-making. I probably do have more of that and for two good reasons.
+making. I probably do have more of that than the average 22-year-old and for two good reasons.
 
-For one, I was exposed to the real world for two years rather than the sheltered
-uterus of college. College, especially undergrad, is not the real world. For
-many people (not all), time spent there is an intermediate stage in personal
-maturation between childhood and adulthood, with a few more responsibilities
-than before. Somebody tells you what to study, what's important to know, what
-success means and what failure means. A lot of things are taken care of for you
-by somebody else -- professors, deans, parents. My mom paid my rent in college.
+For one, I've been exposed to the real world for three years rather than the
+sheltered uterus of college. College, especially undergrad, is not the real
+world. For many people (not all), time spent there is an intermediate stage in
+personal maturation between childhood and adulthood, with a few more
+responsibilities than before but not too many. Somebody tells you what to study,
+what's important to know, what success means and what failure means. A lot of
+things are taken care of for you by somebody else -- professors, deans, parents.
+When I decided to enter industry, I had to figure out a lot of things that are
+part of life: deciding how to spend my time, managing my career, paying taxes
+and paying for everything else too. These things we do not learn in college.
+
+The second reason goes back to what I mentioned before. Being surrounded by
+adults who have many more years of experience than me has made a big impact on
+me.
 
 
 
