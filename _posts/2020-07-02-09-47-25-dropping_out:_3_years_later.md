@@ -1,25 +1,22 @@
 ---
 layout:		post
-title:		Dropping Out: 3 Years Later
+title:		"Dropping Out of College to Join Facebook: 3 Years Later"
 summary:	Thoughts on the consequences of the most important decision in my life
 date:		2020-07-02 09-47-25
 categories:	life
 ---
 
-10 Brock Street, London. July 3rd, 2017. I'm in the Facebook London office,
-where I'm in the last few weeks of my internship. It's a beautiful, sunny day
-outside and the sky is blue. No, wait, that doesn't sound right. It's London
-after all. Correction: It's a gloomy day and raining outside. I have a meeting
-with my skip manager, who I meet with every few weeks. The conversation goes
-something like this:
+10 Brock Street, London. July 3rd, 2017. I'm in the Facebook London office, in
+the last few weeks of my internship. It's a beautiful sunny day outside and the
+sky is blue. No, wait, that doesn't sound right. This is London. Correction:
+It's a gloomy day and raining outside. I have a meeting with my skip manager,
+who I meet with every few weeks. The conversation goes something like this:
 
-Manager: Peter, the team likes your work and you've impressed some people.
-Peter: Nice. Manager: So, what are your plans for after your internship? Peter:
-Well, I should probably go back to university in Munich and finish my degree in
-Computer Science. After, I'm not sure. Manager: Ok, well, listen. If you so
-happened not to want to go back to university, it is, in theory, possible for me
-to change your return internship offer into a full time offer instead. The team
-could really use your help.
+__Manager__: Peter, the team likes your work and you've impressed some people.<br>
+__Peter__: Nice.<br>
+__Manager__: So, what are your plans for after your internship?<br>
+__Peter__: Well, I should probably go back to university in Munich and finish my Computer Science degree. After, I'm not sure.<br>
+__Manager__: Ok, well, listen: If you *so happened* not to want to go back to university, it is, *in theory*, possible for me to change your return internship offer into a full time offer instead. The team could really use your help.
 
 After plugging this through the Enigma machine and decyphering it, this amounted
 to an offer to join Facebook full time if I wanted to drop out of college. It
@@ -41,13 +38,13 @@ followed. I had to take a semester off for this, as the German academic year
 American tech companies. Because I was already taking a whole semester off and
 had some time left after Google, I accepted an offer for another internship from
 Bloomberg, also in London. At the end of my internship at Bloomberg I started
-interviewing for internships for the next summer of 2017 and got an offer from
-Facebook. Facebook's schedule wasn't any better than Google's, so I pleaded to
-my university advisor to give me another sabbatical semester. Just one more,
-that's it. Famous last words. In between Bloomberg and Facebook I joined a small
+interviewing for internships for the next summer (2017) and got an offer from
+Facebook. Facebook's schedule was not a lot better than Google's, so I pleaded
+my university advisor to give me another semester off. "Just one more, that's
+it." Famous last words. In between Bloomberg and Facebook I joined a small
 startup doing machine learning research and engaged in an unforgettable
-month-long hackathon. And then there we were. July 2017, fourth consecutive
-internship, two semesters down at TU Munich. I really was planning to go back to
+month-long hackathon. Finally, there we were: July 2017, fourth consecutive
+internship, two semesters down at TU Munich. I really *was* planning to go back to
 Munich after Facebook, until that fateful conversation I recollected above.
 
 I had to think about this decision of course. I needed to meditate on it and
@@ -55,7 +52,7 @@ gather data and opinions from the people I was close with and whose opinion I
 respected. In hindsight, there is one crucial aspect about *the way* in which I
 approached this decision: I treated both options, returning to college after
 Facebook or dropping out to join Facebook, as equally viable, "untainted" paths
-that could each lead to success in their own way. I belive that is not what most
+that could each lead to success in their own way. I believe that is not what most
 people would do. Most people would consider returning to college the safe path,
 the accepted path, the path their parents and society approves of, the one that
 will lead to great knowledge and ability, the path that results in a
@@ -79,41 +76,42 @@ Facebook was even offering me this option. However, he did organize a video call
 with an engineer at Facebook he knew who had never been in college at all, to
 hear it from the horse's mouth. I remember that video call. The engineer told me
 that in the end, he got to where he wanted to be. He said it wasn't always easy
-and that he sometimes had to fight for recognition from people to proove he
-wasn't a dumbfuck because he didn't have a degree. He said that sometimes
-engineers around him would talk about some obscure theoretical aspect of
-computer science that every student would have come across and he wouldn't get
-the joke. However, the biggest thing he lacked was the sense of community shared
-by alumni of the same school. While two Stanford alumni placed on opposite ends
-of the Amazon will find each other and create the Stanford Alumni Club of the
-Amazon rainforest, he didn't belong to any such tribe at all.
+and that he sometimes had to fight for people's recognition to proove he wasn't
+a dumbfuck because he didn't have a degree. He said that sometimes engineers
+around him would talk about some obscure theoretical aspect of computer science
+that every student would have come across and he wouldn't get the joke. However,
+the biggest thing he lacked was the sense of community shared by alumni of the
+same school. While two Stanford alumni placed on opposite ends of the Amazon
+*will* find each other and create the Stanford Alumni Association of the Amazon
+rainforest, he didn't belong to any such tribe at all.
 
 A brief digression. As I've talked to more people about this over the years,
 I've gotten the sense that for many, college isn't really about learning things
 anyway. My impression is that the biggest value people take away from college is
-in the people they meet there and the experiences they have. College is a place
-where like-minded, like-aged individuals build a network that often carries long
-into the later years of their lives. A lot of people also meet their spouse in
-college. And they have fun. Especially in the US and the UK, colleges are
-exciting institutions with sports, societies, clubs, parties and so on. It is
-this that a lot of people, in hindsight, would not give up if they had the
-choice I had. My one year in college was very different. For one, German
-universities don't really do societies or sports at the scale that American
-colleges do. There was only one major club at TU Munich, the TU Investment Club
--- a student hedge fund, which I joined and which indeed provided valuable
-friends and contacts up until today. But it stopped there and, at least in my
-environment there was no partying, not really any fun. I spent 95% of my time in
-my room in the sleepy suburb of Garching, studying and studying. Now contrast
-this with my year in London. I was living some sort of fairytale life. I lived
-smack in the center of one of the most vibrant cities in the world, working at
-hot tech companies with quirky multicolored offices, lying upside down on
-couches feeding myself free food. I was getting paid a lot of money to do work
-that I loved and gain insane amounts of knowledge every day by working the job I
-was studying to attain. I was having a good time with other interns, did fun
-activities with my team and was sipping champagne on a ferris wheel at the
-Facebook summer party. So while most people would be hard-pressed to trade in
-the happy-jolly-fun times at college with the hardships and stress of their working
-lives any sooner than absolutely necessary, it was quite the reverse in my case.
+in the people they meet and the experiences they have. College is a place where
+like-minded, like-aged individuals build a network that often carries long into
+the later years of their lives. A lot of people meet their spouse in college.
+And they have fun. Especially in the US and the UK, colleges are exciting
+institutions with sports, societies, clubs, parties and so on. It is this that a
+lot of people, in hindsight, would not give up if they had the choice I had.
+
+My one year in college was very different. For one, German universities don't
+really do societies or sports at the scale that American colleges do. There was
+only one major club at TU Munich, the TU Investment Club a student hedge fund,
+which I joined and which indeed provided valuable friends and contacts up until
+today. But it stopped there and, at least in my environment there was no
+partying, not really any fun. I spent 95% of my time in my room in the sleepy
+suburb of Garching, studying and studying. Now contrast this with my year in
+London. I was living some sort of fairytale life. I lived smack in the center of
+one of the most vibrant cities in the world, working at hot tech companies with
+quirky multicolored offices, lying upside down on couches feeding myself free
+food. I was getting paid a lot of money to do work that I loved and gained
+insane amounts of knowledge every day by working the job I was studying to
+attain. I was having a good time with other interns, did fun activities with my
+team and was sipping champagne on a ferris wheel at the Facebook summer party.
+So while most people would be hard-pressed to trade in the happy-jolly-fun times
+at college with the hardships and stress of their working lives any sooner than
+absolutely necessary, it was quite the reverse in my case.
 
 Back to making my decision. I, like many people, too, have parents. Like many
 people's parents, mine were also not immediately thrilled by the idea of me
@@ -121,30 +119,28 @@ throwing my college degree out the window and selling my soul to the corporate
 world. There were arguments. This is natural, because again, most people would
 not approach the two paths as equally viable. The stigma of not having a college
 degree sits too deep within the soul of our society. So the initial reaction was
-no, definitely you are not doing that. Fortunately, after some time and some
-shouting, we got down to the good stuff, the cold calculations, the listing of
-pros and cons. Some important questions were asked and answered. Ultimately, we
-came to the conclusion that in terms of *useful* knowledge to be gained, job
-prospects and most importantly happiness, dropping out was the better choice.
-There were repercussions of course. There would be certain doors that would
-close. I wouldn't be able to apply for certain visas in certain countries for
-example. However I'm a US, French and Austrian citizen and that covers a
-reasonably wide job market, so missing out on working in Japan is something I
-could live with as long as I was still allowed to eat Japanese food. I think the
-argument that won them over the most was the happiness argument -- I was happier
-in industry and felt like I belonged there more than I belonged in my little
-room in Munich.
+"no, definitely you are not doing that". Fortunately, after some time and some
+verbal fencing, we got down to the good stuff, the cold calculations, the
+listing of pros and cons. Some important questions were asked and answered.
+Ultimately, we came to the conclusion that in terms of *useful* knowledge to be
+gained, job prospects and most importantly happiness, dropping out was the
+better choice. There were repercussions of course. There would be certain doors
+that would close. I wouldn't be able to apply for certain visas in certain
+countries for example. However I'm a US, French and Austrian citizen and that
+covers a reasonably wide job market, so missing out on working in Japan is
+something I could live with as long as I was still allowed to eat Japanese food.
 
-Dropping out might seem to many as the "riskier" option compared to staying in
-university. The latter is the safe choice, where you can't really go wrong.
-You'll learn something and you'll get a degree --- no risk in that. But I didn't
-see it that way. I perceived both options as risky. To me, staying in university
-carried a very high potential opportunity cost. There was a legitimate risk that
-I would spend another two years learning less and making less progress towards
-my long term goals of success than if I did drop out. As an ambitious person who
-was very eager to maximize my potential in every possible way and really had't a
-minute to spare in that pursuit, that outcome seemed worse to me than
-discovering minor roadblocks later on, caused by not having finished my studies.
+One thought: Dropping out might seem to many as the "riskier" option compared to
+staying in university. The latter is the safe choice, where you can't really go
+wrong. You'll learn something and you'll get a degree --- no risk in that. But I
+didn't see it that way. I perceived both options as risky. To me, staying in
+university carried a very high potential opportunity cost. There was a
+legitimate risk that I would spend another two years learning less and making
+less progress towards my long term goals of success than if I did drop out. As
+an ambitious person who was very eager to maximize my potential in every
+possible way and really had't a minute to spare in that pursuit, that outcome
+seemed worse to me than discovering minor roadblocks later on due to not having
+a degree.
 
 So the decision was made. I told my manager that I wanted a full time offer. A
 few weeks later I got it and accepted an offer for a full time Software
@@ -163,15 +159,14 @@ was fearful of how my future colleagues would perceive me and doubtful of
 whether I'd come to regret my decision for unforeseen reasons. When I reflect on
 the past three years, there is a very noticeable "arc" in how I dealt with this
 fear and doubt. In the beginning, when I first joined Facebook, I tried as hard
-as possible to hide the fact that I had dropped out.
-
-The first time I recall this fear of what people would think of me was one month
-before I started full-time. I was sitting at dinner with Mark Zuckerberg, in his
-house in Palo Alto. A few Facebook interns every year get to partake in this
-"ceremony" and I was one of them that year. I remember that throughout that
-evening I was asking myself what he would think if I told him that I'd dropped
-out of school to join his company. Dropping out clearly worked out pretty well
-for him, but I just couldn't get myself to mention it to him. I was afraid.
+as possible to hide the fact that I had dropped out. The first time I recall
+this fear of what people would think of me was one month before I started
+full time. I was sitting at dinner with Mark Zuckerberg, in his house in Palo
+Alto. A few Facebook interns every year get to partake in this "ceremony" and I
+was one of them that year. I remember that throughout that evening I was asking
+myself what he would think if I told him that I'd dropped out of school to join
+his company. Dropping out clearly worked out pretty well for him, but I just
+couldn't get myself to mention it to him. I was afraid.
 
 At Facebook, I didn't help myself by not just joining any random part of
 Facebook as my first team, but joining Facebook AI Research, where I was
@@ -187,7 +182,7 @@ as a means to "vet your qualifications". You do that by getting shit done and
 that's something I was pretty good at. Facebook is also known to have a high
 hiring bar, so in hindsight, by virtue of me being there alone I was already
 sufficiently qualified. But at the time, that still didn't make me more
-comfortable at the idea of people "knowing".
+comfortable at the idea of people knowing *the truth*.
 
 Of course, I assume some of my colleagues asked themselves why a kid who wasn't
 allowed to drink at team dinners was working full time at Facebook. But nobody
@@ -230,8 +225,8 @@ know that that person is not worth my time. In the same vain, when it comes to
 job prospects, if an employer were to reject me for a position I'm well suited
 to, based solely on my not having a degree and not based on my experience,
 skills and interview performance, I'm now in a position to politely tell that
-employer to go fuck themselves -- in more diplomatic wording. I have no interest
-in working in an organization that is so obviously ineffiecient to value
+employer to fuck off -- in more diplomatic wording. I have no interest in
+working in an organization that is so obviously ineffiecient to value
 qualifications over qualities and I've worked hard enough to put myself into a
 position where I don't need to either.
 
@@ -270,12 +265,13 @@ mentorship I received. In college you're mostly surrounded by kids who are just
 as clueless and have just as much life experience as you, i.e. zero. Professors
 usually don't care about you and rather than graduate students mentoring
 undergrads, they usually look down at them in contempt or just pretend they
-don't exist. Zero downward knowledge sharing outside the classroom.
+don't exist. *Zero* knowledge across generations.
 
 Note that the knowledge I gained pertains not just to my work. I was surrounded
 by "full blown" adults with families, mortgages and a multitude of personal
 experiences. I not only grew professionally, but also matured immensely as a
-person simply by being around by adults rather than kids my age.
+person simply by being around adults rather than kids my age. Downside is that I
+also have a mortgage now :(
 
 ### Happiness
 
@@ -283,15 +279,15 @@ If I were to describe myself during my college years with one word, it would be
 "intense". I was intensely driven towards achieving my goals and often neglected
 everything else in my life: relationships, physical health and mental health. I
 never gave myself a moment to breathe or take a break. In addition, I already
-mentioned that I found my life in Munich boring and not overly joyous. I was not
-particularly "happy".
+mentioned that I found my life in Munich boring and that I was not particularly
+"happy".
 
-Comparing that to my life as a full-time employee, I would say the biggest thing
+Comparing that to my life as a full time employee, I would say the biggest thing
 that changed is that a huge amount of pressure fell off my shoulders when I
 joined Facebook. I was working my dream job and working on my dream team in AI
 research. I had realized the short-term future I had envisioned for myself.
 
-Additionally, being full-time is a lot less stressful than being an intern. In
+Additionally, being full time is a lot less stressful than being an intern. In
 an internship, you have 12 weeks to impress and that is really not a long time.
 It's easy to go crazy over wanting to perform well, especially since every
 intern has some form of imposter syndrome in the first few weeks. Even though
@@ -307,13 +303,13 @@ If we look at my decision from the perspective of career advancement, I clearly
 got a lot more out of working in industry than I would have from taking more
 classes. Instead of two years of knowledge accumulation to get me to the same
 end result of hopefully working at a company like Facebook, I accumulated two
-years of valuable work experience. While peers in my age group are starting to
-wave their degrees around to apply for entry level positions, I recently
-interviewed at a bunch of companies and qualified predominantly for senior
-engineering roles.
+years of valuable work experience *at Facebook*. While peers in my age group
+are starting to wave their degrees around to apply for entry level positions, I
+recently interviewed at a bunch of companies and qualified predominantly for
+senior engineering roles.
 
 Most tech companies today already put out positions requiring "X level of
-education OR Y years of work experience", e.g. engineering BSc. OR 3 years of
+education OR Y years of work experience", e.g. BSc. in Engineering OR 3 years of
 work relevant experience. What's interesting about this is that realistically,
 the person who spent three years in the industry solving real problems will be a
 much more useful engineer than the person who spent three years learning how to
@@ -335,16 +331,16 @@ somebody will still bother asking either of those engineers what degree they got
 
 So far I have not touched on the subject of money. It was never a factor in my
 decision making and still isn't really to this day. My college in Munich cost
-$150 per semester, so when deciding between working or staying in school, I was
-not making a choice between earning or losing $100k per year like students in
+€150 per semester, so when deciding between working or staying in school, I was
+not making a choice between earning or losing 100k USD/year like students in
 other countries might. Nevertheless, I am clearly in a better financial
 situation now than I was as a student or would be if I had stayed a student.
 
 ## Should Everybody Drop Out?
 
-Up to this point, I've written primarily about myself. My story, my thoughts and
-my feelings. You've gathered that dropping out has worked out pretty well for
-me, as far as I can tell three years on. This poses an obvious question: should
+Up to this point, I've focused primarily on myself. My story, my thoughts, my
+feelings. You've gathered that dropping out has worked out pretty well for me,
+as far as I can tell three years on. This poses an obvious question: should
 everybody drop out? Are our educational institutions completely obsolete? Would
 I tell my children to skip college? Let me answer some of these questions.
 
@@ -358,6 +354,7 @@ college is about preparing you professionally and personally to be an adult. not
 
 ### That being Said
 
+^^^^^^^^^^doesnt mean you need college to be ready
 What about this thought: finish college once you're ready
 
 ### Autodidactism
@@ -386,7 +383,7 @@ of the kind of job I was hoping to get out of my college education.
 
 
 Looking at
-it from this perspective, declining the offer to join Facebook full-time and
+it from this perspective, declining the offer to join Facebook full time and
 instead returning to college would have made no sense whatsoever. If working at
 a Facebook-like company was the goal of going to school and I was attractive
 enough to be recruited by Facebook, my education had served its purpose and it
