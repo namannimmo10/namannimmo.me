@@ -235,14 +235,14 @@ in working in an organization that is so obviously ineffiecient to value
 qualifications over qualities and I've worked hard enough to put myself into a
 position where I don't need to either.
 
-## Debrief
+## Hindsight
 
 I believe so far I've made pretty clear that I do not regret my decision to drop
 out. By all criteria that I could ever have come up with, it's been a complete
 success. I want to close on my personal story by debriefing on why it was a bet
-that paid off for me:
+that paid off for me.
 
-### Professional Learning
+### Learning
 
 Software Engineering -- not Computer Science -- is really a practical field.
 There's a long list of topics to know about and some theories to have heard of,
@@ -250,8 +250,8 @@ but after that what differentiates the master software engineer from the
 apprentice is not 10,000 hours more of theories, but 10,000 hours more of
 building software in the real world. As such, I'm willing to bet a lot of money
 that no CS degree on this planet would have taught me as much relevant knowledge
-and as many relevant skills than I obtained by working in the trenches of the
-real world at Facebook.
+and as many relevant skills than I obtained by working in the trenches at
+Facebook.
 
 In addition, if there's one thing I believe is really lacking in our education
 system today, it is the notion of mentorship. Any great craftsman in history
@@ -266,55 +266,131 @@ Mentorship is literally in the job description for senior engineers, it's
 expected of them, and I benefited immensely from it.
 
 I have not heard of any university program that comes even close to the level of
-mentorship I received. You're mostly surrounded by kids who are just as clueless
-and have just as much life experience as you, i.e. zero. Professors don't give a
-shit about you. TAs might but they have 30 other students they need to take care
-of. It's a shame.
+mentorship I received. In college you're mostly surrounded by kids who are just
+as clueless and have just as much life experience as you, i.e. zero. Professors
+usually don't care about you and rather than graduate students mentoring
+undergrads, they usually look down at them in contempt or just pretend they
+don't exist. Zero downward knowledge sharing outside the classroom.
 
-### Personal Learning
+Note that the knowledge I gained pertains not just to my work. I was surrounded
+by "full blown" adults with families, mortgages and a multitude of personal
+experiences. I not only grew professionally, but also matured immensely as a
+person simply by being around by adults rather than kids my age.
 
-Many of my peers describe me as fairly mature for my age. Maturity is a fuzzy
-subject, but for the sake of discussion we can define it as one's exposure to
-the real world, degree of emotional stability and general soundness in decision
-making. I probably do have more of that than the average 22-year-old and for two good reasons.
+### Happiness
 
-For one, I've been exposed to the real world for three years rather than the
-sheltered uterus of college. College, especially undergrad, is not the real
-world. For many people (not all), time spent there is an intermediate stage in
-personal maturation between childhood and adulthood, with a few more
-responsibilities than before but not too many. Somebody tells you what to study,
-what's important to know, what success means and what failure means. A lot of
-things are taken care of for you by somebody else -- professors, deans, parents.
-When I decided to enter industry, I had to figure out a lot of things that are
-part of life: deciding how to spend my time, managing my career, paying taxes
-and paying for everything else too. These things we do not learn in college.
+If I were to describe myself during my college years with one word, it would be
+"intense". I was intensely driven towards achieving my goals and often neglected
+everything else in my life: relationships, physical health and mental health. I
+never gave myself a moment to breathe or take a break. In addition, I already
+mentioned that I found my life in Munich boring and not overly joyous. I was not
+particularly "happy".
 
-The second reason goes back to what I mentioned before. Being surrounded by
-adults who have many more years of experience than me has made a big impact on
-me.
+Comparing that to my life as a full-time employee, I would say the biggest thing
+that changed is that a huge amount of pressure fell off my shoulders when I
+joined Facebook. I was working my dream job and working on my dream team in AI
+research. I had realized the short-term future I had envisioned for myself.
 
+Additionally, being full-time is a lot less stressful than being an intern. In
+an internship, you have 12 weeks to impress and that is really not a long time.
+It's easy to go crazy over wanting to perform well, especially since every
+intern has some form of imposter syndrome in the first few weeks. Even though
+Facebook is known to be a very fast-paced and intense work environment,
+development and evaluation cycles are much longer for full time employees and
+knowing you will still be employed for the foreseeable future instead of only a
+few more weeks makes a difference. I got healthier, spent a lot more time
+outdoors and overall became much happier.
 
+### Career Advancement
 
-* Personal learning:
-* Happiness:
-* Career Advancement:
-* Finances
+If we look at my decision from the perspective of career advancement, I clearly
+got a lot more out of working in industry than I would have from taking more
+classes. Instead of two years of knowledge accumulation to get me to the same
+end result of hopefully working at a company like Facebook, I accumulated two
+years of valuable work experience. While peers in my age group are starting to
+wave their degrees around to apply for entry level positions, I recently
+interviewed at a bunch of companies and qualified predominantly for senior
+engineering roles.
 
+Most tech companies today already put out positions requiring "X level of
+education OR Y years of work experience", e.g. engineering BSc. OR 3 years of
+work relevant experience. What's interesting about this is that realistically,
+the person who spent three years in the industry solving real problems will be a
+much more useful engineer than the person who spent three years learning how to
+proove theorems. So a BSc. might still be worth something on paper, but that
+worth goes away once you're "in".
 
-Was it a good decision? Yes, I
+I want to dive deeper on the notion of getting "in". Let's consider two
+engineers who both got hired, one because of their BSc. and one because of their
+three years in industry. If they both spend another three years at that company,
+the first engineer will have a BSc. and three years of experience while the
+second will have six years of job experience. Who do you think will be a more
+capable engineer and thus more attractive to employers? Clearly the second. The
+basic conclusion is that the value of a degree is only in getting you "in",
+after that its value fades over time. Do you imagine after 20 years in industry
+somebody will still bother asking either of those engineers what degree they got
+20 years ago?
 
-* learned more
-* was around more mentors
-* had a happy life
-* earned more
+### Finances
+
+So far I have not touched on the subject of money. It was never a factor in my
+decision making and still isn't really to this day. My college in Munich cost
+$150 per semester, so when deciding between working or staying in school, I was
+not making a choice between earning or losing $100k per year like students in
+other countries might. Nevertheless, I am clearly in a better financial
+situation now than I was as a student or would be if I had stayed a student.
 
 ## Should Everybody Drop Out?
+
+Up to this point, I've written primarily about myself. My story, my thoughts and
+my feelings. You've gathered that dropping out has worked out pretty well for
+me, as far as I can tell three years on. This poses an obvious question: should
+everybody drop out? Are our educational institutions completely obsolete? Would
+I tell my children to skip college? Let me answer some of these questions.
+
+### Tech is Unique
+
+only in tech industry do degrees matter so little
+
+### College is about Preparation
+
+college is about preparing you professionally and personally to be an adult. not everybody is as ready as I was both professionally and personally.
+
+### That being Said
+
+What about this thought: finish college once you're ready
+
+### Autodidactism
+
+online learning
+practical learning
+
+### Academic Careers
+
+I'm comparing myself to people who get BSc or MSc to enter the workforce, not to those who do PHds and go into research/academia
+
+### Here's to the crazy ones
+
+The world needs more people who build things. Here's to doing rather than talking.
 
 You now know my story. However, every person's story is different
 
 I want to note that the job prospects aspect of this is somewhat unique to the tech industry. If I was in the business of law or medicine this conclusion would 
 
 
+At the most basic level, the idea behind going to college is to gain the
+necessary knowledge and skills to become an attractive recruit in the job market
+after graduation (unless you're going the full academic route). Working as a
+software engineer at a big software company like Facebook was certainly my idea
+of the kind of job I was hoping to get out of my college education. 
+
+
+Looking at
+it from this perspective, declining the offer to join Facebook full-time and
+instead returning to college would have made no sense whatsoever. If working at
+a Facebook-like company was the goal of going to school and I was attractive
+enough to be recruited by Facebook, my education had served its purpose and it
+was perfectly acceptable to finish college early.
 
 
 
