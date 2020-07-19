@@ -331,10 +331,11 @@ somebody will still bother asking either of those engineers what degree they got
 
 So far I have not touched on the subject of money. It was never a factor in my
 decision making and still isn't really to this day. My college in Munich cost
-€150 per semester, so when deciding between working or staying in school, I was
-not making a choice between earning or losing 100k USD/year like students in
-other countries might. Nevertheless, I am clearly in a better financial
-situation now than I was as a student or would be if I had stayed a student.
+€150 per semester (at the cost of other people's taxes), so when deciding
+between working or staying in school, I was not making a choice between earning
+or losing 100k USD/year like students in other countries might. Nevertheless, I
+am clearly in a better financial situation now than I was as a student or would
+be if I had stayed a student.
 
 ## Should Everybody Drop Out?
 
@@ -344,57 +345,323 @@ as far as I can tell three years on. This poses an obvious question: should
 everybody drop out? Are our educational institutions completely obsolete? Would
 I tell my children to skip college? Let me answer some of these questions.
 
-### Tech is Unique
+### Three Factors
 
-only in tech industry do degrees matter so little
+The first thing I want to call out is that there were three *environmental*
+factors that allowed my success. The first is that my profession is in the tech
+industry, the second is that I work for an American company and the third is
+that it's 2020. If either of the first two factors are not given in somebody
+else's situation (the latter, as of this writing, is), the odds of their success
+are different. Let me explain.
 
-### College is about Preparation
+For the first factor, the technology industry has been quite trailblazing in
+terms of being a "high knowledge" industry that recognizes that the required
+knowledge need not be attained exlusively via formal education. With "high
+knowledge" I set it apart from other industries like hospitality or
+construction, where vocational training is usually sufficient in place of a
+theory-heavy degree. Comparing tech to other high knowledge industries like
+medicine, law or civil engineering, tech industry firms are much more likely to
+accept experience as a viable alternative to a college degree. In contrast, a
+doctor without a medical degree, a lawyer who hasn't passed the bar exam or a
+civil engineer with a high school diploma all seem unthinkable.
 
-college is about preparing you professionally and personally to be an adult. not everybody is as ready as I was both professionally and personally.
+The second factor is that the United States is much more pragmatic than any
+other country I've come across when it comes to organizational structure. I grew
+up in a country where people put their titles in their passports and it's not
+unthinkable to see "Dipl. Ing. Mag. Dr. Dr. Max Mustermann" on somebody's name
+tag. "Ok Max, you must be important". From German colleagues I hear that even
+with German tech companies I'd have a hard time applying without a master's
+degree, despite a couple years at Facebook under your belt. In the end, this is
+inefficient. Other companies benefit from the talent denied by firms stubbornly
+insisting on academic qualifications.
 
-### That being Said
+Interestingly, those same countries in Europe that might not hire me today
+despite my experience are countries that are revered for their *vocational
+training* programs. Foreign government officials routinely visit Austria and
+Germany to understand how to replicate the success of their
+[vocational training model](https://www.aspeninstitute.org/blog-posts/austria-s-successful-model-vocational-education-lessons-us/).
+It seems there's an unnecessary, outdated cognitive divide in these countries
+between encouraging apprenticeship-based education for some sectors, but
+requiring education-by-ploughing-through-books for other jobs. The US was first
+to ditch the latter and
+[is catching up on the former](https://www.cnn.com/2018/07/19/politics/trump-executive-order-job-training/index.html).
 
-^^^^^^^^^^doesnt mean you need college to be ready
-What about this thought: finish college once you're ready
+The last factor is time. Thirty years ago, I believe my story, swapping out
+Facebook with IBM, Xeros or AT&T, would have been less likely. We could forecast
+that this means other professions and other countries will follow this trend
+over time, shifting their focus from academic qualifications as an indicator of
+professional readiness to practical, pragmatic, skill-based recruiting. Maybe. I
+hope so.
 
-### Autodidactism
+### The Purpose of Higher Education
 
-online learning
-practical learning
+I want to touch on the purpose of higher education. I would say the primary
+purpose, as I alluded to earlier, is preparation for the job market. Getting an
+undergraduate, sometimes a graduate degree, is seen by many as a right of
+passage, something of a entrance exam for getting a job. It "opens up the door"
+to (better) jobs. In this sense, higher education is meant to be *training* for
+your future job. You learn the relevant jargon, the relevant history, the
+relevant theories and the relevant techniques that your future employer expects
+of you. I believe I'm not going out on a limb when saying that the prospects of
+landing your dream job through this "training" is one of the motivations for
+students (or their parents) to shell out up to $80,000 per year in tuition and
+boarding fees.
+
+So let's assume preparation for your dream job is the primary purpose of higher
+education. Now, what if it turns out that you are ready before your graduation.
+What if you happened to have prior knowledge gained via home schooling or
+autodidactism, or gained the relevant skills by studying furiously on your own
+outside of your regular classes, focusing on topics that are precisely relevant
+to attaining your dream job. Wouldn't it be perfectly acceptable to get your
+college degree as soon as an attractive employer assesses that you have the
+skills they need from you? If the employer thinks I'm ready, why does the
+university insist I spend another few years learning about things which, from
+that point onward, are no longer required to get me a job? Because there's these
+topics that every student should have heard about once in their life, even if
+you never end up needing them? Well, in that case, I'm fine with everyone else
+knowing about them except me. Oh, and by the way, if I don't land a job after
+the valuable array of education I recieved during my college degree, where do I
+ask for a refund? Why are you laughing? What do you mean "the door is right
+there and I need to leave immediately"?
+
+For my case, working as a software engineer at a big software company like
+Facebook was certainly my idea of the kind of job I was hoping to get out of my
+college education. Looking at it from this perspective, declining the offer to
+join Facebook full time and instead returning to college would have made no
+sense whatsoever. If working at a Facebook-like company was the goal of going to
+school and I was attractive enough to be recruited by Facebook, my education had
+served its purpose and it was perfectly acceptable to finish college early.
+
+### Autodidactism and Unorthodox Education
+
+I believe autodidactism, learning on your own, has a very strong case today. The
+breadth of resources for self-education available on the internet is
+breathtaking. Pick any topic you like and a simple Google search will pop up 10,
+20, 30 high quality online courses, blog posts or books on the topic -- most of
+them gratis. There is no subject taught by any university today for which you
+will not find equivalent resources on the internet. If there is, somebody tell
+that university nobody cares about their subject. Most importantly, you decide
+what you want to learn. Nobody tells you what's important, you make the call. If
+you're interested in becoming an expert on one particular topic, say
+cyroptography, you can focus exclusively on that topic. If you want to go broad
+and explore many different topics, all power to you. It's a sea of knowledge and
+you're steering the boat.
+
+In high school my father introduced me to Coursera and I started taking some
+online courses in my leisure time. Some of them were general computer science
+topics, others very specific to what I was interested at the time. The summer
+before college I did a few online ourses on algorithms and data structures and
+it landed me an internship at Google. During my year in university I spent
+evenings doing courses on machine learning, calculus and GPU programming. Lo and
+behold, I ended up working for one of the top industrial AI research labs in the
+world, without having taken a calculus course in college. The things I learned
+online dwarf the knowledge I retained from any of the courses I took in my year
+in college.
+
+There is one particular reason why the knowledge I obtained via online courses
+was so much more valuable than what professors scribbled on blackboards in
+college. The reason is that the ratio at which I was *using* the knowledge I got
+from those online courses for practical applications was vastly greater than the
+stuff in college. The reasoning is simple: I picked the courses because I was
+interested in what I could do with the knowledge. Once I had the knowledge, I
+used it and because I used it, the knowledge stuck. By contrast, in college I
+was force-fed knowledge that somebody else thought I needed to know at that
+point in my life. I likely didn't and thus 95% of the knowledge swiftly exited
+my medium-term memory after the final exam. There's definitely been cases where
+I needed to re-learn material online that had been covered by my college class
+but was useless to me at the time, even though I got an A on the exam, because I
+now needed it. The fact that we forget most things (I estimate 95%, with an
+exponential decay) we are taught in school is widely accepted. Professors will
+tell you it's important that you've at least heard the terms. I call bullshit.
+If you don't remember how to do derivatives but have heard of the term
+"derivative", then at the moment where you need it that is very nearly as
+valuable as never having heard of it and looking up online how to do it right
+then. It certainly isn't worth learning about it for 4 months if you're not
+going to use it for the foreseeable future.
+
+Now, there is one important caveat to autodidactism. You need to have very
+strong, intrinsic motivation, dedication, willpower and discipline. This does
+not apply to everyone. A lot of people are lazy and need somebody else to force
+them to study, do homework and practice. Autodidactism is for everybody but the
+lazy. You also need to have a general clue about what you *need to know*. A lot
+of people start their degree without a real idea what it's about and what
+they'll need to know to land a good job in that field later on. Such people
+appreciate having somebody else lay out the path in front of them and tell them
+what they need to know (apparently) in what order (apparently). This, again,
+goes back to laziness. You can figure those things out yourself if you want to,
+or you can ask other people (for free). I wasn't "priviledged" to know which
+things to learn on my own, I just put in the effort to figure it out.
+
+### A free market model for education
+
+I want to finish my ruminations on education with a proposal for a new model of
+the education system. Here I outline how, if I was given a magic wand, I would
+wave said magic wand. Imagine, for this, there are no colleges as we know them
+today.
+
+Let's start with principles. We want our education system to be:
+* Practically focused, emphasizing preparation for the job market;
+* As affordable as possible, without raising your income tax;
+* Tailored to each individual as much as possible.
+None of these apply to college as we know it today.
+
+This is what education looks like in our post-magic-wand world. College is
+replaced with two forms of education: autodidactism and vocational training.
+
+The European vocational training model is expanded to high-knowledge industries
+everywhere. If your dream is to become a biologist and create novel vaccines,
+your vocational biology school teaches you precisely the necessary fundamentals
+to understand the domain and soon pairs you with real biologists who train you
+in their profession and teach you their knowledge along the way. This can still
+take five, six years. I'm not saying education becomes a 80-day bootcamp and
+you're ready to cure cancer. But as opposed to doing a "biology" degree and
+learning about every facet of biology for four years before you ever touch a
+pipette, you learn exactly what you need to know and apply it as soon as
+possible. In many cases, these vocational schools are run by the private
+companies that end up hiring these students. This makes perfect sense. Companies
+would want to invest in vocational training because it would churn out
+fantastically well prepared students matching exactly the training these
+companies need. At the same time, students would have a 100% job guarantee.
+Examples of such programs are starting to pop up,
+[Russian search firm Yandex's school of data analysis is a good example](https://yandexdataschool.com).
+
+Parallel to vocational training, the alternative path to education chosen
+without stigma by individuals based on their personal preference is
+autodidactism. Instead of going to college campuses to be masted with
+pre-packaged cookie-cutter knowledge, students stay at home and teach themselves
+what they want to know to or what their dream companies list as required
+knowledge. They take online courses, read books and apply for internships as
+soon as possible. Once they feel ready to apply to their dream company, they do.
+Companies would need to put in more effort with their interview process, since
+they can no longer rely on the name of the place somebody went to school as
+signal of their ability. There's many ways screening procedures could be put in
+place for this and many are already in use today anyway.
+
+Now, if there are no universities in our post-magic-wand world, who is left to
+teach the online courses that are meant to obsolete these universities in the
+first place? I say it's the same people who teach them today. First of all, it's
+important to call out that many valuable online courses today are already taught
+by employees at private companies. These employees get paid for their regular
+jobs, but on top of that create educaitonal content that is relevant to the
+fields in which those company operate. This goes back to the idea of private
+vocational schools, which are win-win for employers as well as students who
+become future hires. Secondly, researchers, i.e. the PhD students and professors
+who teach college courses today, can continue to do so. Instead of college,
+these reseachers work in research institutes. They do research full-time, but on
+top of that share knowledge with the world for the purpose of education. They'll
+no longer get paid through tuition fees, because there are no institutions to
+pay tuition for. However, they can still charge for their courses. Educators can
+name their own price for their courses and these courses thus become products
+like all others in the free market. 
+
+This has its own benefit. Free markets self-regulate the quality of their
+products. If a product provides low value, demand for that product is low and
+its producer will go out of business. Students become consumers and there is no
+single more empowered entity in a free market than the consumer. Why? Because in
+a free market, consumers have choice. In our world, students have choice. If you
+don't like the course taught by one educator and there is an alternative course
+taught by another, you can put your purchasing power into that second educator.
+Compare this to college today. If you don't like the course being taught by your
+professor, tough look. You're still paying 80k a year. When I buy a water boiler
+on amazon and I don't like the water boiler, I return the water boiler, get a
+refund and buy a different water boiler. When I pay 80k/year and the professor
+teaching my course is crap, how do i get the refund for my course and take the
+course from a different professor? I want more of the first, less of the second.
 
 ### Academic Careers
 
-I'm comparing myself to people who get BSc or MSc to enter the workforce, not to those who do PHds and go into research/academia
+I've so far made the case that the traditional path of going to college and
+getting an undergraduate degree in order to enter the job market is outdated and
+replaceable with autodidactism and practical experience. This (hopefully now)
+makes sense for those who want to enter industry and become a "worker" -- of
+whatever form. But what about those striving to become researchers, pursuing the
+traditional "academic career"? Is traditional education superfluous for these
+individuals too?
+
+Interesingly, academic careers consist of two components: a teaching component
+and a research component. I think this is flawed. If you want to become a
+researcher (scientist), I don't see why you should be under any obligation to
+teach. Especially since most people who don't want to teach are horrible
+teachers anyway. At the same time, I don't see why great educators need to also
+be involved in research. If you're teaching calculus to undergrads, you can be
+just good at that, you don't also have to do calculus research on the side. I
+say this because I believe those who pursue academia to teach, shouldn't have to
+get a PhD and become full professors. Educators need only to be really good at
+teaching their subjects and nothing more (besides being generally interested in
+the field, occasionally showing students what's beyond the basic material).
+That's why a lot more people have amazing high school teachers than amazing
+professors in college. Great high school teachers are great educators, not
+necessarily great researchers. Professors may be great researchers, but sub-par
+educators. Yet they have to do it anyway, to the students' demise.
+
+Now for those pursuing academia because they want to do research and uncover
+novel discoveries and methods in their field, getting a PhD and postdoc makes a
+lot more sense. Why? Because these degree programs involve *doing research*,
+which is the job these students are aiming to get after their degree *anyway*.
+The only difference between doing a PhD and doing research in industry or
+academia after is that during the PhD students pay to do research, while after
+they get paid to do research. There is a really important point hidden here. If
+somebody's goal is to become a full-time scientist, then doing a PhD is actually
+not just "getting a degree", it's an *apprenticeship* in becoming a scientist! A
+PhD program is a vocational school for researchers. 
+
+In this sense, I fully support the idea of getting a PhD when your goal is to
+become a researcher. However, I also think it is not the only way. In the
+previous section, I explain my idea that vocational schooling and autodidactism
+are both equally viable paths to enter your profession of choice. As such, I
+think that getting a PhD *shouldn't be necessary* to become a researcher. But
+can one become a legitimate researcher without getting a PhD? First of all,
+history holds numerous examples of self-taught scientists without PhDs: Nikola
+Tesla, Thomas Edison and even Henry Ford, who was an inventor (i.e. a researcher
+who applies his research) first and industrialist only second. If Nikola Tesla
+were to apply for a research scientist position at General Electric today, his
+CV would probably be thrown in the trash in favor of PhD graduates from
+Princeton. As long as that's the case, we have a problem.
+
+I have many friends in PhD programs and as far as I can tell, the large sums of
+money they're often paying are for three things: time to pursue research, an
+occasionally competent academic advisor and the prestige of the institution they
+are paying that money to. Prestige doesn't make anyone a rocket scientist, so we
+can dismiss that as a factor of "true value" provided by a PhD program. Time is
+fundamentally free, you shouldn't have to pay for it. This leaves as the sole
+value of the PhD program the bi-weekly (or so) meeting with a PhD supervisor who
+guides the student in the right direction and is there to bounce around ideas.
+Mentors and masters (in the apprenticeship sense) are no doubt important, but
+should you have to pay $50k per year for one? Sounds to me like a lot of people
+are getting ripped off here, big time. Tesla, Edison and Ford certainly didn't
+pay that money to whoever taught them the ropes.
+
+The bottom line is that even though PhD programs are legitimate in the sense
+that they are vocational schools, I still think they are inefficient and could
+be overhauled systematically in a way that produces more value to students and
+the other people funding the academic system, i.e. you, me, your neighbors and
+all the other tax payers in this country. Given that academia is at the heart of the inefficient, outdated system that this whole article is arguing against, this is hardly a surprise.
+
+getting a degree is the job of a researcher already, just they pay instead of
+getting paid however, i would argue that even for research, degrees are not
+necessary. Tesla, Edison, Ford etc. first pay to learn how to do research, then
+get paid to do it well. This is apprenticeship researchers could do just as well
+without the degrees.
 
 ### Here's to the crazy ones
 
-The world needs more people who build things. Here's to doing rather than talking.
+The fundamental reason I dropped out of college was that I have a bias for
+action, for doing rather than talking. If there is anything slowing down my
+ability to produce tangible results, then that is an inefficiency that I want to
+eliminate. Our modern education system, while beneficial to many people in many
+ways, is so very far from a maximally efficient system that would produce the
+greatest possible value to students and the society these students subsequently
+enter. The biggest crime committed by this current system is that it keeps
+people from becoming doers as soon as possible and denies the same recognition
+to those who do as to those who spent four years learning how to do. The world
+really needs more people who do, not people who talk about doing. Titles and
+prestige don't build rockets to mars. Theory doesn't build self driving cars.
+Only the application of theory, the actual doing, does.
 
-You now know my story. However, every person's story is different
-
-I want to note that the job prospects aspect of this is somewhat unique to the tech industry. If I was in the business of law or medicine this conclusion would 
-
-
-At the most basic level, the idea behind going to college is to gain the
-necessary knowledge and skills to become an attractive recruit in the job market
-after graduation (unless you're going the full academic route). Working as a
-software engineer at a big software company like Facebook was certainly my idea
-of the kind of job I was hoping to get out of my college education. 
-
-
-Looking at
-it from this perspective, declining the offer to join Facebook full time and
-instead returning to college would have made no sense whatsoever. If working at
-a Facebook-like company was the goal of going to school and I was attractive
-enough to be recruited by Facebook, my education had served its purpose and it
-was perfectly acceptable to finish college early.
-
-
-
-* description of the situation, background, my decision
-* my thoughts at the time for making this decision
-* aftermath, living with the situation.
-  * first few months at fb
-  * later on
-* my thoughts on my decision today
-* my recommendation, talk about the education system
+So "Here's to the crazy ones. The misfits. The rebels. The troublemakers. The
+round pegs in the square holes. The ones who see things differently. They're not
+fond of rules. And they have no respect for the status quo. You can quote them,
+disagree with them, glorify or vilify them. About the only thing you can't do is
+ignore them. Because they change things. They push the human race forward. And
+while some may see them as the crazy ones, we see genius. Because the people who
+are crazy enough to think they can change the world, are the ones who do."
