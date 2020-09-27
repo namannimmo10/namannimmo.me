@@ -1,7 +1,7 @@
 ---
 layout:		post
 title:		"Of Hammers And Nails: Solving The Right Problems"
-summary:	The technologist's trap and solving the right problems
+summary:	The technologist's trap
 date:		2020-09-26 23-32-07
 categories:	thoughts
 ---
