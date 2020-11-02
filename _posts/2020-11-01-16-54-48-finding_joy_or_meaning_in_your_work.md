@@ -8,7 +8,7 @@ categories:	thoughts work
 
 I'm often told that I can consider myself lucky that I enjoy the work I do for a living. While I admit that I take this for granted, I equally appreciate that for many, many people work is just that -- work. A necessity of life that pays the bills and enables the activities, hobbies and dreams that actually bring you joy. One reason I've taken my situation for granted is that for most of my professional career I've been surrounded by highly competent engineers, scientists, project and people managers who I count as some of the best of the best of their respective fields. To become one of the best, you *usually* have to enjoy your work. It's very hard to force yourself into excellence. That said, it *is* possible to excel at your profession without enjoying it, as long as you have a strong enough meaning or purpose to the work that you do -- a *why* that overpowers the *what*.
 
-Generalizing this notion a little, I've entertained the thought for a while now that in order to find happiness In what you do and improve at it, you either need to find joy in your work, or find meaning in your work. You can have both and you can have neither, each with its own outcome. Below is a little chart illustrating roughly what I believe each combination of joy and meaning leads to.
+Generalizing this notion a little, I've entertained the thought for a while now that in order to find happiness in what you do and improve at it, you either need to find joy in your work, or find meaning in your work. You can have both and you can have neither, each with its own outcome. Below is a little chart illustrating roughly what I believe each combination of joy and meaning leads to.
 
 <img alt="Learning Curves" src="/images/work/chart.png"/>
 
