@@ -1,5 +1,5 @@
-# goldsborough.me
+# namannimmo.me
 
-My personal website, found at [goldsborough.me](http://www.goldsborough.me) and [goldsborough.github.io](https://www.goldsborough.github.io) .
+This is my personal website, found at [namannimmo.me](http://www.namannimmo.me).
 
 Based on [Pixyll](https://github.com/johnotander/pixyll).
